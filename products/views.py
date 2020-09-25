@@ -6,8 +6,12 @@ from .models import Product, Category
 
 def all_products(request):
     products = Product.objects.all()
+    if request.GET:
+        if 'gender' in request.GET:
+            gender = request.GET['gender']
+            products = products.filter(gender=gender)
     context = {
-        'products': products
+        'products': products,
 
     }
     return render(request, 'products/products.html', context)

@@ -2,7 +2,116 @@
 {% load static %}
 
 {% block content %}
-    {% for product in products %}
-        {{product.gender}}
-    {% endfor %}
+         <section class="cat_product_area prdct_padding border_top">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    {% if search_word %}
+                        <p> {{search_word | length}} Product(s) available for your search "{{search_word}}"</p>
+                    {% endif %}
+                </div>
+                <div class="col">{% for category in categories %}
+                    <a class="text-decoration-none" href="{% url 'products' %}?cat={{ category.name }}">
+                        <span class="p-2 mt-2 badge  rounded-2 border border-light">{{ category.name }}</span>
+                    </a>
+                {% endfor %}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="left_sidebar_area">
+                        <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
+                            <div class="l_w_title">
+                                <h3>Browse Categories</h3>
+                            </div>
+                            <div class="widgets_inner">
+                                <h5 class="sec-hd sidebar_box_shadow">All Products /</h5>
+                                <hr>
+                                <ul class="list">
+                                    <li>
+                                        <a href="{% url 'products' %}?cat=dresses">Dresses</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'products' %}?cat=tops">Tops</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'products' %}?cat=leggings&pants">Leggings & Pants</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'products' %}?cat=shirts">Shirts</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'products' %}?cat=jeans">Jeans</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'products' %}?cat=shoes">Shoes</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product_top_bar d-flex justify-content-between align-items-center">
+                                <div class="single_product_menu product_bar_item">
+                                    {% for cat in categories%}
+                                    <h2></h2>
+                                    {% endfor %}
+                                </div>
+                                <!-- {{myFilter.form.as_p}} -->
+                                <div class="product_top_bar_iner product_bar_item d-flex">
+                                    <div class="product_bar_single">
+                                        <select class="wide">
+                                            <option value="default" {% if sorting == 'None_None' %}selected{% endif %}>Suggested</option>
+                                            <option value="price_asc" {% if sorting == 'price_asc' %}selected{% endif %}>Price(High)</option>
+                                            <option value="price_desc" {% if sorting == 'price_desc' %}selected{% endif %}>Price(Low)</option>
+                                            <option value="sales" {% if sorting == 'sales' %}selected{% endif %}>Sales</option>
+                                            <option value="rating_asc" {% if sorting == 'rating_asc' %}selected{% endif %}>Rating(High)</option>
+                                            <option value="rating_desc" {% if sorting == 'rating_dsc' %}selected{% endif %}>Rating(Low)</option>
+                                            <option value="new_arrivals" {% if sorting == 'new_arrivals' %}selected{% endif %}>New Arrivals</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="product_bar_single">
+                                        <select>
+                                            <option data-display="Show 12">Show 12</option>
+                                            <option value="1">Show 20</option>
+                                            <option value="2">Show 30</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {%for product in products%}
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single_product">
+                                <div class="single_category_img">
+                                    <a href="">
+                                        <img src="{{ product.image.url }}" alt="{{product.name}}">
+                                    </a>
+                                    <div class="category_social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="far fa-heart"></i></a></li>
+                                            {% if product.has_sizes%}
+                                               <li class="d-none"><a href="{"><i class="fas fa-shopping-bag"></i></a></li>
+                                             {% else %}
+                                               <li class="d-block"><a href=""><i class="fas fa-shopping-bag"></i></a></li>
+
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    <div class="category_product_text">
+                                        <a href=""><h5>{{product.name}}</h5></a>
+                                        <p>${{product.price}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
