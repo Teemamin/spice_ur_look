@@ -7,4 +7,4 @@ def home(request):
     context = {
        
     }
-    return render(request, 'base.html', context)
+    return render(request, 'index.html', context)
