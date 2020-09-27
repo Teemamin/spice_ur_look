@@ -91,26 +91,14 @@
                                         Shop By
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_4">
-                                        <a class="dropdown-item" href="">shop by Rating </a>
-                                        <a class="dropdown-item" href=""> shop by Price</a>
-                                        <a class="dropdown-item" href="">shop by Category </a>
-                                       
-
-
-                                        
+                                        <a class="dropdown-item" href="{% url 'products' %}?arrange=rating&direction=desc">shop by Rating </a>
+                                        <a class="dropdown-item" href="{% url 'products' %}?arrange=price&direction=asc"> shop by Price</a>
+                                        <a class="dropdown-item" href="{% url 'products' %}?arrange=category&direction=asc">shop by Category </a>      
                                     </div>
                                 </li>
                                 
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown_3"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        accessories
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_3">
-                                        <a class="dropdown-item" href=""> Bags</a>
-                                        <a class="dropdown-item" href="">Earings & Necklace</a>
-
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'products' %}?cat=accessories">Accessories</a>
                                 </li>
                                 
                                 <li class="nav-item">
