@@ -26,26 +26,40 @@
                             <div class="widgets_inner">
                                 <h5 class="sec-hd sidebar_box_shadow">All Products /</h5>
                                 <hr>
+                                <!-- {%for product in products%}
+                                    {%if product.gender == "woman"%}
+                                        <p>woman</p>
+                                    {%else %}
+                                        <p>man</p>
+                                    {%endif%}
+                                 {%endfor%} -->
+                                 
                                 <ul class="list">
                                     <li>
-                                        <a href="{% url 'products' %}?cat=dresses">Dresses</a>
+                                        <a href="{% url 'products' %}?cat=dresses&gender=woman">Dresses</a>
                                     </li>
                                     <li>
-                                        <a href="{% url 'products' %}?cat=tops">Tops</a>
+                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=tops&gender=woman"{%else%} href="{% url 'products' %}?cat=tops&gender=man"{%endif%}{%endfor%}>Tops</a>
                                     </li>
                                     <li>
-                                        <a href="{% url 'products' %}?cat=leggings&pants">Leggings & Pants</a>
+                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=new_arrivals&gender=woman"{%else%} href="{% url 'products' %}?cat=new_arrivals&gender=man"{%endif%}{%endfor%}>New Arrivals</a>
+                                    </li>
+                                   
+                                    <li>
+                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=shirts&gender=woman"{%else%} href="{% url 'products' %}?cat=shirts&gender=man"{%endif%}{%endfor%}>Shirts</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=jeans&gender=woman"{%else%} href="{% url 'products' %}?cat=jeans&gender=man"{%endif%}{%endfor%}>Jeans</a>
+
                                     </li>
                                     <li>
-                                        <a href="{% url 'products' %}?cat=shirts">Shirts</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'products' %}?cat=jeans">Jeans</a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'products' %}?cat=shoes">Shoes</a>
+
+                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=shoes&gender=woman"{%else%} href="{% url 'products' %}?cat=shoes&gender=man"{%endif%}{%endfor%}>Shoes</a>
+                                        
                                     </li>
                                 </ul>
+                           
                             </div>
                         </aside>
                     </div>

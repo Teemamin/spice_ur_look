@@ -65,9 +65,9 @@
                                             women's section <i class="fas fa-arrow-circle-right"></i>
                                             
                                         </a>
-                                        <a class="dropdown-item" href="">Dresses</a>
-                                        <a class="dropdown-item" href="">Leggings & Pants</a>
-                                        <a class="dropdown-item" href="">Tops</a>
+                                        <a class="dropdown-item" href="{% url 'products' %}?cat=dresses&gender=woman">Dresses</a>
+                                        <a class="dropdown-item" href="{% url 'products' %}?cat=shirts&gender=woman">Shirts</a>
+                                        <a class="dropdown-item" href="{% url 'products' %}?cat=tops&gender=woman">Tops</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -80,9 +80,9 @@
                                             Men's section <i class="fas fa-arrow-circle-right"></i>
                                             
                                         </a>
-                                        <a class="dropdown-item" href="">Shirts</a>
-                                        <a class="dropdown-item" href="">Jeans</a>
-                                        <a class="dropdown-item" href="">shoes</a>
+                                        <a class="dropdown-item" href="{% url 'products' %}?cat=shirts&gender=man">Shirts</a>
+                                        <a class="dropdown-item" href="{% url 'products' %}?cat=jeans&gender=man">Jeans</a>
+                                        <a class="dropdown-item" href="{% url 'products' %}?cat=shoes&gender=man">shoes</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -114,7 +114,7 @@
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">sales</a>
+                                    <a class="nav-link" href="{% url 'products' %}?cat=promotions">sales</a>
                                 </li>
                             </ul>
                         </div>

@@ -8,10 +8,20 @@ from django.db.models import Q
 
 def all_products(request):
     products = Product.objects.all()
+    search_word = None
+    categories = None
+    cat = None
     if request.GET:
         if 'gender' in request.GET:
             gender = request.GET['gender']
             products = products.filter(gender=gender)
+        if 'cat' in request.GET:
+            cat = request.GET['cat'].split(',')
+            if 'gender' in request.GET:
+                gender = request.GET['gender'].split(',')
+            #     print(gender)
+            products = products.filter(category__name__in=cat)
+            categories = Category.objects.filter(name__in=cat)
         if 'search' in request.GET:
             search_word = request.GET['search']
             if not search_word:
@@ -23,6 +33,7 @@ def all_products(request):
             products = products.filter(search_words)
     context = {
         'products': products,
+        'categories': categories,
         'search_word': search_word,
 
     }
