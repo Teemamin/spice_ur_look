@@ -126,14 +126,11 @@
                                 </div>
                             </div>
                             <div class="dropdown cart">
-                                <a class="" href="" id="navbarDropdown4" role="button"
+                                <a class="" href="{%url 'shopping_bag'%}" id="navbarDropdown4" role="button"
                                     data-toggle="" aria-haspopup="" aria-expanded="">
                                     <i class="fas fa-shopping-bag"></i>
-                                    {% if grand_total %}
-                                        <p class="my-auto">${{grand_total|floatformat:2}}</p>
-                                        {% else %}
+                                    
                                         <p>{{cart.total}}</p>
-                                    {% endif %}
                                 </a>
                             </div>
                             <a id="search_1" href="javascript:void(0)"><i class="fas fa-search"></i></a>
