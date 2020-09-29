@@ -28,7 +28,7 @@
                                                 </span>
                                             </button>
                                         </div>
-                                        <input class="form-control" type="number"
+                                        <input class="form-control quantity_input" type="number"
                                             name="quantity" value="1" min="1" max="50"
                                             data-item_id="{{ product.id }}"
                                             id="id_qty_{{ product.id }}">
@@ -51,7 +51,7 @@
                                     </span>
                                     <span class="text-uppercase">Continue Shopping</span>
                                  </a>
-                                    <a href="" class="btn-sm">remove?</a>
+                                    <a href="{%url 'remove_from_bag' product.id%}" class="btn-sm">remove?</a>
                                     <!-- <input type="submit" class="btn btn-sm rmbtn  mt-5" value="Remove from cart?"> -->
                                 {% else %}
                                     <a href="{% url 'products' %}" class="btn btn_3  d-block rounded-0 mt-5">

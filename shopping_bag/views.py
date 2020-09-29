@@ -51,6 +51,14 @@ def add_to_shopping_bag(request):
     return redirect(redirect_url)
 
 
+# def alter_shoping_bag(request):
+#     product_id = request.POST.get('product_id')
+#     quantity = int(request.POST.get('quantity'))
+#     size = None
+#     if 'itm_size' in request.POST:
+#         size = request.POST['itm_size']
+
+
 def remove_from_bag(request, product_id):
     product_obj = get_object_or_404(OrderLineItem, pk=product_id)
     print(product_obj)
