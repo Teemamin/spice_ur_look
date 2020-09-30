@@ -41,8 +41,9 @@
                         </div>
                         <div class="media-body">
                         <p>{{itm.product.name}}</p>
-                        {%if itm.product.size %}
-                            <p> Size:{{itm.product.size}}</p>
+
+                        {%if itm.product_size %}
+                            <p> Size:{{itm.product_size}}</p>
                         {% else %}
                         <p> Size : N/A</p>
                        {% endif %}
