@@ -10,6 +10,23 @@ from django_countries.fields import CountryField
 
 # Create your models here.
 
+class OrderManager(models.Manager):
+    def new_or_get(self, bag_obj):
+        created = False
+        qs = self.get_queryset().filter(
+                bag=bag_obj,
+                active=True,
+                order_status='created'
+                )
+        if qs.count() == 1:
+            obj = qs.first()
+        else:
+            obj = self.model.objects.create(
+                    bag=bag_obj,
+                    )
+            created = True
+        return obj, created
+
 
 ORDER_STATUS = (
     ('created', 'Created'),
@@ -34,7 +51,7 @@ class Order(models.Model):
     address_2 = models.CharField(max_length=90, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     city = models.CharField(max_length=120)
-    state = models.CharField(max_length=120)
+    state = models.CharField(max_length=120, null=True, blank=True)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     country = CountryField(null=False, blank=False)
     delivery_total = models.DecimalField(
@@ -69,8 +86,12 @@ class Order(models.Model):
     def __str__(self):
         return self.order_number
 
+    objects = OrderManager()
+
+
+
 def pre_save_create_order_id(sender, instance, *args, **kwargs):
-    qs = Order.objects.filter(bag=instance.bag).exclude(billing_profile=instance.billing_profile)
+    qs = Order.objects.filter(bag=instance.bag)
     if qs.exists():
         qs.update(active=False)
 
