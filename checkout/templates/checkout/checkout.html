@@ -1,19 +1,41 @@
 {% extends "base.html" %}
 {% load static %}
+{% block additionalcss %}
+    
+    <link rel="stylesheet" href="{% static 'checkout/css/stripe_element.css' %}">
 
+{% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col-6">
-        <p id="demo">Click the button to change the text in this paragraph.</p>
-
-<button onclick="myFunction()">Try it</button>
-
-            <form method="POST" action="{% url 'checkout'%}">
+            <form method="POST" action="{% url 'checkout'%}" id="payment-form">
                 {% csrf_token %}
+                 <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
+                        {{ checkoutorder_form.full_name | as_crispy_field }}
+                        {{ checkoutorder_form.email | as_crispy_field }}
+                </fieldset>
 
-                {{checkoutorder_form|crispy}}
-                <input type="submit"/>
+                <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
+                        {{ checkoutorder_form.phone_number | as_crispy_field }} 
+                        {{ checkoutorder_form.address_1 | as_crispy_field }}
+                        {{ checkoutorder_form.address_2 | as_crispy_field }}
+                        {{ checkoutorder_form.city | as_crispy_field }}
+                        {{ checkoutorder_form.state | as_crispy_field }}
+                        {{checkoutorder_form.postcode | as_crispy_field }}
+                        {{ checkoutorder_form.country | as_crispy_field }} 
+                <div id="card-element">
+                    <!-- Elements will create input elements here -->
+                </div>
+
+                <!-- We'll put the error messages in this element -->
+                <div id="card-errors" role="alert"></div>
+
+                <input id="submit" type="submit"/>
+                <input id="client_secret" type="hidden" data-secret="{{ client_secret }}">
+                <input id="stripe_public_key" type="hidden" data-public_key="{{ stripe_public_key }}">
+
 
             </form>
         </div>
@@ -25,6 +47,7 @@
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+    
 
 
 {%endblock%}

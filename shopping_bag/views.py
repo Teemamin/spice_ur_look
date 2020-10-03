@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect, get_object_or_404, reverse
 from products.models import Product
 from .models import Bag, OrderLineItem
+from django.contrib import messages
+
 # Create your views here.
 
 
@@ -37,11 +39,22 @@ def add_to_shopping_bag(request):
 
         if bag_obj.order_line_items.filter(product=product_obj):
             bag_prod_objs = bag_obj.order_line_items.filter(product=product_obj, product_size=size)
+
             print(bag_prod_objs)
             if bag_prod_objs:
                 bag_prod_obj = bag_prod_objs[0]
                 if bag_prod_obj.product_size == size:
                     bag_prod_obj.quantity += quantity
+                    if size:
+                        messages.success(
+                            request,
+                            f'Added size {bag_prod_obj.product_size}\
+                                {product_obj.name} to your bag'
+                        )
+                    else:
+                        messages.success(
+                            request, f'Added {product_obj.name} to your bag'
+                        )
                     bag_prod_obj.save()
             else:
                 bag_obj.order_line_items.create(product=product_obj, product_size = size, quantity=quantity)

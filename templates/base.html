@@ -149,12 +149,38 @@
             </div>
         </div>
     </header>
+    {% if messages %}
+         <div class="message-container">
+            {% for message in messages %}
+                {% with message.level as level %}
+                    {% if level == 40 %} <!--level 40 is error-->
+                        {% include 'includes/toasts/toast_error.html' %}
+                    {% elif level == 30 %} <!--level 30 is warning-->
+                        {% include 'includes/toasts/toast_warning.html' %}
+                    {% elif level == 25 %} <!--level 25 is success-->
+                        {% include 'includes/toasts/toast_success.html' %}
+                    {% else %}
+                        {% include 'includes/toasts/toast_info.html' %}
+                        <!--And will default to using the info toast for everything else.-->
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
     {% block pageheader %}
     {% endblock %}
     {% block content %}
     {% endblock %}
     {% block postloadjs %}
-       <script> 
+        <script type="text/javascript">
+        $('.toast').toast('show');
+       </script>
+
+        <!-- <link rel="stylesheet" href="{% static 'css/main.js' %}"> -->
+        <script src="{% static 'js/main.js' %}"></script>
+
+       <!-- <script> 
             $("#search_input_box").hide();
             $("#search_1").on("click", function () {
                 $("#search_input_box").slideToggle();
@@ -164,7 +190,7 @@
                 $('#search_input_box').slideUp(500);
             });
 
-       </script>
+       </script> -->
     {% endblock %}
   </body>
 </html>

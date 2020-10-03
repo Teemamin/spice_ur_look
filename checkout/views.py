@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from .forms import CheckoutOrderForm
 from .models import Order
 from django.conf import settings
+from django.contrib import messages
+
 
 from shopping_bag.models import Bag
 from profiles.models import UserProfile
@@ -26,6 +28,7 @@ def checkout(request):
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
     )
+    print(intent)
 
     if request.user.is_authenticated:
         try:
@@ -67,6 +70,7 @@ def checkout(request):
                 profile = UserProfile.objects.get(user=request.user)
                 order.user_profile = profile
             order.save()
+            return redirect(reverse('checkout_success'))
     context = {
         'checkoutorder_form': checkoutorder_form,
         'bag_obj': bag_obj,
@@ -74,3 +78,10 @@ def checkout(request):
         'client_secret': intent.client_secret,
     }
     return render(request, 'checkout/checkout.html', context)
+
+
+def checkout_success(request):
+    context = {
+
+    }
+    return render(request, "checkout/checkout_success.html", context)
