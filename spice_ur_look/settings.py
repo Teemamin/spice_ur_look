@@ -64,6 +64,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'spice_ur_look.urls'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

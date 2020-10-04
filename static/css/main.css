@@ -967,3 +967,71 @@ body {
   color: #2f7dfc;
   text-decoration: underline;
 }
+
+/* checkout order box */
+.order_box {
+  background: #f4f4f4;
+  padding: 30px;
+}
+
+.order_box h2 {
+  border-bottom: 1px solid #dddddd;
+  font-size: 18px;
+  font-weight: 500;
+  color: #2a2a2a;
+  padding-bottom: 15px;
+}
+.order_box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.order_box .list li a {
+  font-size: 14px;
+  color: #797979;
+  font-weight: normal;
+  border-bottom: 1px solid #eeeeee;
+  display: block;
+  line-height: 42px;
+}
+.order_box .list li a span {
+  float: right;
+}
+
+
+.order_box .list_2 li a {
+  text-transform: uppercase;
+  color: #2a2a2a;
+  font-weight: 500;
+}
+
+.order_box .list_2 li a span {
+  color: #797979;
+  text-transform: capitalize;
+}
+
+.order_box .list_2 li:last-child a span {
+  color: #2a2a2a;
+}
+
+.order_box .btn_3 {
+  display: block;
+  line-height: 38px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  /* line 1798, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
+  .order_box .btn_3 {
+    padding: 9px 34px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  /* line 1798, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
+  .order_box .btn_3 {
+    padding: 9px 34px;
+  }
+}
