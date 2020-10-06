@@ -18,7 +18,6 @@ import stripe
 
 @require_POST
 def dump_bag_data(request):
-   
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
