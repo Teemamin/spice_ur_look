@@ -14,70 +14,89 @@
         };
 
         var card = elements.create("card", { style: style });
-        card.mount("#card-element");
+       card.mount('#card-element');
 
-        card.on('change', function(event) {
-            var displayError = document.getElementById('card-errors');
-            if (event.error) {
+// Handle realtime validation errors on the card element
+card.addEventListener('change', function (event) {
+    var errorDiv = document.getElementById('card-errors');
+    if (event.error) {
+        var html = `
+            <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>${event.error.message}</span>
+        `;
+        $(errorDiv).html(html);
+    } else {
+        errorDiv.textContent = '';
+    }
+});
+
+// Handle form submit
+var form = document.getElementById('payment-form');
+
+form.addEventListener('submit', function(ev) {
+    ev.preventDefault();
+    card.update({ 'disabled': true});
+    $('#submit-button').attr('disabled', true);
+    $('#payment-form').fadeToggle(100);
+    $('#loading').fadeToggle(100);
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+    };
+    var url = '/checkout/dump_bag_data/';
+    $.post(url, postData).done(function () {
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                        name: $.trim(form.full_name.value),
+                        phone: $.trim(form.phone_number.value),
+                        email: $.trim(form.email.value),
+                        address:{
+                            line1: $.trim(form.address_1.value),
+                            line2: $.trim(form.address_2.value),
+                            city: $.trim(form.city.value),
+                            country: $.trim(form.country.value),
+                            state: $.trim(form.state.value),
+                        }
+                    }
+                },
+                shipping: {
+                    name: $.trim(form.full_name.value),
+                    phone: $.trim(form.phone_number.value),
+                    address: {
+                        line1: $.trim(form.address_1.value),
+                        line2: $.trim(form.address_2.value),
+                        city: $.trim(form.city.value),
+                        country: $.trim(form.country.value),
+                        postal_code: $.trim(form.postcode.value),
+                        state: $.trim(form.state.value),
+                    }
+            
+            },
+        }).then(function(result) {
+            if (result.error) {
+                var errorDiv = document.getElementById('card-errors');
                 var html = `
                     <span class="icon" role="alert">
-                        <i class="fas fa-times"></i>
+                    <i class="fas fa-times"></i>
                     </span>
-                    <span>${event.error.message}</span>
-                `;
+                    <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
+                $('#payment-form').fadeToggle(100);
+                $('#loading').fadeToggle(100);
+                card.update({ 'disabled': false});
+                $('#submit-button').attr('disabled', false);
             } else {
-                displayError.textContent = '';
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
             }
         });
-
-    var form = document.getElementById('payment-form');
-
-    form.addEventListener('submit', function(ev) {
-    ev.preventDefault();
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-        card: card,
-        billing_details: {
-            name: $.trim(form.full_name.value),
-            phone: $.trim(form.phone_number.value),
-            email: $.trim(form.email.value),
-            address:{
-                line1: $.trim(form.address_1.value),
-                line2: $.trim(form.address_2.value),
-                city: $.trim(form.city.value),
-                country: $.trim(form.country.value),
-                state: $.trim(form.state.value),
-                postal_code: $.trim(form.postcode.value),
-            }
-        }
-        },
-        shipping: {
-                name: $.trim(form.full_name.value),
-                phone: $.trim(form.phone_number.value),
-                address: {
-                    line1: $.trim(form.address_1.value),
-                    line2: $.trim(form.address_2.value),
-                    city: $.trim(form.city.value),
-                    country: $.trim(form.country.value),
-                    postal_code: $.trim(form.postcode.value),
-                    state: $.trim(form.state.value),
-                }
-        },
-    }).then(function(result) {
-        if (result.error) {
-        // Show error to your customer (e.g., insufficient funds)
-        console.log(result.error.message);
-        } else {
-        // The payment has been processed!
-        if (result.paymentIntent.status === 'succeeded') {
-            form.submit();
-            // Show a success message to your customer
-            // There's a risk of the customer closing the window before callback
-            // execution. Set up a webhook or plugin to listen for the
-            // payment_intent.succeeded event that handles any business critical
-            // post-payment actions.
-        }
-        }
-    });
-    });
+        }).fail(function () {
+        location.reload();
+    })
+});

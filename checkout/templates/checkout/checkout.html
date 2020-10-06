@@ -60,6 +60,7 @@
 
                 <!-- We'll put the error messages in this element -->
                 <div id="card-errors" role="alert"></div>
+                <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 <div class="col-md-12 form-group">
                     <div class="creat_account">
                         <p>
@@ -68,7 +69,7 @@
                         </p>
                     </div>
                 </div>
-                <input id="submit" type="submit"/>
+                <input id="submit-button" type="submit"/>
                 <input id="client_secret" type="hidden" data-secret="{{ client_secret }}">
                 <input id="stripe_public_key" type="hidden" data-public_key="{{ stripe_public_key }}">
             </form>
@@ -94,19 +95,20 @@
             {% endfor %}
               </ul>
               <ul class="list list_2">
-                <li>
+                <!-- <li>
                   <a href="#">Subtotal
                     <span>$2160.00</span>
                   </a>
-                </li>
+                </li> -->
                 <li>
                   <a href="#">Shipping
-                    <span>Flat rate: $50.00</span>
+                    <span>Flat rate: $4.99</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">Total
-                    <span>${{bag_obj.total}}</span>
+                    <span>${{bag_obj.total | calc_delivery:4.99 |floatformat:2}}</span>
+                 
                   </a>
                 </li>
               </ul>
@@ -117,7 +119,14 @@
       </div>
     </div>
   </section>
-    </div>
+</div>
+ <div id="loading">
+    <h1 class="text-light logo-font loading-spinner">
+        <span class="icon">
+            <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+        </span>
+   </h1>
+</div>
 
 {% endblock %}
 {% block postloadjs %}

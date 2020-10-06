@@ -1,15 +1,37 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from .forms import CheckoutOrderForm
 from .models import Order
+from django.views.decorators.http import require_POST
+
 from django.conf import settings
 from django.contrib import messages
+from products.models import Product
+from decimal import Decimal
 
-
+import json
 from shopping_bag.models import Bag
 from profiles.models import UserProfile
 import stripe
 
 # Create your views here.
+
+
+@require_POST
+def dump_bag_data(request):
+   
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': json.dumps(request.session.get('current_bag', {})),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry,  payment was unsuccessful \
+            Please try again later.')
+        return HttpResponse(content=e, status=400)
+
 
 
 def checkout(request):
@@ -20,7 +42,10 @@ def checkout(request):
     if bag_created or bag_obj.order_line_items.count() == 0:
         return redirect('shopping_bag')
     current_bag = bag_obj
-    total = current_bag.total
+    delivery = Decimal(settings.FIXED_DELIVERY)
+    total = current_bag.total + delivery
+    print(total)
+    print(total)
     stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key
     # creates payment intent
@@ -28,7 +53,6 @@ def checkout(request):
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
     )
-    print(intent)
 
     if request.user.is_authenticated:
         try:
@@ -66,11 +90,20 @@ def checkout(request):
         if checkoutorder_form.is_valid:
             order = checkoutorder_form.save(commit=False)
             order.bag = order_bag
+            stripe_paymentid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_paymentid = stripe_paymentid
+            # order_obj = Order.objects.new_or_get(order_bag)
+            # print(f'{order_obj} frm order_obj')
             if request.user.is_authenticated:
                 profile = UserProfile.objects.get(user=request.user)
                 order.user_profile = profile
             order.save()
-            return redirect(reverse('checkout_success'))
+            print(f'{order} from order')
+            return redirect(reverse('checkout_success',
+                            args=[order.order_number]))
+        else:
+            messages.error(request, 'error processing your form. \
+                Please double check the info provided.')
     context = {
         'checkoutorder_form': checkoutorder_form,
         'bag_obj': bag_obj,
@@ -80,8 +113,13 @@ def checkout(request):
     return render(request, 'checkout/checkout.html', context)
 
 
-def checkout_success(request):
+def checkout_success(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+    messages.success(request, f'Order successfully processed! \
+        Your order number is {order_number}. A confirmation \
+        email will be sent to {order.email}.')
+    # del request.session['bag_id']
     context = {
-
+        'order': order,
     }
     return render(request, "checkout/checkout_success.html", context)

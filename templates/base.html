@@ -1,4 +1,6 @@
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 
 <!doctype html>
 <html lang="en">
@@ -37,6 +39,47 @@
     <title>Spice Ur Look </title>
   </head>
   <body>
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{1218520611857154}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{v8.0}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+            appId      : '1218520611857154',
+            xfbml      : true,
+            version    : 'v8.0'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     
     <header class="main_menu home_menu">
         <div class="container-fluid">
@@ -49,6 +92,18 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="menu_icon"><i class="fas fa-bars"></i></span>
                         </button>
+                        <div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+
+                            <a href="{% provider_login_url 'facebook' method='js_sdk' %}" class="btn btn-block btn-social btn-facebook" style="background-color:#3b5998;text-align:center">
+                                <span class="fa fa-facebook"></span>
+                                        Sign in with Facebook
+                            </a>
+
 
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">

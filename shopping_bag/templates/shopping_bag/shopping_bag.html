@@ -110,8 +110,18 @@
                     <h5>Delivery</h5>
                     </td>
                     <td>
-                    <h5>${{settings.DELIVERY_PERCENT}}</h5>
+                    <h5>$4.99</h5>
                     </td>
+                </tr>
+                <tr class="">
+                    <td></td>
+                    <td></td>
+                    <td>
+                    <h5>Total
+                        <span> <br><small>tax inclusive</small> </span>
+                    </h5>
+                    </td>
+                     <td><h5>${{bag.total}}</h5></td>
                 </tr>
                 <tr class="">
                     <td></td>
@@ -119,7 +129,7 @@
                     <td>
                     <h5>Grand total</h5>
                     </td>
-                     <td><h5>${{bag.total}}</h5></td>
+                     <td><h5> ${{bag.total | calc_delivery:4.99 |floatformat:2}}</h5></td>
                 </tr>
                 </tbody>
             

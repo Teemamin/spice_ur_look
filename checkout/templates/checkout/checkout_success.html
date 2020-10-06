@@ -2,5 +2,12 @@
 {% load static %}
 
 {% block content %}
-    <h1>Checkout success!</h1>
+    <div class="row">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font mb-4">Thank You</h2>
+                <hr>
+                <p class="text-black">Your order number {{ order.order_number}}. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+            </div>
+        </div>
 {% endblock %}

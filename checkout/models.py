@@ -2,6 +2,8 @@ from django.db import models
 import uuid
 import math
 from django.db.models.signals import post_save, pre_save
+from django.conf import settings
+
 
 from profiles.models import UserProfile
 from shopping_bag.models import Bag
@@ -54,6 +56,8 @@ class Order(models.Model):
     state = models.CharField(max_length=120, null=True, blank=True)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     country = CountryField(null=False, blank=False)
+    stripe_paymentid = models.CharField(max_length=270, null=False, blank=False, default='')
+
     delivery_total = models.DecimalField(
         default=0, max_digits=7, decimal_places=2
         )
@@ -68,6 +72,7 @@ class Order(models.Model):
 
     def update_total(self):
         bag_total = self.bag.total
+        self.delivery_total = settings.FIXED_DELIVERY
         delivery_total = self.delivery_total
         grand_total = math.fsum([bag_total, delivery_total])
         total_formated = format(grand_total, '.2f')
