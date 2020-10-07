@@ -3,7 +3,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.db.models.signals import pre_save, post_save, m2m_changed
 from products.models import Product
-
+from django.core import serializers
 
 # Create your models here.
 User = settings.AUTH_USER_MODEL
@@ -21,12 +21,14 @@ class BagManager(models.Manager):
             if request.user.is_authenticated and bag_obj.user is None:
                 bag_obj.user = request.user
                 bag_obj.save()
-                request.session["current_bag"] = bag_obj
+
+            # data = serializers.serialize("json", qs)
+            # request.session["current_bag"] = data
+
         else:
             bag_obj = Bag.objects.new(user=request.user)
             new_obj = True
             request.session["bag_id"] = bag_obj.id
-            request.session["current_bag"] = bag_obj
 
         return bag_obj, new_obj
 

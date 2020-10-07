@@ -13,7 +13,7 @@
         }
         };
 
-        var card = elements.create("card", { style: style });
+       var card = elements.create("card", { style: style });
        card.mount('#card-element');
 
 // Handle realtime validation errors on the card element
@@ -41,62 +41,54 @@ form.addEventListener('submit', function(ev) {
     $('#submit-button').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
     $('#loading').fadeToggle(100);
-    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-    var postData = {
-        'csrfmiddlewaretoken': csrfToken,
-        'client_secret': clientSecret,
-    };
-    var url = '/checkout/dump_bag_data/';
-    $.post(url, postData).done(function () {
-        stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: card,
-                billing_details: {
-                        name: $.trim(form.full_name.value),
-                        phone: $.trim(form.phone_number.value),
-                        email: $.trim(form.email.value),
-                        address:{
-                            line1: $.trim(form.address_1.value),
-                            line2: $.trim(form.address_2.value),
-                            city: $.trim(form.city.value),
-                            country: $.trim(form.country.value),
-                            state: $.trim(form.state.value),
-                        }
-                    }
-                },
-                shipping: {
+    
+    stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: card,
+            billing_details: {
                     name: $.trim(form.full_name.value),
                     phone: $.trim(form.phone_number.value),
-                    address: {
+                    email: $.trim(form.email.value),
+                    address:{
                         line1: $.trim(form.address_1.value),
                         line2: $.trim(form.address_2.value),
                         city: $.trim(form.city.value),
                         country: $.trim(form.country.value),
-                        postal_code: $.trim(form.postcode.value),
                         state: $.trim(form.state.value),
                     }
-            
-            },
-        }).then(function(result) {
-            if (result.error) {
-                var errorDiv = document.getElementById('card-errors');
-                var html = `
-                    <span class="icon" role="alert">
-                    <i class="fas fa-times"></i>
-                    </span>
-                    <span>${result.error.message}</span>`;
-                $(errorDiv).html(html);
-                $('#payment-form').fadeToggle(100);
-                $('#loading').fadeToggle(100);
-                card.update({ 'disabled': false});
-                $('#submit-button').attr('disabled', false);
-            } else {
-                if (result.paymentIntent.status === 'succeeded') {
-                    form.submit();
                 }
+            },
+            shipping: {
+                name: $.trim(form.full_name.value),
+                phone: $.trim(form.phone_number.value),
+                address: {
+                    line1: $.trim(form.address_1.value),
+                    line2: $.trim(form.address_2.value),
+                    city: $.trim(form.city.value),
+                    country: $.trim(form.country.value),
+                    postal_code: $.trim(form.postcode.value),
+                    state: $.trim(form.state.value),
+                }
+        
+        },
+    }).then(function(result) {
+        if (result.error) {
+            var errorDiv = document.getElementById('card-errors');
+            var html = `
+                <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+                </span>
+                <span>${result.error.message}</span>`;
+            $(errorDiv).html(html);
+            $('#payment-form').fadeToggle(100);
+            $('#loading').fadeToggle(100);
+            card.update({ 'disabled': false});
+            $('#submit-button').attr('disabled', false);
+        } else {
+            if (result.paymentIntent.status === 'succeeded') {
+                form.submit();
             }
-        });
-        }).fail(function () {
-        location.reload();
-    })
+        }
+    });
+    
 });

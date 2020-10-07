@@ -3,6 +3,7 @@ from .forms import CheckoutOrderForm
 from .models import Order
 from django.views.decorators.http import require_POST
 
+
 from django.conf import settings
 from django.contrib import messages
 from products.models import Product
@@ -14,23 +15,6 @@ from profiles.models import UserProfile
 import stripe
 
 # Create your views here.
-
-
-@require_POST
-def dump_bag_data(request):
-    try:
-        pid = request.POST.get('client_secret').split('_secret')[0]
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(pid, metadata={
-            'bag': json.dumps(request.session.get('current_bag', {})),
-            'username': request.user,
-        })
-        return HttpResponse(status=200)
-    except Exception as e:
-        messages.error(request, 'Sorry,  payment was unsuccessful \
-            Please try again later.')
-        return HttpResponse(content=e, status=400)
-
 
 
 def checkout(request):
@@ -117,7 +101,8 @@ def checkout_success(request, order_number):
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
-    # del request.session['bag_id']
+    if 'bag_id' in request.session:
+        del request.session['bag_id']
     context = {
         'order': order,
     }
