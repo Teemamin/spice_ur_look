@@ -2,12 +2,114 @@
 {% load static %}
 
 {% block content %}
-    <div class="row">
-            <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4">Thank You</h2>
-                <hr>
-                <p class="text-black">Your order number {{ order.order_number}}. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
-            </div>
+
+    <section class="breadcrumb breadcrumb_bg">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-12">
+                  <div class="breadcrumb_iner">
+                      <div class="breadcrumb_iner_item">
+                          <p>Home</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+ <section class="confirmation_part section_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="confirmation_tittle">
+            <span>Thank you. Your order has been received.</span>
+          </div>
         </div>
+        <div class="col-lg-6 col-lx-4">
+          <div class="single_confirmation_details">
+            <h4>order info</h4>
+            <ul class="list-unstyled">
+              <li>
+                <p>order number</p><span>: {{ order.order_number }}</span>
+              </li>
+              <li>
+                <p>Date</p><span>: {{ order.date }}</span>
+              </li>
+              <li>
+                <p>total</p><span>: USD {{ order.total }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 col-lx-4">
+          <div class="single_confirmation_details">
+            <h4>Billing / Delivery Address</h4>
+            <ul class="list-unstyled">
+              <li>
+                <p>Address 1</p><span>: {{ order.address_1 }}</span>
+              </li>
+            {% if order.address_2 %}
+              <li>
+                <p>Address 2</p><span>: {{ order.address_2 }}</span>
+              </li>
+            {% endif %}
+             <li>
+                <p>City</p><span>: {{order.city}}s</span>
+              </li>
+             {% if order.state %}
+              <li>
+                <p>State</p><span>: {{order.state}}</span>
+              </li>
+            {% endif %}
+              <li>
+                <p>Country</p><span>: {{order.country}}</span>
+              </li>
+             {% if order.postcode %}
+              <li>
+                <p>Postcode</p><span>: {{order.postcode}}</span>
+              </li>
+            {% endif%}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="order_details_iner">
+            <h3>Order Details</h3>
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col" colspan="2">Product</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in order.bag.order_line_items.all%}
+                <tr>
+                  <th colspan="2"><span>{{ item.product.name }}  {% if item.product_size %}
+                    Size {{ item.product_size|upper }}
+                    {% endif %} </span></th>
+                  <th>x{{ item.quantity }} @ ${{ item.product.price }} each </th>
+                  <th> <span>${{ item.product.price }}</span></th>
+                </tr>
+              {% endfor %}
+               <tr>
+                  <th colspan="3">Delivery Cost</th>
+                  <th><span>flat rate: ${{order.delivery_total}}</span></th>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="col" colspan="3">Total</th>
+                  <th scope="col">{{order.total}}</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
