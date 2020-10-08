@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect, get_object_or_404, reverse
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from products.models import Product
 from .models import Bag, OrderLineItem
 from django.contrib import messages

@@ -12,7 +12,7 @@ User = settings.AUTH_USER_MODEL
 class BagManager(models.Manager):
     def new_or_get(self, request):
         bag_id = request.session.get("bag_id", None)
-        current_bag = request.session.get("current_bag", {})
+        current_bag = request.session.get("current_bag", None)
 
         qs = self.get_queryset().filter(id=bag_id)
         if qs.count() == 1:
@@ -21,6 +21,10 @@ class BagManager(models.Manager):
             if request.user.is_authenticated and bag_obj.user is None:
                 bag_obj.user = request.user
                 bag_obj.save()
+            data = serializers.serialize("json", [bag_obj], ensure_ascii=False)
+            data_result = data[1:-1]
+
+            request.session["current_bag"] = data_result
 
             # data = serializers.serialize("json", qs)
             # request.session["current_bag"] = data
