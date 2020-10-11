@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.shortcuts import render, redirect, get_object_or_404, reverse, HttpResponse
 from products.models import Product
 from .models import Bag, OrderLineItem
 from django.contrib import messages
@@ -64,12 +64,22 @@ def add_to_shopping_bag(request):
     return redirect(redirect_url)
 
 
-# def alter_shoping_bag(request):
-#     product_id = request.POST.get('product_id')
-#     quantity = int(request.POST.get('quantity'))
-#     size = None
-#     if 'itm_size' in request.POST:
-#         size = request.POST['itm_size']
+# def alter_shoping_bag(request, item_id):
+#     product_obj = Product.objects.get(pk=item_id)
+#     print(item_id)
+#     bag_obj, new_obj = Bag.objects.new_or_get(request)
+#     if new_obj or bag_obj.order_line_items.count() == 0:
+#         return redirect('shopping_bag')
+#     try:
+#         if 'product_id' in request.POST:
+#             quantity = int(request.POST.get('quantity'))
+#             bag_filtered = bag_obj.order_line_items.filter(product=product_obj)
+#             bag_filtered.quantity = quantity
+#             bag_filtered.save()
+#             return HttpResponse(status=200)
+#     except Exception as e:
+#         messages.error(request, f'Error removing item: {e}')
+#         return HttpResponse(status=500)
 
 
 def remove_from_bag(request, product_id):

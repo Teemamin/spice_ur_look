@@ -3,6 +3,7 @@ from .forms import CheckoutOrderForm
 from .models import Order
 from django.views.decorators.http import require_POST
 
+from django.core import serializers
 
 from django.conf import settings
 from django.contrib import messages
@@ -17,6 +18,22 @@ import stripe
 # Create your views here.
 
 
+@require_POST
+def order_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': request.session.get("bag_id"),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
+
+
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -27,8 +44,6 @@ def checkout(request):
     current_bag = bag_obj
     delivery = Decimal(settings.FIXED_DELIVERY)
     total = current_bag.total + delivery
-    print(total)
-    print(total)
     stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key
     # creates payment intent
@@ -81,7 +96,7 @@ def checkout(request):
                 profile = UserProfile.objects.get(user=request.user)
                 order.user_profile = profile
             order.save()
-            print(f'{order} from order')
+
             return redirect(reverse('checkout_success',
                             args=[order.order_number]))
         else:

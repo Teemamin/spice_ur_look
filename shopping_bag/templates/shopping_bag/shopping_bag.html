@@ -10,9 +10,9 @@
               <div class="col-lg-12">
                   <div class="breadcrumb_iner">
                       <div class="breadcrumb_iner_item">
-                          <p>Home/Shop/Single product/Cart list</p>
-                          {{bag_in_session.total}}
-                          
+                          <p>Home/Shop/Single product/Cart list</p>   
+                              
+                        
                       </div>
                   </div>
               </div>
@@ -55,17 +55,18 @@
                     </td>
                     <td>
                     <h5>${{itm.product.price}}</h5>
+                    
                     </td>
                     <td>
                     <div class="product_count">
                         <!-- <p> {{itm.quantity}}</p> -->
-                        <form>
+                        <form id="update-bag">
                             {% csrf_token %}
                             <div class="form-group d-flex">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <button class="decrement-qty btn btn-black rounded-0" 
-                                                data-item_id="{{ itm.id }}" id="decrement-qty_{{ itm.id }}">
+                                                data-item_id="{{ itm.product.id }}" id="{{ itm.product.id}}">
                                                 <span class="icon">
                                                     <i class="fas fa-minus"></i>
                                                 </span>
@@ -73,11 +74,11 @@
                                         </div>
                                         <input class="form-control quantity_input" type="number"
                                             name="quantity" value="{{itm.quantity}}" min="1" max="50"
-                                            data-item_id="{{ itm.id }}"
-                                            id="id_qty_{{ itm.id }}">
+                                            data-item_id="{{ itm.product.id }}"
+                                            id="id_qty_{{ itm.product.id }}">
                                         <div class="input-group-append">
                                             <button class="increment-qty btn  rounded-0"
-                                                data-item_id="{{ itm.id }}" id="increment-qty_{{ itm.id }}">
+                                                data-item_id="{{ itm.product.id}}" id="{{ itm.product.id }}">
                                                 <span class="icon">
                                                     <i class="fas fa-plus"></i>
                                                 </span>
@@ -85,6 +86,11 @@
                                         </div>
                                     </div>
                                 </div>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            <input type="hidden" name="{{itm.product.id}}">
+
+
+
                         </form>
                     </div>
                     </td>
@@ -154,7 +160,7 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <script>
+    <!-- <script>
 
        // Disable +/- buttons outside the range of 1-50
    function handleEnableDisable(itemId) {
@@ -171,10 +177,21 @@
         let qtyInput = $(this).closest('.input-group').find('.quantity_input')[0];
         let currentValue = parseInt($(qtyInput).val());
         $(qtyInput).val(currentValue + 1);
-        let itemId = $(this).data('itm.id');
+        let itemId = $(this).data('item_id');
         handleEnableDisable(itemId);
-        // let form = $(this).prev('.update-form');
-        // form.submit();
+        let form = $(this).closest('form');
+        var csrfToken = "{{ csrf_token }}";
+      
+        var url = `/shopping_bag/alter_shoping_bag/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken, 'product_id': itemId };
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+        console.log( "somthing" ,form)
+        console.log(itemId)
+        form.submit();
     });
 
     
@@ -186,9 +203,20 @@
        $(qtyInput).val(currentValue - 1);
        let itemId = $(this).data('item_id');
        handleEnableDisable(itemId);
-       console.log(itemId)
+        let form = $(this).closest('form');
+        var csrfToken = "{{ csrf_token }}";
+      
+        var url = `/shopping_bag/alter_shoping_bag/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken, 'product_id': itemId };
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+        console.log( "somthing" ,form)
+        form.submit();
     });
 
 
-    </script>
+    </script> -->
 {% endblock %}

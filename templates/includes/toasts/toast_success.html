@@ -37,9 +37,9 @@
             <div class="row">
                 <div class="col">
                     <strong><p class="mt-3 mb-1">
-                        <span class="float-right">${{ bag_in_session.total|floatformat:2 }}</span>
+                       Total: <span class="float-right">${{ bag_in_session.total|floatformat:2 }}</span>
                     </p></strong>
-                    <a href="{% url 'add_to_shopping_bag' %}" class="btn  btn-block rounded-0">
+                    <a href="{% url 'shopping_bag' %}" class="btn msg_btn btn-block rounded-0">
                         <span class="text-uppercase">Go To Secure Checkout</span>
                         <span class="icon">
                             <i class="fas fa-lock"></i>

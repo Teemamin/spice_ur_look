@@ -1,0 +1,1 @@
+Your Spice Ur Look Order Confirmation for Order Number {{ order.order_number }}

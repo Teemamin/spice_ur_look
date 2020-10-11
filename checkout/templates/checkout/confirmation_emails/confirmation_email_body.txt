@@ -1,0 +1,19 @@
+Hello {{ order.full_name }}!
+ 
+Thank you for your order from Spice Ur Look. Your order is currently being processed, Our Online Team will communicate with you shortly to
+update you on the status.
+
+Your Order {{ order.order_number }} Placed on {{ order.date }}
+
+Order Total: ${{ order.total }}
+Delivery: ${{ order.delivery_total }}
+
+Your order will be shipped to {{ order.address_1 }} in {{ order.city }}, {{ order.country }}.
+
+We've got your phone number on file as {{ order.phone_number }}.
+
+	
+ 
+If you have questions about your order, you can email us at {{ contact_email }}.
+ 
+Thank you, Spice Ur Look!
