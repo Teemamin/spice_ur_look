@@ -170,7 +170,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
                                     {% if request.user.is_authenticated%}
                                         {% if request.user.is_superuser %}
-                                            <a class="dropdown-item" href="#">product management</a>
+                                            <a class="dropdown-item" href="{% url 'add_product' %}"> Admin | Add product</a>
                                         {% endif %}
                                         <a class="dropdown-item" href="{%url 'profile'%}">profile</a>
                                         <a class="dropdown-item" href="{% url 'account_logout' %}">logout</a>

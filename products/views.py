@@ -4,6 +4,7 @@ from django.db.models.functions import Lower
 from django.contrib import messages
 from django.db.models import Q
 from shopping_bag.models import Bag
+from .forms import AddProductForm
 # Create your views here.
 
 
@@ -69,3 +70,67 @@ def single_product(request, product_id,*args, **kwargs):
         'bag': bag_obj
     }
     return render(request, 'products/single_product.html', context)
+
+
+def add_product(request):
+    """ Add a product to the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Access denied!.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, 'Product added successfully!')
+            return redirect(reverse('single_product', args=[product.id]))
+        else:
+            messages.error(request, 'Error proceesing your form, kindly check\
+                 your inputs are valid.')
+    else:
+        form = AddProductForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'products/add_product.html', context)
+
+def revise_product(request, product_id):
+    """ Edits and updates a product in the site """
+    if not request.user.is_superuser:
+        messages.error(request, 'Access denied!.')
+        return redirect(reverse('home'))
+
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product successfully revised!')
+            return redirect(reverse('single_product', args=[product.id]))
+        else:
+            messages.error(request, 'Error proceesing your form, kindly check\
+                your inputs are valid.')
+    else:
+        form = AddProductForm(instance=product)
+        messages.info(request, f'You are revising {product.name}')
+
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    return render(request, 'products/revise_product.html', context)
+
+
+def delete_product(request, product_id):
+    """ Deletes  product from the site """
+    if not request.user.is_superuser:
+        messages.error(request, 'Access denied.')
+        return redirect(reverse('home'))
+
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Successfully deleted product!')
+    return redirect(reverse('products'))
