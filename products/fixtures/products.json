@@ -1,0 +1,363 @@
+[
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "category": 7,
+        "name": "Summer Dress",
+        "gender": "woman",
+        "brand_name": null,
+        "description": "Red evening dress",
+        "has_sizes": true,
+        "color": "Red",
+        "price": "50.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "111437_96285d9e3080ed66a0616143535bf9a6.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "category": 4,
+        "name": "Sweat Top",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Everyday Hoodie",
+        "has_sizes": false,
+        "color": "Black",
+        "price": "100.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "1FI21J00A-Q1217.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "category": 2,
+        "name": "Casual Shirt",
+        "gender": "man",
+        "brand_name": "T&T",
+        "description": "Essential Shirt",
+        "has_sizes": true,
+        "color": null,
+        "price": "60.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "1FI22O00S-K118.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "category": 8,
+        "name": "Sneakers",
+        "gender": "man",
+        "brand_name": "GINGER",
+        "description": "Sports Trainers",
+        "has_sizes": true,
+        "color": "Blue",
+        "price": "120.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "2474.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "category": 1,
+        "name": "Jeans",
+        "gender": "man",
+        "brand_name": null,
+        "description": "Essential Jeans",
+        "has_sizes": false,
+        "color": null,
+        "price": "40.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "108396_b4f898830d9f56a921d438121c1b3993.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+        "category": 3,
+        "name": "Long sleeve Shirt",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Trendy Men Shirt",
+        "has_sizes": true,
+        "color": null,
+        "price": "100.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "1FI42D00Y-Q1110.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "category": 5,
+        "name": "Earring",
+        "gender": "woman",
+        "brand_name": "T&T",
+        "description": "Tear drop earring",
+        "has_sizes": false,
+        "color": null,
+        "price": "20.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "123616_dc2b7b2c99d1cd445dcb8ccd0bcf0c2f.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+        "category": 3,
+        "name": "Sports wear",
+        "gender": "woman",
+        "brand_name": "SEVENTY FIVE",
+        "description": "Essential sports wear",
+        "has_sizes": false,
+        "color": null,
+        "price": "130.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "pexels-wendel-moretti-1972115.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+        "category": 3,
+        "name": "T-shirt",
+        "gender": "man",
+        "brand_name": "T&T",
+        "description": "Soft men daily wear",
+        "has_sizes": true,
+        "color": null,
+        "price": "111.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "120962_53ecf456c2c9eac5c728cbf37cc5ec76.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+        "category": 3,
+        "name": "Essential Pants",
+        "gender": "man",
+        "brand_name": "GINGER",
+        "description": "Soft and Comfortable wear",
+        "has_sizes": true,
+        "color": "Blue",
+        "price": "50.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "130416_c7176c21ecd611786a3b97217f004636.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+        "category": 3,
+        "name": "Silky Top",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Soft and silky top",
+        "has_sizes": true,
+        "color": null,
+        "price": "140.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "pexels-lucas-queiroz-1852382.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+        "category": 9,
+        "name": "Zip-Up Hoodie",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Winter hoodie",
+        "has_sizes": true,
+        "color": "Pink",
+        "price": "100.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "2NA21J0DF-G111.1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+        "category": 2,
+        "name": "Shirt",
+        "gender": "man",
+        "brand_name": "SEVENTY FIVE",
+        "description": "Checked Men Shirt",
+        "has_sizes": false,
+        "color": null,
+        "price": "32.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "prodect_details_2.png"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 14,
+    "fields": {
+        "category": 2,
+        "name": "Shirt by su",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Ladies shirt",
+        "has_sizes": true,
+        "color": null,
+        "price": "71.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "2NA21J0LY-K1712.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 15,
+    "fields": {
+        "category": 3,
+        "name": "Evening Dress",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Summer Evening Gown",
+        "has_sizes": true,
+        "color": "Green",
+        "price": "200.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "117863_c7540715e292903aafc4f27bb6664e5f.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 16,
+    "fields": {
+        "category": 4,
+        "name": "Winter Coat",
+        "gender": "woman",
+        "brand_name": "GINGER",
+        "description": "Winter jacket made with 100% cotton",
+        "has_sizes": true,
+        "color": "White",
+        "price": "40.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "2NA21J0CL-E111.1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 17,
+    "fields": {
+        "category": 1,
+        "name": "Jeans",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Casual Jeans",
+        "has_sizes": true,
+        "color": null,
+        "price": "90.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "116771_5a5657d0536f87cc5b0c62b819871e7d.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 18,
+    "fields": {
+        "category": 8,
+        "name": "Sneakers",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Pink runners",
+        "has_sizes": true,
+        "color": null,
+        "price": "200.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "130269_c04856614ed9333d41b62a47c933a516.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 19,
+    "fields": {
+        "category": 4,
+        "name": "Fashion Ear-ring",
+        "gender": "woman",
+        "brand_name": "GINGER",
+        "description": "Gold fashion ear rings",
+        "has_sizes": false,
+        "color": null,
+        "price": "70.00",
+        "rating": 3,
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "129720_0ca88117a9253ecdf2b284fee07027ef.jpg"
+    }
+}
+]

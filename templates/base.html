@@ -1,6 +1,6 @@
 {% load static %}
 {% load socialaccount %}
-{% providers_media_js %}
+
 
 <!doctype html>
 <html lang="en">
@@ -40,7 +40,7 @@
   </head>
   <body>
   
-<script>
+<!-- <script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '{1218520611857154}',
@@ -79,7 +79,7 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-    </script>
+    </script> -->
     
     <header class="main_menu home_menu">
         <div class="container-fluid">
@@ -92,17 +92,6 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="menu_icon"><i class="fas fa-bars"></i></span>
                         </button>
-                        <div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
-
-                            <a href="{% provider_login_url 'facebook' method='js_sdk' %}" class="btn btn-block btn-social btn-facebook" style="background-color:#3b5998;text-align:center">
-                                <span class="fa fa-facebook"></span>
-                                        Sign in with Facebook
-                            </a>
 
 
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
