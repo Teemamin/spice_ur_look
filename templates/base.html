@@ -1,6 +1,6 @@
 {% load static %}
 {% load socialaccount %}
-{% providers_media_js %}
+
 
 
 <!doctype html>
@@ -52,8 +52,9 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="menu_icon"><i class="fas fa-bars"></i></span>
                         </button>
+                        <a href="{% provider_login_url 'google' %}">Google login</a>
                         {{user}}
-                        <a href="{% provider_login_url 'facebook' method='js_sdk' %}">Login Button image</a>
+
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
