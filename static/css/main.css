@@ -1249,3 +1249,27 @@ body {
     background: #2f7dfc;
     color: #fff;
 }
+
+/*  links */
+.scrl-btn {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+
+.scrl-btn-link,
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
+.border-blue {
+    border: 1px solid #2f7dfc;
+}
+
+.text-black {
+        font-size: 2rem;
+    }

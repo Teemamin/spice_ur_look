@@ -58,10 +58,6 @@ class Bag(models.Model):
         User, null=True, blank=True, on_delete=models.CASCADE
     )
     order_line_items = models.ManyToManyField(OrderLineItem, blank=True)
-    # delivery_total = models.DecimalField(
-    #     default=4.99, max_digits=7, decimal_places=2
-    #     )
-
     subtotal = models.DecimalField(
         default=0.00, max_digits=100, decimal_places=2
     )
@@ -87,12 +83,16 @@ def m2m_changed_bag_receiver(sender, instance, action, *args, **kwargs):
             instance.save()
 
 
-m2m_changed.connect(m2m_changed_bag_receiver, sender=Bag.order_line_items.through)
+m2m_changed.connect(
+    m2m_changed_bag_receiver, sender=Bag.order_line_items.through
+)
 
 
 def pre_save_bag_receiver(sender, instance, *args, **kwargs):
     if instance.subtotal > 0:
-        instance.total = instance.subtotal
+        if instance.subtotal != instance.total:
+            instance.total = float(instance.subtotal) * \
+                float(settings.DELIVERY_PERCENT)
     else:
         instance.total = 0.00
 

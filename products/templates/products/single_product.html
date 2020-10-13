@@ -55,38 +55,7 @@
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}
-    <script>
+   {% include 'includes/update_product_qty.html' %}
 
-       // Disable +/- buttons outside the range of 1-50
-    function handleEnableDisable(itemId) {
-        let currentValue = parseInt($(`#id_qty_${itemId}`).val());
-        let minusDisabled = currentValue < 2;
-        let plusDisabled = currentValue > 50;
-        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
-        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
-    }
-
-
-    // Increment quantity
-    $('.increment-qty').click(function(e) {
-        e.preventDefault();
-        let qtyInput = $(this).closest('.input-group').find('.quantity_input')[0];
-        let currentValue = parseInt($(qtyInput).val());
-        $(qtyInput).val(currentValue + 1);
-        let itemId = $(this).data('item_id');
-        handleEnableDisable(itemId);
-    });
-
-    // Decrement quantity
-    $('.decrement-qty').click(function(e) {
-       e.preventDefault();
-       let qtyInput = $(this).closest('.input-group').find('.quantity_input')[0];
-       let currentValue = parseInt($(qtyInput).val());
-       $(qtyInput).val(currentValue - 1);
-       let itemId = $(this).data('item_id');
-       handleEnableDisable(itemId);
-       console.log(itemId)
-
-    });
-    </script>
+   
 {% endblock %}

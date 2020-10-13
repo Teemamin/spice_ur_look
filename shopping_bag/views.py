@@ -17,69 +17,64 @@ def shopping_bag(request):
 
 def add_to_shopping_bag(request):
     product_id = request.POST.get('product_id')
-    # product_obj = Product.objects.get(pk=product_id)
 
     redirect_url = request.POST.get('redirect_url')
     quantity = int(request.POST.get('quantity'))
     size = None
     if 'itm_size' in request.POST:
         size = request.POST['itm_size']
-    print(size)
 
     if product_id is not None:
         try:
             product_obj = Product.objects.get(id=product_id)
             product_obj.size = size
-            print(size)
-            print(product_obj)
         except Product.DoesNotExist:
             print("Product not found")
             return redirect(redirect_url)
         bag_obj, new_obj = Bag.objects.new_or_get(request)
 
         if bag_obj.order_line_items.filter(product=product_obj):
-            bag_prod_objs = bag_obj.order_line_items.filter(product=product_obj, product_size=size)
-
-            print(bag_prod_objs)
+            bag_prod_objs = bag_obj.order_line_items.filter(
+                product=product_obj, product_size=size
+            )
             if bag_prod_objs:
                 bag_prod_obj = bag_prod_objs[0]
                 if bag_prod_obj.product_size == size:
                     bag_prod_obj.quantity += quantity
-                    if size:
-                        messages.success(
-                            request,
-                            f'Added size {bag_prod_obj.product_size}\
-                                {product_obj.name} to your bag'
-                        )
-                    else:
-                        messages.success(
-                            request, f'Added {product_obj.name} to your bag'
-                        )
                     bag_prod_obj.save()
             else:
-                bag_obj.order_line_items.create(product=product_obj, product_size = size, quantity=quantity)
+                bag_obj.order_line_items.create(
+                    product=product_obj, product_size=size, quantity=quantity
+                )
         else:
-            bag_obj.order_line_items.create(product=product_obj, product_size = size, quantity=quantity)
+            bag_obj.order_line_items.create(
+                product=product_obj, product_size=size, quantity=quantity
+            )
 
-    return redirect(redirect_url)
+    return redirect('shopping_bag')
 
 
-# def alter_shoping_bag(request, item_id):
-#     product_obj = Product.objects.get(pk=item_id)
-#     print(item_id)
-#     bag_obj, new_obj = Bag.objects.new_or_get(request)
-#     if new_obj or bag_obj.order_line_items.count() == 0:
-#         return redirect('shopping_bag')
-#     try:
-#         if 'product_id' in request.POST:
-#             quantity = int(request.POST.get('quantity'))
-#             bag_filtered = bag_obj.order_line_items.filter(product=product_obj)
-#             bag_filtered.quantity = quantity
-#             bag_filtered.save()
-#             return HttpResponse(status=200)
-#     except Exception as e:
-#         messages.error(request, f'Error removing item: {e}')
-#         return HttpResponse(status=500)
+
+def alter_shoping_bag(request, item_id):
+    product_obj = Product.objects.get(pk=item_id)
+    quantity = int(request.POST.get('quantity'))
+    print(f'{item_id} i am id')
+    print(f'{quantity} i am qty')
+    bag_id = request.session.get("bag_id")
+
+    bag_obj = Bag.objects.get(pk=bag_id)
+    print(bag_obj)
+    try:
+        bag_filtered = bag_obj.order_line_items.filter(product=product_obj)
+        bag_prod_obj = bag_filtered[0]
+        bag_prod_obj.quantity = quantity
+        bag_prod_obj.save()
+        messages.success(request, 'product updated successfully!')
+        return redirect(reverse('shopping_bag'))
+    except Exception as e:
+        messages.error(request, f'Error updating product: {e}')
+        return redirect(reverse('shopping_bag'))
+
 
 
 def remove_from_bag(request, product_id):

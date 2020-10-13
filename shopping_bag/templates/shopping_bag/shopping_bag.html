@@ -10,7 +10,7 @@
               <div class="col-lg-12">
                   <div class="breadcrumb_iner">
                       <div class="breadcrumb_iner_item">
-                          <p>Home/Shop/Single product/Cart list</p>   
+                          <p>Shopping bag Items</p>   
                               
                         
                       </div>
@@ -60,7 +60,7 @@
                     <td>
                     <div class="product_count">
                         <!-- <p> {{itm.quantity}}</p> -->
-                        <form id="update-bag">
+                        <form id="update-bag" class="update-form" method="POST" action="{% url 'alter_shoping_bag' itm.product.id %}">
                             {% csrf_token %}
                             <div class="form-group d-flex">
                                     <div class="input-group">
@@ -92,6 +92,7 @@
 
 
                         </form>
+                        <a class="update-link text-info"><small>Update</small></a>
                     </div>
                     </td>
                     <td>
@@ -137,7 +138,7 @@
                     <td>
                     <h5>Grand total</h5>
                     </td>
-                     <td><h5> ${{bag.total | calc_delivery:4.99 |floatformat:2}}</h5></td>
+                     <!-- <td><h5> ${{bag.total | calc_delivery:4.99 |floatformat:2}}</h5></td> -->
                 </tr>
                 </tbody>
             
@@ -145,7 +146,7 @@
             
             <div class="checkout_btn_inner float-right">
                 <!-- <a class="btn_1" href="#">Continue Shopping</a> -->
-                <a class="btn_1 checkout_btn_1" href="{%url 'checkout'%}">Proceed to secure checkout</a>
+                <a class="btn_3" href="{%url 'checkout'%}">Proceed to secure checkout</a>
             </div>
             </div>
             {% else %}
@@ -160,63 +161,15 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <!-- <script>
+   
+{% include 'includes/update_product_qty.html' %}
 
-       // Disable +/- buttons outside the range of 1-50
-   function handleEnableDisable(itemId) {
-        let currentValue = parseInt($(`#id_qty_${itemId}`).val());
-        let minusDisabled = currentValue < 2;
-        let plusDisabled = currentValue > 50;
-        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
-        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
-    }
-
+<script type="text/javascript">
     // Update quantity on click
-    $('.increment-qty').click(function(e) {
-        e.preventDefault();
-        let qtyInput = $(this).closest('.input-group').find('.quantity_input')[0];
-        let currentValue = parseInt($(qtyInput).val());
-        $(qtyInput).val(currentValue + 1);
-        let itemId = $(this).data('item_id');
-        handleEnableDisable(itemId);
-        let form = $(this).closest('form');
-        var csrfToken = "{{ csrf_token }}";
-      
-        var url = `/shopping_bag/alter_shoping_bag/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'product_id': itemId };
-
-        $.post(url, data)
-         .done(function() {
-             location.reload();
-         });
-        console.log( "somthing" ,form)
-        console.log(itemId)
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
         form.submit();
-    });
+    })
 
-    
-      // Decrement quantity on click
-    $('.decrement-qty').click(function(e) {
-       e.preventDefault();
-       let qtyInput = $(this).closest('.input-group').find('.quantity_input')[0];
-       let currentValue = parseInt($(qtyInput).val());
-       $(qtyInput).val(currentValue - 1);
-       let itemId = $(this).data('item_id');
-       handleEnableDisable(itemId);
-        let form = $(this).closest('form');
-        var csrfToken = "{{ csrf_token }}";
-      
-        var url = `/shopping_bag/alter_shoping_bag/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'product_id': itemId };
-
-        $.post(url, data)
-         .done(function() {
-             location.reload();
-         });
-        console.log( "somthing" ,form)
-        form.submit();
-    });
-
-
-    </script> -->
+</script>
 {% endblock %}

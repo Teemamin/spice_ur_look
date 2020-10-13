@@ -23,7 +23,7 @@ def all_products(request):
             cat = request.GET['cat'].split(',')
             if 'gender' in request.GET:
                 gender = request.GET['gender'].split(',')
-            #     print(gender)
+
             products = products.filter(category__name__in=cat)
             categories = Category.objects.filter(name__in=cat)
         if 'search' in request.GET:

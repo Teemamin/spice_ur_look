@@ -51,7 +51,7 @@
                                     </span>
                                     <span class="text-uppercase">Continue Shopping</span>
                                  </a>
-                                    <a href="{%url 'remove_from_bag' product.id%}" class="btn-sm">remove?</a>
+                                    <a href="{%url 'remove_from_bag' product.id%}" class=" text-danger"><small>remove?</small></a>
                                     <!-- <input type="submit" class="btn btn-sm rmbtn  mt-5" value="Remove from cart?"> -->
                                 {% else %}
                                     <a href="{% url 'products' %}" class="btn btn_3  d-block rounded-0 mt-5">

@@ -69,14 +69,14 @@
                                 <!-- {{myFilter.form.as_p}} -->
                                 <div class="product_top_bar_iner product_bar_item d-flex">
                                     <div class="product_bar_single">
-                                        <select class="wide">
+                                        <select class="wide" id="sort-box">
                                             <option value="default" {% if sorting == 'None_None' %}selected{% endif %}>Suggested</option>
                                             <option value="price_asc" {% if sorting == 'price_asc' %}selected{% endif %}>Price(High)</option>
                                             <option value="price_desc" {% if sorting == 'price_desc' %}selected{% endif %}>Price(Low)</option>
-                                            <option value="sales" {% if sorting == 'sales' %}selected{% endif %}>Sales</option>
                                             <option value="rating_asc" {% if sorting == 'rating_asc' %}selected{% endif %}>Rating(High)</option>
-                                            <option value="rating_desc" {% if sorting == 'rating_dsc' %}selected{% endif %}>Rating(Low)</option>
-                                            <option value="new_arrivals" {% if sorting == 'new_arrivals' %}selected{% endif %}>New Arrivals</option>
+                                            <option value="rating_desc" {% if sorting == 'rating_desc' %}selected{% endif %}>Rating(Low)</option>
+                                            <option value="promtions_asc" {% if sorting == 'promtions_asc' %}selected{% endif %}>Sales(High)</option>
+                                            <option value="promotions_desc" {% if sorting == 'promotions_desc' %}selected{% endif %}>Sales(Low)</option>
 
                                         </select>
                                     </div>
@@ -121,4 +121,46 @@
             </div>
         </div>
     </section>
+    <div class="scrl-btn shadow-sm rounded-0 border border-blue">
+        <a class="scrl-btn-link d-flex h-100">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>	
+   </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script src="{% static 'products/js/product_sort_direction.js' %}"></script>
+        <script type="text/javascript">
+            $('.scrl-btn-link').click(function(e) {
+                window.scrollTo(0,0)
+            })
+        </script>
+    
+    
+
+    
+        
+        <!-- <script type="text/javascript">
+            $('#sort-box').change(function() {
+                var selector = $(this);
+                var currentUrl = new URL(window.location);
+
+                var selectedVal = selector.val();
+                if(selectedVal != "default"){
+                    var arrange = selectedVal.split("_")[0];
+                    var direction = selectedVal.split("_")[1];
+
+                    currentUrl.searchParams.set("arrange", arrange);
+                    currentUrl.searchParams.set("direction", direction);
+
+                    window.location.replace(currentUrl);
+                } else {
+                    currentUrl.searchParams.delete("arrange");
+                    currentUrl.searchParams.delete("direction");
+
+                    window.location.replace(currentUrl);
+                }
+            })
+        </script> -->
 {% endblock %}
