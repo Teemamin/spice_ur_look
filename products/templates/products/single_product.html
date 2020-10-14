@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
+    {% block additionalcss %}
+       {{ block.super }}
+        <link rel="stylesheet" href="{% static 'products/css/style.css' %}">
+
+    {% endblock %}
+
 {% block content %}
     
  
@@ -51,7 +57,85 @@
             </div>
         </div>
     </div>
-  </div>
+   </div>
+
+   <section class="product_description_area">
+    <div class="container">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Description</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+            aria-selected="false">Reviews</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <p>
+            {{product.description}}
+          </p>
+
+        </div>
+        <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="row total_rate">
+                <div class="col-6">
+                  <div class="box_total">
+                    <h5>Overall</h5>
+                    <h4>5.0</h4>
+                    <h6>(03 Reviews)</h6>
+                  </div>
+                </div>
+                <div class="col-6">
+                 
+                </div>
+              </div>
+              <div class="review_list">
+                <div class="review_item">
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="img/product/single-product/review-1.png" alt="" />
+                    </div>
+                    <div class="media-body">
+                    {% for review in review_obj%}
+                      <h4>{{review.user}}z</h4>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
+                  </div>
+                  <p>
+                    {{review.rate}}
+                    {{review.review}} 
+                    {{review.time_added}}
+                    {{review.product}} 
+                  </p>
+                {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="review_box">
+                <h4>Add a Review</h4>
+                <form class="review-form" method="POST" action="{% url 'add_review' product.id %}">
+                    {% csrf_token %}
+                    {{review_form | crispy}}
+                    <button class="primary-btn">Submit</button>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}

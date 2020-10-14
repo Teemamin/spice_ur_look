@@ -33,14 +33,12 @@ def profile_view(request):
     return render(request, 'profiles/profile.html', context)
 
 
-
 def order_history_view(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (
         f'This is a previous order confirmation on order number {order_number}\
           An email was sent for the said order. '
-        
     ))
 
     template = 'checkout/checkout_success.html'

@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import Product, Category
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
+from .models import Product, Category, Review
 from django.db.models.functions import Lower
 from django.contrib import messages
 from django.db.models import Q
 from shopping_bag.models import Bag
-from .forms import AddProductForm
+from .forms import AddProductForm, ReviewForm
 # Create your views here.
 
 
@@ -65,9 +65,13 @@ def all_products(request):
 def single_product(request, product_id,*args, **kwargs):
     product = get_object_or_404(Product, pk=product_id)
     bag_obj, new_obj = Bag.objects.new_or_get(request)
+    review_obj = Review.objects.all()
+    review_form = ReviewForm()
     context = {
         'product': product,
-        'bag': bag_obj
+        'bag': bag_obj,
+        'review_form': review_form,
+        'review_obj': review_obj,
     }
     return render(request, 'products/single_product.html', context)
 
@@ -95,6 +99,7 @@ def add_product(request):
     }
 
     return render(request, 'products/add_product.html', context)
+
 
 def revise_product(request, product_id):
     """ Edits and updates a product in the site """
@@ -134,3 +139,27 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Successfully deleted product!')
     return redirect(reverse('products'))
+
+
+def add_review(request, product_id):
+    product_obj = Product.objects.get(pk=product_id)
+    redirect_url = request.POST.get('redirect_url')
+    url = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':
+        review_form_data = {
+            'review': request.POST['review'],
+            'rate': request.POST['rate'],
+        }
+        review_form = ReviewForm(review_form_data)
+        if review_form.is_valid:
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.product = product_obj
+            review.save()
+            messages.success(
+                request, "Your review has ben sent.\
+                    We appreciate your feedback!."
+            )
+            return HttpResponseRedirect(url)
+
+    return HttpResponseRedirect(url)
