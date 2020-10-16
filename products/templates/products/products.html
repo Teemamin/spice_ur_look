@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="left_sidebar_area">
-                        <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
+                        <aside class="left_widgets p_filter_widgets myaside sidebar_box_shadow">
                             <div class="l_w_title">
                                 <h3>Browse Categories</h3>
                             </div>
@@ -27,7 +27,7 @@
                                 <h5 class="sec-hd sidebar_box_shadow">All Products /</h5>
                                 <hr>
                                  
-                                <ul class="list">
+                                <ul class="list list-unstyled cat-list">
                                     <li class="{%for product in products%}{%if product.gender != 'woman'%}d-none {%else%}d-block{%endif%}{%endfor%}">
                                         <a href="{% url 'products' %}?cat=dresses&gender=woman">Dresses</a>
                                     </li>

@@ -86,14 +86,69 @@
                   <div class="box_total">
                     <h5>Overall</h5>
                     <h4>5.0</h4>
-                    <h6>(03 Reviews)</h6>
+                    <h6>({{review_count}} Review(s))</h6>
                   </div>
                 </div>
                 <div class="col-6">
                  
                 </div>
               </div>
-              <div class="review_list">
+              {% if review_obj%}
+               {% for review in review_obj%}
+               {% if review.product_id == product.id%}
+              	<div class="single-review">
+                <div class="review-heading">
+                    <div><a href="#"><i class="fa fa-user-o"></i> {{review.user}}</a></div>
+                    <div><a href="#"><i class="fa fa-clock-o"></i> {{review.time_added}}</a></div>
+                    <div class="review-rating pull-right">
+                    {%if review.rate == 1%}
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        {%elif review.rate == 2%}
+                         <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        {%elif review.rate == 3%}
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        {%elif review.rate == 4%}
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o empty"></i>
+                        {%elif review.rate == 5%}
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    {% endif%}
+                    </div>
+                </div>
+                <div class="review-body">
+                    <p>{{review.review}}</p>
+                </div>
+            </div>
+            {%else%}
+        {% if forloop.last %}
+             <p>Rate this product!</p>
+            {%endif%}
+
+            {%endif%}
+            {% endfor %}
+        
+        {%endif%}
+
+              <!-- <div class="review_list">
                 <div class="review_item">
                   <div class="media">
                     <div class="d-flex">
@@ -101,7 +156,7 @@
                     </div>
                     <div class="media-body">
                     {% for review in review_obj%}
-                      <h4>{{review.user}}z</h4>
+                      <h4>{{review.user}}</h4>
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -113,22 +168,28 @@
                     {{review.rate}}
                     {{review.review}} 
                     {{review.time_added}}
-                    {{review.product}} 
+                    {{review.product_id}} 
                   </p>
                 {% endfor %}
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="col-lg-6">
               <div class="review_box">
-                <h4>Add a Review</h4>
-                <form class="review-form" method="POST" action="{% url 'add_review' product.id %}">
-                    {% csrf_token %}
-                    {{review_form | crispy}}
-                    <button class="primary-btn">Submit</button>
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+              {% if request.user.is_authenticated%}
+                {% if product.id in user_order_prdct_id%}
+                    <h4>Add a Review</h4>
+                    <form class="review-form" method="POST" action="{% url 'add_review' product.id %}">
+                        {% csrf_token %}
+                        {{review_form | crispy}}
+                        <button class="primary-btn">Submit</button>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
 
-                </form>
+                    </form>
+                {%endif%}
+                {% else %}
+                <p>Register with us to be able to review our products!</p>
+              {% endif %}
               </div>
             </div>
           </div>

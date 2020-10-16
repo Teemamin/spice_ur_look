@@ -23,6 +23,7 @@ class MyCategoryAdmin(admin.ModelAdmin):
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ['rate', 'review', 'time_added']
     readonly_fields = ('review', 'user', 'product', 'rate', 'id')
+    ordering = ('time_added',)
 
 
 admin.site.register(Product, MyProductAdmin)

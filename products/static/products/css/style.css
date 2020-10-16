@@ -1,50 +1,29 @@
-/*-- review form --*/
+/*-- reviews --*/
 
-.review-form textarea.input {
-  height: 90px;
+.single-review {
+  margin-bottom: 30px;
 }
 
-.review-form .input-rating .stars {
+.single-review .review-heading>div {
   display: inline-block;
-  vertical-align: top;
 }
 
-.review-form .input-rating .stars input[type="radio"] {
-  display: none;
+.single-review .review-heading>div+div {
+  margin-left: 10px;
 }
 
-.review-form .input-rating .stars>label {
-  float: right;
-  cursor: pointer;
-  padding: 0px 3px;
-  margin: 0px;
-  -webkit-transition: 0.3s all;
-  transition: 0.3s all;
+.single-review .review-rating {
+  display: inline-block;
 }
 
-.review-form .input-rating .stars>label:hover, .review-form .input-rating .stars>label:hover~label {
-  -webkit-transform: scale(1.5);
-  -ms-transform: scale(1.5);
-  transform: scale(1.5);
+.single-review .review-rating>i {
+  color: #FFB656;
 }
 
-.review-form .input-rating .stars>label:before {
-  content: "\f006";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
+.single-review .review-rating>i.empty {
   color: #DADADA;
-  font-size: 14px;
-  -webkit-transition: 0.3s all;
-  transition: 0.3s all;
 }
 
-.review-form .input-rating .stars>label:hover:before, .review-form .input-rating .stars>label:hover~label:before {
-  content: "\f005";
-  color: #FFB656;
-}
-
-.review-form .input-rating .stars>input:checked label:before, .review-form .input-rating .stars>input:checked~label:before {
-  content: "\f005";
-  color: #FFB656;
+.single-review .review-body {
+  margin-top: 10px;
 }

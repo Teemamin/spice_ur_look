@@ -797,6 +797,19 @@ body {
   padding: 10px 15px 10px 30px;
   text-transform: uppercase;
 }
+.cat-list li a {
+    font-size: 14px;
+    font-weight: normal;
+    color: #606060;
+    cursor: pointer;
+    position: relative;
+}
+.myaside .cat-list li{
+    margin-bottom: 18px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+
+}
 
 .single_product {
   position: relative;
@@ -989,7 +1002,7 @@ body {
 
 .order_box .list li a {
   font-size: 14px;
-  color: #797979;
+  color: #797979 !important;
   font-weight: normal;
   border-bottom: 1px solid #eeeeee;
   display: block;

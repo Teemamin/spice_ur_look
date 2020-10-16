@@ -4,6 +4,9 @@ from django.db.models.functions import Lower
 from django.contrib import messages
 from django.db.models import Q
 from shopping_bag.models import Bag
+from profiles.models import UserProfile
+from checkout.models import Order
+
 from .forms import AddProductForm, ReviewForm
 # Create your views here.
 
@@ -62,16 +65,30 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
-def single_product(request, product_id,*args, **kwargs):
+def single_product(request, product_id, *args, **kwargs):
     product = get_object_or_404(Product, pk=product_id)
     bag_obj, new_obj = Bag.objects.new_or_get(request)
-    review_obj = Review.objects.all()
+    user_order_prdct_id = []
+    profile = None
+    profile_orders = None
+    if request.user.is_authenticated:
+        profile = get_object_or_404(UserProfile, user=request.user)
+        profile_orders = profile.orders.all()
+        for order in profile_orders:
+            for item in order.bag.order_line_items.all():
+                user_order_prdct_id.append(item.product.id)
+    review_obj = Review.objects.all().order_by('-time_added',)
+    review_count = review_obj.filter(product_id=product_id).count()
+    # review_count = review_obj.count()
     review_form = ReviewForm()
     context = {
         'product': product,
         'bag': bag_obj,
         'review_form': review_form,
         'review_obj': review_obj,
+        'review_count': review_count,
+        'profile_orders': profile_orders,
+        'user_order_prdct_id': user_order_prdct_id,
     }
     return render(request, 'products/single_product.html', context)
 
