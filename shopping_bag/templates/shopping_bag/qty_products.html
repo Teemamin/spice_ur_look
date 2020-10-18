@@ -1,0 +1,33 @@
+ <form id="update-bag" class="update-form" method="POST" action="{% url 'alter_shoping_bag' itm.product.id %}">
+                            {% csrf_token %}
+                            <div class="form-group d-flex">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-black rounded-0" 
+                                                data-item_id="{{ itm.product.id }}" id="{{ itm.product.id}}">
+                                                <span class="icon">
+                                                    <i class="fas fa-minus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <input class="form-control quantity_input" type="number"
+                                            name="quantity" value="{{itm.quantity}}" min="1" max="50"
+                                            data-item_id="{{ itm.product.id }}"
+                                            id="id_qty_{{ itm.product.id }}">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn  rounded-0"
+                                                data-item_id="{{ itm.product.id}}" id="{{ itm.product.id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-plus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            <input type="hidden" name="{{itm.product.id}}">
+
+
+
+</form>
+<a class="update-link text-info"><small>Update</small></a> 

@@ -742,15 +742,15 @@ body {
 .sec-hd{
     font-size: .875rem
 }
-.left_widgets {
+.lft_widgets {
   margin-bottom: 30px;
 }
 
-.left_widgets:last-child {
+.lft_widgets:last-child {
   margin-bottom: 0px;
 }
 
-.widgets_inner p {
+.lft-widget-inner p {
   font-size: 14px;
   text-transform: capitalize;
   color: #000;
@@ -760,11 +760,11 @@ body {
 .prdct_padding{
     padding: 50px;
 }
-.widgets_inner input[type=checkbox], .widgets_inner input[type=radio] {
+.lft-widget-inner input[type=checkbox], .lft-widget-inner input[type=radio] {
   margin-right: 15px;
 }
 
-.widgets_inner {
+.lft-widget-inner {
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 0px;
@@ -772,20 +772,20 @@ body {
 }
 
 @media (max-width: 991px) {
-  .widgets_inner {
+  .lft-widget-inner {
     padding-left: 15px;
     padding-right: 15px;
   }
 }
 
 @media (max-width: 991px) {
-  .l_w_title {
+  .sec-title {
     padding-left: 0;
     padding-right: 0;
   }
 }
 
-.l_w_title h3 {
+.sec-title h3 {
   margin-bottom: 20px;
   font-size: 14px;
   font-family: "Roboto", sans-serif;
@@ -876,7 +876,7 @@ body {
   padding: 9px 42px;
   border-radius: 50px;
   background-color: #2f7dfc;
-  border: 1px solid #f4f4f4;
+  width: 100%;
   font-size: 15px;
   font-weight: 700;
   color: #fff;
@@ -885,9 +885,13 @@ body {
   transition: 0.5s;
 }
 
+
+
 .btn_3:hover {
-  background-color: #136cfa;
-  color: #fff;
+  color: #2f7dfc;
+  background-color: #fff;
+  box-shadow: -14.142px 14.142px 20px 0px rgba(0, 0, 0, 0.1);
+ 
 }
 
 /** shoping bag**/
@@ -1285,4 +1289,116 @@ body {
 
 .text-black {
         font-size: 2rem;
-    }
+}
+
+#bag_container {
+    margin-bottom: 20px;
+    margin-top: 80px;
+    min-height: 200px;
+}
+
+
+#bag_container .cta_container{
+    overflow: hidden;
+}
+
+#bag_container .cta_container .ctas {
+    float: right;
+    width: 100%;
+}
+
+#bag_container .cta_container #continue_shopping {
+    float: left;
+}
+.ctas .block_button {
+    margin-left: 0;
+}
+.block_button.emphasise, .block_button.emphasise.secondary {
+    height: 42px;
+    line-height: 42px;
+    width: 240px;
+}
+.block_button.emphasise {
+    font-size: 14px;
+}
+.block_button.secondary {
+    color: #000;
+    background: #ebeded;
+    height: 24px;
+    line-height: 24px;
+    width: 143px;
+}
+.pointer, a[href], button, input[type=image], input[type=submit], label[for], select {
+    cursor: pointer;
+}
+.block_button {
+    cursor: pointer;
+}
+.block_button {
+    background-color: #55c0a9;
+    border-radius: 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    width: 147px;
+    font-weight: 400;
+}
+a {
+    color: #666;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+    font-weight: 400;
+}
+
+.stripepay_wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stripepay--bag .stripepay_spacer {
+    flex-grow: 1;
+}
+
+#bag_container .cta_container #proceed_to_checkout {
+    float: right;
+}
+#bag_container .ctas .block_button {
+    margin-left: 0;
+}
+.block_button.emphasise, .block_button.emphasise.secondary {
+    height: 42px;
+    line-height: 42px;
+    width: 240px;
+}
+.block_button.emphasise {
+    font-size: 14px;
+}
+.pointer, a[href], button, input[type=image], input[type=submit], label[for], select {
+    cursor: pointer;
+}
+.block_button {
+    cursor: pointer;
+}
+.block_button {
+    background-color: #2f7dfc;
+    border-radius: 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    width: 147px;
+    font-weight: 400;
+}
+a {
+    color: #666;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+    font-weight: 400;
+}
