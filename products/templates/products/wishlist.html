@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+     <section class="cat_product_area prdct_padding border_top">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class=" mb-4">Wishlist <small class="text-muted">({{ wishlist.count }} items)</small></h2>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        {%for product in wishlist%}
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="single_product">
+                                <div class="single_category_img">
+                                    <a href="">
+                                        <img src="{{ product.wished_product.image.url }}" alt="{{product.wished_product.name}}">
+                                    </a>
+                                    <div class="category_social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="far fa-heart"></i></a></li>
+                                            {% if product.wished_product.has_sizes%}
+                                               <li class="d-none"><a href=""><i class="fas fa-shopping-bag"></i></a></li>
+                                             {% else %}
+                                               <li class="d-block"><a href=""><i class="fas fa-shopping-bag"></i></a></li>
+
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    <div class="category_product_text">
+                                        <a href="{% url 'single_product' product.wished_product.id%}"><h5>{{product.wished_product.name}}</h5></a>
+                                        <p>${{product.wished_product.price}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="scrl-btn shadow-sm rounded-0 border border-blue">
+        <a class="scrl-btn-link d-flex h-100">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>	
+   </div>
+
+{% endblock %}

@@ -18,6 +18,7 @@ urlpatterns = [
         'add_to_wishlist/', views.add_to_wishlist,
         name='add_to_wishlist'
         ),
+    path('wishlist_view/', views.wishlist_view, name='wishlist_view'),
 
 
 

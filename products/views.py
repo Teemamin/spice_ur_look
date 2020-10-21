@@ -187,7 +187,6 @@ def add_review(request, product_id):
     return HttpResponseRedirect(url)
 
 
-
 def add_to_wishlist(request):
     url = request.META.get('HTTP_REFERER')
     if request.is_ajax() and request.POST and 'attr_id' in request.POST:
@@ -208,4 +207,18 @@ def add_to_wishlist(request):
 
     return HttpResponseRedirect(url)
 
+
+def wishlist_view(request):
+    wishlist = {}
+    if request.method == "GET":
+        if request.user.is_authenticated:
+            wishlist = Wishlist.objects.filter(user_id=request.user.pk)
+        else:
+            messages.error(request, 'kindly login to see your wishlist')
+            return redirect('login')
+    context = {
+        "wishlist": wishlist
+    }
+
+    return render(request, 'products/wishlist.html', context)
 
