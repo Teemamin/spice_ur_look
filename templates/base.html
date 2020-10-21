@@ -49,13 +49,13 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-11">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="{% url 'home' %}"> Spice Ur Look </a>
+                        <a class="navbar-brand" href="{% url 'home' %}"> <img src="{{ MEDIA_URL }}logo.png" alt="{{logo.name}}"></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="menu_icon"><i class="fas fa-bars"></i></span>
                         </button>
-                        <!-- <a href="{% provider_login_url 'google' %}">Google login</a> -->
+                        <a href="{% provider_login_url 'google' %}">Google login</a>
 
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">

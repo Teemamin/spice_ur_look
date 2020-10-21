@@ -11,8 +11,6 @@
                   <div class="breadcrumb_iner">
                       <div class="breadcrumb_iner_item">
                           <p>Shopping bag Items</p>   
-                              
-                        
                       </div>
                   </div>
               </div>
@@ -20,240 +18,209 @@
       </div>
   </section>
    <section class="cart_area section_padding">
-    <div class="container">
-      <div class="cart_inner">
-        {% if bag.order_line_items.exists %}
-            <div class="table-responsive d-none d-md-block">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Sub-Total</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for itm in bag.order_line_items.all%}
-                <tr>
-                    <td>
-                    <div class="media">
-                        <div class="d-flex">
+    <div class="container mb-2">
+      <div class="row">
+        <div class="col">
+            {% if bag.order_line_items.exists %}
+            <div class="cart_inner">
+                    <div class="table-responsive d-none d-md-block">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Sub-Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for itm in bag.order_line_items.all%}
+                        <tr>
+                            <td>
+                            <div class="media">
+                                <div class="d-flex">
 
-                        <img src="{{itm.product.image.url}}" alt="{{itm.product.name}}" />
-                        </div>
-                        <div class="media-body">
-
-                        <p>{{itm.product.name}}</p>
-
-                        {%if itm.product_size %}
-                            <p> Size:{{itm.product_size}}</p>
-                        {% else %}
-                        <p> Size : N/A</p>
-                       {% endif %}
-                       {% include "products/update_bag.html" with product=itm bag=bag in_bag=True %}
-                        </div>
-                    </div>
-                    </td>
-                    <td>
-                    <h5>${{itm.product.price}}</h5>
-                    
-                    </td>
-                    <td>
-                    <div class="product_count">
-                      
-                        <form id="update-bag" class="update-form" method="POST" action="{% url 'alter_shoping_bag' itm.product.id %}">
-                            {% csrf_token %}
-                            <div class="form-group d-flex">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <button class="decrement-qty btn btn-black rounded-0" 
-                                                data-item_id="{{ itm.product.id }}" id="{{ itm.product.id}}">
-                                                <span class="icon">
-                                                    <i class="fas fa-minus"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <input class="form-control quantity_input" type="number"
-                                            name="quantity" value="{{itm.quantity}}" min="1" max="50"
-                                            data-item_id="{{ itm.product.id }}"
-                                            id="id_qty_{{ itm.product.id }}">
-                                        <div class="input-group-append">
-                                            <button class="increment-qty btn  rounded-0"
-                                                data-item_id="{{ itm.product.id}}" id="{{ itm.product.id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-plus"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                <img src="{{itm.product.image.url}}" alt="{{itm.product.name}}" />
                                 </div>
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            <input type="hidden" name="{{itm.product.id}}">
+                                <div class="media-body">
 
+                                <p>{{itm.product.name}}</p>
 
-
-                        </form>
-                        <a class="update-link text-info"><small>Update</small></a>
-                    </div>
-                    </td>
-                    <td>
-                    <h5>${{itm.product.price | calc_subtotal:itm.quantity}}</h5>
-                    </td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                    <h5>Delivery</h5>
-                    </td>
-                    <td>
-                    <h5>$4.99</h5>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td></td>
-                    <td></td>
-                    <td>
-                    <h5>Total
-                        <span> <br><small>tax inclusive</small> </span>
-                    </h5>
-                    </td>
-                     <td><h5>${{bag.total}}</h5></td>
-                </tr>
-                <tr class="">
-                    <td></td>
-                    <td></td>
-                    <td>
-                    <h5>Grand total</h5>
-                    </td>
-                     <!-- <td><h5> ${{bag.total | calc_delivery:4.99 |floatformat:2}}</h5></td> -->
-                </tr>
-                </tbody>
-            
-            </table>
-            
-            <div class="checkout_btn_inner float-right">
-                <a class="btn_3" href="{%url 'checkout'%}"><span>Proceed to secure checkout</span>
-                    <span class="icon">
-                        <i class="fas fa-chevron-right"></i>
-                    </span>
-                </a>
-            </div>
-            <div class="checkout_btn_inner float-left">
-                
-                <a class="btn_3 mt-5" href="{%url 'products'%}">
-                    <span class="icon">
-                        <i class="fas fa-chevron-left"></i>
-                    </span>
-                    <span>Continue Shopping</span>
-                </a>
-            </div>
-            </div>
-            <div id="bag_container" class="d-block d-md-none ">
-                 <div class="row">
-                    <div class=" cta_container">
-                       <div class="ctas">
-                            <a id="proceed_to_checkout " class="block_button emphasise secondary" href="{%url 'checkout'%}"><span>Proceed to secure checkout</span>
-                                <span class="icon">
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
-                            <div class="stripepay_wrapper stripepay--bag">
-                                <div class="stripepay_spacer"> </div>
-                                    <a id="continue_shopping" class="block_button emphasise" href="{%url 'products'%}">
-                                        <span class="icon">
-                                            <i class="fas fa-chevron-left"></i>
-                                        </span>
-                                        <span>Continue Shopping</span>
-                                    </a>
-                                
+                                {%if itm.product_size %}
+                                    <p> Size:{{itm.product_size}}</p>
+                                {% else %}
+                                <p> Size : N/A</p>
+                            {% endif %}
+                            {% include "products/update_bag.html" with product=itm bag=bag in_bag=True %}
+                                </div>
                             </div>
-                       </div>
-                       
+                            </td>
+                            <td>
+                            <h5>${{itm.product.price}}</h5>
+                            
+                            </td>
+                            <td>
+                            <div class="product_count">
+                            
+                                <form id="update-bag" class="update-form" method="POST" action="{% url 'alter_shoping_bag' itm.product.id %}">
+                                    {% csrf_token %}
+                                    <div class="form-group d-flex">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <button class="decrement-qty btn btn-black rounded-0" 
+                                                        data-item_id="{{ itm.product.id }}" id="{{ itm.product.id}}">
+                                                        <span class="icon">
+                                                            <i class="fas fa-minus"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <input class="form-control quantity_input" type="number"
+                                                    name="quantity" value="{{itm.quantity}}" min="1" max="50"
+                                                    data-item_id="{{ itm.product.id }}"
+                                                    id="id_qty_{{ itm.product.id }}">
+                                                <div class="input-group-append">
+                                                    <button class="increment-qty btn  rounded-0"
+                                                        data-item_id="{{ itm.product.id}}" id="{{ itm.product.id }}">
+                                                        <span class="icon">
+                                                            <i class="fas fa-plus"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    <input type="hidden" name="{{itm.product.id}}">
+
+
+
+                                </form>
+                                <a class="update-link text-info"><small>Update</small></a>
+                            </div>
+                            </td>
+                            <td>
+                            <h5>${{itm.product.price | calc_subtotal:itm.quantity}}</h5>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            <h5>Delivery</h5>
+                            </td>
+                            <td>
+                            <h5>$4.99</h5>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td></td>
+                            <td></td>
+                            <td>
+                            <h5>Total
+                                <span> <br><small>tax inclusive</small> </span>
+                            </h5>
+                            </td>
+                            <td><h5>${{bag.total}}</h5></td>
+                        </tr>
+                        <tr class="">
+                            <td></td>
+                            <td></td>
+                            <td>
+                            <h5>Grand total</h5>
+                            </td>
+                            <td><h5> ${{bag.total}}</h5></td>
+                        </tr>
+                        </tbody>
+                    
+                    </table>
+                    
+                    <div class=" float-right">
+                        <a class="btn btn-chkout" href="{%url 'checkout'%}"><span>Proceed to secure checkout</span>
+                            <span class="icon">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                    <div class=" float-left">
+                        
+                        <a class="btn btn-chkout" href="{%url 'products'%}">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span>Continue Shopping</span>
+                        </a>
+                    </div>
+                    </div>
+            </div>
+            <div class="d-block d-md-none">
+                <div class="row">
+                    <div class="col"> 
+                        <a class="btn btn-outline-black rounded-0 btn-lg text-uppercase" href="{%url 'products'%}">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span>Continue Shopping</span>
+                        </a>
+                            <a class="btn btn-black rounded-0 btn-lg btn-chkout text-uppercase" href="{%url 'checkout'%}"><span>Secure Checkout</span>
+                            <span class="icon">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </a>
+                        <p class="text-muted mb-5">Kindly see below for your shopping bag items : </p>
+                        
                     </div>
                 </div>
-     
-                {% for itm in bag.order_line_items.all %}
+                    <div class="stripepay_spacer"></div>
+                {% for itm in bag.order_line_items.all%}
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-2">
-                             <div class="d-flex">
-                            {% if itm.product.image %}
-                                <img src="{{itm.product.image.url}}" alt="{{itm.product.name}}" />
-                            {% else %}
-                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ itm.product.name }}">
-                            {% endif %}
-                             </div>
+                            {% include "shopping_bag/product_image.html" %}
                         </div>
                         <div class="col-12 col-sm-6 mb-2">
                             <p>{{itm.product.name}}</p>
 
-                        {%if itm.product_size %}
-                            <p> Size:{{itm.product_size}}</p>
-                        {% else %}
-                        <p> Size : N/A</p>
-                       {% endif %}
-                       {% include "products/update_bag.html" with product=itm bag=bag in_bag=True %}
+                            {%if itm.product_size %}
+                                <p> Size:{{itm.product_size}}</p>
+                            {% else %}
+                            <p> Size : N/A</p>
+                            {% endif %}
+                            {% include "products/update_bag.html" with product=itm bag=bag in_bag=True %}
                         </div>
                         <div class="col-12 col-sm-6 order-sm-last">
                             <p class="my-0">Price Each: ${{ itm.product.price }}</p>
                             <p><strong>Subtotal: </strong>${{ itm.product.price | calc_subtotal:itm.quantity }}</p>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <div class="product_count">
-                      
-                        <form id="update-bag" class="update-form" method="POST" action="{% url 'alter_shoping_bag' itm.product.id %}">
-                            {% csrf_token %}
-                            <div class="form-group d-flex">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <button class="decrement-qty btn btn-black rounded-0" 
-                                                data-item_id="{{ itm.product.id }}" id="{{ itm.product.id}}">
-                                                <span class="icon">
-                                                    <i class="fas fa-minus"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <input class="form-control quantity_input" type="number"
-                                            name="quantity" value="{{itm.quantity}}" min="1" max="50"
-                                            data-item_id="{{ itm.product.id }}"
-                                            id="id_qty_{{ itm.product.id }}">
-                                        <div class="input-group-append">
-                                            <button class="increment-qty btn  rounded-0"
-                                                data-item_id="{{ itm.product.id}}" id="{{ itm.product.id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-plus"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            <input type="hidden" name="{{itm.product.id}}">
-
-
-
-                        </form>
-                        <a class="update-link text-info"><small>Update</small></a>
-                    </div>
+                            {% include "shopping_bag/qty_products.html" %}
                         </div>
                     </div>
                     <div class="row"><div class="col"><hr></div></div>
                 {% endfor %}
-                <div class="btt-button shadow-sm  border border-black">
+                 <div class="row">
+                    <div class="col">
+                        <h6>Delivery: ${{ delivery|floatformat:2 }}</h6>
+                        <h6><strong>Bag Total: ${{ bag.total|floatformat:2 }}</strong></h6>
+                    </div>
+                </div>
+                <div class="btt-button shadow-sm rounded-0 border border-black">
                     <a class="btt-link d-flex h-100">
                         <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
                     </a>	
                 </div>
             </div>
             {% else %}
-                <div class="mx-auto" style="width: 200px;">
-                    <p> Shopping Bag is Empty</p>
-                    <a href="{% url 'home'%}" class="btn_3"> Back to Home</a>
-                </div>
-        {% endif %}
+                <p class="lead mb-5">Your shopping bag is empty.</p>
+                <a href="{% url 'products' %}" class="btn btn_3">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Keep Shopping</span>
+                </a>
+            {% endif %}
+        </div>
       </div>
+
+    </div>
   </section>
 {% endblock %}
 

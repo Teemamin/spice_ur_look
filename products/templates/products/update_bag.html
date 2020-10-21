@@ -45,25 +45,24 @@
                             </div>
                             {% if in_bag %}
                             <div class="col{% if s %}-12 mt-2{% endif %}">
-                                <a href="{% url 'products' %}" class="btn btn_3  d-none  mt-5">
+                                <a href="{% url 'products' %}" class="btn btn-chkout  d-none  mt-5">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
-                                    <span class="text-uppercase btn_3">Continue Shopping</span>
+                                    <span class="text-uppercase">Continue Shopping</span>
                                  </a>
                                     <a href="{%url 'remove_from_bag' product.id%}" class=" text-danger"><small>remove?</small></a>
-                                    <!-- <input type="submit" class="btn btn-sm rmbtn  mt-5" value="Remove from cart?"> -->
                                 {% else %}
-                                    <a href="{% url 'products' %}" class="btn btn_3 ">
+                                    <a href="{% url 'products' %}" class="btn btn-chkout mr-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="">Continue Shopping</span>
                                     </a>
-                                    {% if product in cart.products.all %}
-                                        <input type="submit" class="btn btn_3  text-uppercase mt-5" value="Remove from cart?">
-                                    {% else %} 
-                                        <input type="submit" class="btn btn_3   text-uppercase mt-5" value="Add To Bag">
+                                    <!-- {% if product in cart.products.all %}
+                                        <input type="submit" class="btn btn-chkout  text-uppercase mt-5" value="Remove from cart?">
+                                    {% else %}  -->
+                                        <input type="submit" class="btn btn-chkout  " value="Add To Bag">
                                     {% endif %}
                                 {% endif %}
                             </div>

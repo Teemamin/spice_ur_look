@@ -89,18 +89,12 @@
             {% for itm in bag_obj.order_line_items.all%}
                 <li>
                   <a href="#"> {{itm.product.name}} - Qty {{itm.quantity}}
-                    <!-- <span class="middle">  {{itm.quantity}}</span> -->
                     <span class="last">${{itm.product.price | calc_subtotal:itm.quantity}}</span>
                   </a>
                 </li>
             {% endfor %}
               </ul>
               <ul class="list list_2">
-                <!-- <li>
-                  <a href="#">Subtotal
-                    <span>$2160.00</span>
-                  </a>
-                </li> -->
                 <li>
                   <a href="#">Shipping
                     <span>Flat rate: $4.99</span>
@@ -113,7 +107,11 @@
                   </a>
                 </li>
               </ul>
-              <a class="btn_3" href="#">Proceed to Secure Checkout</a>
+              <a class="btn btn-chkout" href="#"><span> Proceed to Secure Checkout</span>
+                    <span class="icon">
+                        <i class="fas fa-lock"></i>
+                    </span>
+              </a>
             </div>
           </div>
         </div>

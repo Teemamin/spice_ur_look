@@ -66,7 +66,6 @@
                                     <h2></h2>
                                     {% endfor %}
                                 </div>
-                                <!-- {{myFilter.form.as_p}} -->
                                 <div class="product_top_bar_iner product_bar_item d-flex">
                                     <div class="product_bar_single">
                                         <select class="wide" id="sort-box">
@@ -78,13 +77,6 @@
                                             <option value="promtions_asc" {% if sorting == 'promtions_asc' %}selected{% endif %}>Sales(High)</option>
                                             <option value="promotions_desc" {% if sorting == 'promotions_desc' %}selected{% endif %}>Sales(Low)</option>
 
-                                        </select>
-                                    </div>
-                                    <div class="product_bar_single">
-                                        <select>
-                                            <option data-display="Show 12">Show 12</option>
-                                            <option value="1">Show 20</option>
-                                            <option value="2">Show 30</option>
                                         </select>
                                     </div>
                                 </div>

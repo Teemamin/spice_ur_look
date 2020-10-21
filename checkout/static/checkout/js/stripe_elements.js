@@ -1,9 +1,5 @@
 var stripePublic_key =  $('#stripe_public_key').data('public_key');
 var clientSecret = $('#client_secret').data('secret');
-        
-
-            // var stripePublic_key = $('#id_stripe_public_key').text().slice(1, -1);
-            // var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublic_key);
 
 

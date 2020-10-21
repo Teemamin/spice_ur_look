@@ -14,21 +14,33 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                <div class="image-container my-5">
+                
+                <div class="image-container single-prdct-wrapper my-5">
+                
+                 <div class="wishlist">
+                    {%if product.id in current_user_prdct_id%}
+                        <span class="like like_us heart-prdct" id="id" attr_id="{{ product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fas fa-heart"></i></span>
+                        
+                    {%else%}
+                        <span class="like like_us" id="id" attr_id="{{product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fa fa-heart"></i></span>
+                    {%endif%}
+                 
+                </div>
                     {% if product.image %}
                         <a href="{{ product.image.url }}" target="_blank">
                             <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                         </a>
                         {% else %}
                         <a href="{{ MEDIA_URL }}noimage.png" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}"> 
                         </a>
                     {% endif %}
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="container mb-5 mt-md-5">
-                    <p class="mb-0">{{ product.name }}</p>
+                    <p class="mb-0">{{ product.name }}</p> 
+                    {{current_user_prdct_id}}
                     <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
                     {% if product.category %}
                         <p class="small mt-1 mb-0">
@@ -73,7 +85,7 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <p>
+          <p class="mt-5">
             {{product.description}}
           </p>
 
@@ -83,7 +95,7 @@
             <div class="col-lg-6">
               <div class="row total_rate">
                 <div class="col-6">
-                  <div class="box_total">
+                  <div class="box_total mt-5">
                     <h5>Overall</h5>
                     <h4>5.0</h4>
                     <h6>({{review_count}} Review(s))</h6>
@@ -147,32 +159,6 @@
             {% endfor %}
         
         {%endif%}
-
-              <!-- <div class="review_list">
-                <div class="review_item">
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="img/product/single-product/review-1.png" alt="" />
-                    </div>
-                    <div class="media-body">
-                    {% for review in review_obj%}
-                      <h4>{{review.user}}</h4>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <p>
-                    {{review.rate}}
-                    {{review.review}} 
-                    {{review.time_added}}
-                    {{review.product_id}} 
-                  </p>
-                {% endfor %}
-                </div>
-              </div> -->
             </div>
             <div class="col-lg-6">
               <div class="review_box">
@@ -201,6 +187,85 @@
 {% block postloadjs %}
 {{ block.super }}
    {% include 'includes/update_product_qty.html' %}
+    <script>
 
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+
+        $(document).ready(function(){
+            $(".like").click(function(){
+                var attr_id = $(this).attr('attr_id')
+                var action_url = $(this).attr('action_url')
+                var that = $(this)
+
+                $.ajax({
+                    url: action_url,
+                    type: "POST",
+                    data: {'attr_id': attr_id },
+                    headers: { "X-CSRFToken": csrftoken },
+                    success: function (result) {
+                        console.log("Success")
+                        that.toggleClass("heart-prdct");
+                    },
+                    error: function () {
+                        alert("Please login");
+                    }
+                    
+                });
+            });
+    });
+
+        // function check(url) {
+        // const r = confirm("are you sure you want to delete?");
+        // if (r == true) {
+        //     window.location.href = url;
+        // }
+            
+        // }
+        // $('#whislist-clicked').click(function(e) {
+
+        // x = $(this).html(content)
+        // console.log(x)
+        // })
+        //  $("#whislist-clicked").click(function(){
+        //     $(this).html(function(){
+        //     return '<i class="far fa-heart"></i> ';
+        //     });
+        // });
+        // function whishlistClicked() {
+        //     document.getElementById("whislist-clicked").innerHTML = '<i class="far fa-heart"></i> ';
+        // }
+        // function wishlistUnclicked() {
+        //     document.getElementById("wishlist-unclicked").innerHTML = '<i class="fas fa-heart"></i> ';
+        // }
+
+        // function myFunction() { 
+        //     var element = document.getElementById("wishlist-unclicked");
+        //     if (element.innerHTML === '<i class="far fa-heart"></i>') {
+        //         element.innerHTML = '<i class="fas fa-heart"></i>';
+        //     } else {
+        //         element.html = '<i class="far fa-heart"></i>';
+        //     }
+        // }
+        // console.log(myFunction())
+        
+
+    
+    </script>
    
 {% endblock %}

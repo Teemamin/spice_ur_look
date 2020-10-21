@@ -88,7 +88,8 @@ def checkout(request):
         if checkoutorder_form.is_valid:
             order = checkoutorder_form.save(commit=False)
             order.bag = order_bag
-            stripe_paymentid = request.POST.get('client_secret').split('_secret')[0]
+            stripe_paymentid = request.POST.get(
+                'client_secret').split('_secret')[0]
             order.stripe_paymentid = stripe_paymentid
             # order_obj = Order.objects.new_or_get(order_bag)
             # print(f'{order_obj} frm order_obj')

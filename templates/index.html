@@ -40,17 +40,17 @@
                       {%for product in products%}
                         <div class="single_arrivel_item wdt">
                         {% if product.image%}
-                            <a href="#">
+                            <a href="{% url 'single_product' product.id%}">
                                 <img src="{{ product.image.url }}" alt="{{ product.name }}">
                             </a>
                         {% else %}
-                            <a href="#">
+                            <a href="{% url 'single_product' product.id%}">
                                 <img class="" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             </a>
                         {% endif %}
                             <div class="hover_text">
                                 <p>{{product.name}}</p>
-                                <a href="#"><h3>{{product.description}}</h3></a>
+                                <a href="{% url 'single_product' product.id%}"><h3>{{product.description}}</h3></a>
                                 <div class="rate_icon">
                                     <a href="#"> <i class="fas fa-star"></i> </a>
                                     <a href="#"> <i class="fas fa-star"></i> </a>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
-from .models import Product, Category, Review
+from .models import Product, Category, Review, Wishlist
 from django.db.models.functions import Lower
 from django.contrib import messages
 from django.db.models import Q
@@ -69,6 +69,8 @@ def single_product(request, product_id, *args, **kwargs):
     product = get_object_or_404(Product, pk=product_id)
     bag_obj, new_obj = Bag.objects.new_or_get(request)
     user_order_prdct_id = []
+    current_user_prdct_id = []
+    whishlist_obj = Wishlist.objects.all()
     profile = None
     profile_orders = None
     if request.user.is_authenticated:
@@ -77,9 +79,11 @@ def single_product(request, product_id, *args, **kwargs):
         for order in profile_orders:
             for item in order.bag.order_line_items.all():
                 user_order_prdct_id.append(item.product.id)
+        current_user_whishlist = whishlist_obj.filter(user=request.user)
+        for itm in current_user_whishlist:
+            current_user_prdct_id.append(itm.wished_product.id)
     review_obj = Review.objects.all().order_by('-time_added',)
     review_count = review_obj.filter(product_id=product_id).count()
-    # review_count = review_obj.count()
     review_form = ReviewForm()
     context = {
         'product': product,
@@ -89,6 +93,7 @@ def single_product(request, product_id, *args, **kwargs):
         'review_count': review_count,
         'profile_orders': profile_orders,
         'user_order_prdct_id': user_order_prdct_id,
+        'current_user_prdct_id': current_user_prdct_id,
     }
     return render(request, 'products/single_product.html', context)
 
@@ -180,3 +185,27 @@ def add_review(request, product_id):
             return HttpResponseRedirect(url)
 
     return HttpResponseRedirect(url)
+
+
+
+def add_to_wishlist(request):
+    url = request.META.get('HTTP_REFERER')
+    if request.is_ajax() and request.POST and 'attr_id' in request.POST:
+        if request.user.is_authenticated:
+            data = Wishlist.objects.filter(
+                user_id=request.user.pk,
+                wished_product_id=int(request.POST['attr_id'])
+            )
+            if data.exists():
+                data.delete()
+            else:
+                Wishlist.objects.create(
+                    user_id=request.user.pk,
+                    wished_product_id=int(request.POST['attr_id'])
+                )
+    else:
+        print("No Product is Found")
+
+    return HttpResponseRedirect(url)
+
+

@@ -589,7 +589,7 @@ body {
 
 @media (max-width: 576px) {
   .new_arrival .new_arrival_iner .wdt {
-     flex: 100% 0 0;
+    flex: 100% 0 0;
     max-width: 100%;
   }
 }
@@ -732,6 +732,7 @@ body {
   height: 2px;
   background-color: #2f7dfc;
 }
+
 
 /** products **/
 .cat_product_area .btn_2 {
@@ -1040,14 +1041,13 @@ body {
 }
 
 @media (max-width: 991px) {
-  /* line 1798, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
+ 
   .order_box .btn_3 {
     padding: 9px 34px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-  /* line 1798, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
   .order_box .btn_3 {
     padding: 9px 34px;
   }
@@ -1291,61 +1291,20 @@ body {
         font-size: 2rem;
 }
 
-#bag_container {
-    margin-bottom: 20px;
-    margin-top: 80px;
-    min-height: 200px;
+
+.btn-chkout{
+     background-color: #2f7dfc;
+     color: white;
+     border-radius: 15px;
 }
 
-
-#bag_container .cta_container{
-    overflow: hidden;
+.btn-chkout:hover {
+  color: #2f7dfc;
+  background-color: #fff;
+  box-shadow: -14.142px 14.142px 20px 0px rgba(0, 0, 0, 0.1);
+ 
 }
 
-#bag_container .cta_container .ctas {
-    float: right;
-    width: 100%;
-}
-
-#bag_container .cta_container #continue_shopping {
-    float: left;
-}
-.ctas .block_button {
-    margin-left: 0;
-}
-.block_button.emphasise, .block_button.emphasise.secondary {
-    height: 42px;
-    line-height: 42px;
-    width: 240px;
-}
-.block_button.emphasise {
-    font-size: 14px;
-}
-.block_button.secondary {
-    color: #000;
-    background: #ebeded;
-    height: 24px;
-    line-height: 24px;
-    width: 143px;
-}
-.pointer, a[href], button, input[type=image], input[type=submit], label[for], select {
-    cursor: pointer;
-}
-.block_button {
-    cursor: pointer;
-}
-.block_button {
-    background-color: #55c0a9;
-    border-radius: 0;
-    color: #fff;
-    display: inline-block;
-    font-size: 12px;
-    text-align: center;
-    height: 28px;
-    line-height: 28px;
-    width: 147px;
-    font-weight: 400;
-}
 a {
     color: #666;
     text-decoration: none;
@@ -1354,51 +1313,97 @@ a {
     font-weight: 400;
 }
 
-.stripepay_wrapper {
+.navbar-brand img {
+    max-width: 100px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    display: inline-block;
+    top: 0;
+  }
+
+@media (max-width: 991px){
+.navbar-brand img {
+    max-width: 100px;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: inline-block;
+    top: -33px;
+}
+}
+
+.breadcrumb .breadcrumb_iner p {
+    font-size: 15px;
+    color: #777777;
+}
+p {
+    font-family: "Roboto", sans-serif;
+    line-height: 2;
+    font-size: 15px;
+    color: #606060;
+    font-weight: 400;
+}
+
+ .btn.btn-outline-black.rounded-0,
+    .btn.btn-black.rounded-0 {
+        padding: .375rem .375rem;
+    }
+
+.btn.btn-outline-black.rounded-0.btn-lg,
+.btn.btn-black.rounded-0.btn-lg {
+    padding: .375rem .375rem;
+    font-size: .75rem;
+}
+
+.btn-outline-black {
+    background: white;
+    color: black !important; 
+    border: 1px solid black;
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: black;
+    color: white !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase!important;
+}
+
+.single_arrivel_item  a:hover{
+    text-decoration: none !important;
+}
+
+.single-prdct-wrapper{
+    position: relative;
+}
+.wishlist {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 50;
+    height: 40px;
+    width: 40px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.like_us {
+  width: 25px;
+  height: 25px;
+  color: #7f7f7f;
+
 }
 
-.stripepay--bag .stripepay_spacer {
-    flex-grow: 1;
+.like_us:hover {
+  cursor: pointer;
+  color: #2f7dfc;
 }
-
-#bag_container .cta_container #proceed_to_checkout {
-    float: right;
-}
-#bag_container .ctas .block_button {
-    margin-left: 0;
-}
-.block_button.emphasise, .block_button.emphasise.secondary {
-    height: 42px;
-    line-height: 42px;
-    width: 240px;
-}
-.block_button.emphasise {
-    font-size: 14px;
-}
-.pointer, a[href], button, input[type=image], input[type=submit], label[for], select {
-    cursor: pointer;
-}
-.block_button {
-    cursor: pointer;
-}
-.block_button {
-    background-color: #2f7dfc;
-    border-radius: 0;
-    color: #fff;
-    display: inline-block;
-    font-size: 12px;
-    text-align: center;
-    height: 28px;
-    line-height: 28px;
-    width: 147px;
-    font-weight: 400;
-}
-a {
-    color: #666;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-    outline: 0;
-    font-weight: 400;
+.heart-prdct{
+    color: red;
 }
