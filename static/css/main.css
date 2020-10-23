@@ -871,6 +871,7 @@ body {
   font-weight: 600;
   color: #606060;
 }
+
 /** btn **/
 .btn_3 {
   display: inline-block;
@@ -1392,18 +1393,39 @@ p {
     align-items: center;
     justify-content: center;
 }
- 
-.like_us {
-  width: 25px;
-  height: 25px;
-  color: #7f7f7f;
-
+.wishlist {
+    pointer-events: visible;
+    opacity: 1;
 }
 
+.like_us {
+    opacity: 1;
+    transform: none;
+}
+.like_us {
+    background: #fff;
+    border-radius: 50%;
+    height: unset;
+    padding: 7px 7px 5px;
+    margin: 10px 10px 0 0;
+}
 .like_us:hover {
   cursor: pointer;
   color: #2f7dfc;
-}
+} 
 .heart-prdct{
     color: red;
+}
+
+.prdct-link {
+    color: #666;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+    font-weight: 400;
+}
+
+.prdct-link:hover {
+    text-decoration: none;
+    cursor: pointer;
 }

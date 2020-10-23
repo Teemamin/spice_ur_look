@@ -19,22 +19,12 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product">
                                 <div class="single_category_img">
-                                    <a href="">
+                                    <a href="{% url 'single_product' product.wished_product.id%}">
                                         <img src="{{ product.wished_product.image.url }}" alt="{{product.wished_product.name}}">
                                     </a>
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                            {% if product.wished_product.has_sizes%}
-                                               <li class="d-none"><a href=""><i class="fas fa-shopping-bag"></i></a></li>
-                                             {% else %}
-                                               <li class="d-block"><a href=""><i class="fas fa-shopping-bag"></i></a></li>
-
-                                            {% endif %}
-                                        </ul>
-                                    </div>
+    
                                     <div class="category_product_text">
-                                        <a href="{% url 'single_product' product.wished_product.id%}"><h5>{{product.wished_product.name}}</h5></a>
+                                        <a href="{% url 'single_product' product.wished_product.id%}" class="prdct-link"><h5>{{product.wished_product.name}}</h5></a>
                                         <p>${{product.wished_product.price}}</p>
                                     </div>
                                 </div>

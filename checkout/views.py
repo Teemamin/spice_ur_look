@@ -91,8 +91,6 @@ def checkout(request):
             stripe_paymentid = request.POST.get(
                 'client_secret').split('_secret')[0]
             order.stripe_paymentid = stripe_paymentid
-            # order_obj = Order.objects.new_or_get(order_bag)
-            # print(f'{order_obj} frm order_obj')
             if request.user.is_authenticated:
                 profile = UserProfile.objects.get(user=request.user)
                 order.user_profile = profile

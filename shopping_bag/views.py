@@ -8,7 +8,6 @@ from django.contrib import messages
 
 def shopping_bag(request):
     bag_obj, new_obj = Bag.objects.new_or_get(request)
-    # products = bag_obj.products.all()
     context = {
         'bag': bag_obj
     }
@@ -17,7 +16,6 @@ def shopping_bag(request):
 
 def add_to_shopping_bag(request):
     product_id = request.POST.get('product_id')
-
     redirect_url = request.POST.get('redirect_url')
     quantity = int(request.POST.get('quantity'))
     size = None
@@ -29,7 +27,7 @@ def add_to_shopping_bag(request):
             product_obj = Product.objects.get(id=product_id)
             product_obj.size = size
         except Product.DoesNotExist:
-            print("Product not found")
+            messages.error(request, 'Product not found')
             return redirect(redirect_url)
         bag_obj, new_obj = Bag.objects.new_or_get(request)
 
@@ -58,10 +56,7 @@ def add_to_shopping_bag(request):
 def alter_shoping_bag(request, item_id):
     product_obj = Product.objects.get(pk=item_id)
     quantity = int(request.POST.get('quantity'))
-    print(f'{item_id} i am id')
-    print(f'{quantity} i am qty')
     bag_id = request.session.get("bag_id")
-
     bag_obj = Bag.objects.get(pk=bag_id)
     print(bag_obj)
     try:
@@ -79,10 +74,8 @@ def alter_shoping_bag(request, item_id):
 
 def remove_from_bag(request, product_id):
     product_obj = get_object_or_404(OrderLineItem, pk=product_id)
-    print(product_obj)
     redirect_url = request.POST.get('redirect_url')
     bag_obj, new_obj = Bag.objects.new_or_get(request)
-
     bag_obj.order_line_items.remove(product_obj)
     print(redirect_url)
     return redirect('shopping_bag')

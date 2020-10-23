@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-         <section class="cat_product_area prdct_padding border_top">
+        <section class="cat_product_area prdct_padding border_top">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -86,22 +86,21 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product">
                                 <div class="single_category_img">
-                                    <a href="">
+                                    <a href="{% url 'single_product' product.id%}">
                                         <img src="{{ product.image.url }}" alt="{{product.name}}">
                                     </a>
-                                    <div class="category_social_icon">
-                                        <ul>
-                                            <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                            {% if product.has_sizes%}
-                                               <li class="d-none"><a href="{"><i class="fas fa-shopping-bag"></i></a></li>
-                                             {% else %}
-                                               <li class="d-block"><a href=""><i class="fas fa-shopping-bag"></i></a></li>
-
-                                            {% endif %}
+                                    <div class="category_social_icon wishlist">
+                                        <ul class="list-unstyled mt-4 {% if request.user.is_authenticated%} d-block {%else%} d-none{%endif%}">
+                                            {%if product.id in current_user_prdct_id%}
+                                                <span class="like like_us heart-prdct" id="id" attr_id="{{ product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fas fa-heart"></i></span>
+                                                
+                                            {%else%}
+                                                <span class="like like_us" id="id" attr_id="{{product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fa fa-heart"></i></span>
+                                            {%endif%}
                                         </ul>
                                     </div>
                                     <div class="category_product_text">
-                                        <a href="{% url 'single_product' product.id%}"><h5>{{product.name}}</h5></a>
+                                        <a class="prdct-link" href="{% url 'single_product' product.id%}"><h5>{{product.name}}</h5></a>
                                         <p>${{product.price}}</p>
                                     </div>
                                 </div>
@@ -112,12 +111,12 @@
                 </div>
             </div>
         </div>
-    </section>
-    <div class="scrl-btn shadow-sm rounded-0 border border-blue">
-        <a class="scrl-btn-link d-flex h-100">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-        </a>	
-   </div>
+        </section>
+        <div class="scrl-btn shadow-sm rounded-0 border border-blue">
+            <a class="scrl-btn-link d-flex h-100">
+                <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+            </a>	
+        </div>
 {% endblock %}
 
 {% block postloadjs %}
@@ -128,31 +127,48 @@
                 window.scrollTo(0,0)
             })
         </script>
-    
-    
+        <script>
 
-    
-        
-        <!-- <script type="text/javascript">
-            $('#sort-box').change(function() {
-                var selector = $(this);
-                var currentUrl = new URL(window.location);
-
-                var selectedVal = selector.val();
-                if(selectedVal != "default"){
-                    var arrange = selectedVal.split("_")[0];
-                    var direction = selectedVal.split("_")[1];
-
-                    currentUrl.searchParams.set("arrange", arrange);
-                    currentUrl.searchParams.set("direction", direction);
-
-                    window.location.replace(currentUrl);
-                } else {
-                    currentUrl.searchParams.delete("arrange");
-                    currentUrl.searchParams.delete("direction");
-
-                    window.location.replace(currentUrl);
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
                 }
-            })
-        </script> -->
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+
+        $(document).ready(function(){
+            $(".like").click(function(){
+                var attr_id = $(this).attr('attr_id')
+                var action_url = $(this).attr('action_url')
+                var that = $(this)
+
+                $.ajax({
+                    url: action_url,
+                    type: "POST",
+                    data: {'attr_id': attr_id },
+                    headers: { "X-CSRFToken": csrftoken },
+                    success: function (result) {
+                        console.log("Success")
+                        that.toggleClass("heart-prdct");
+                    },
+                    error: function () {
+                        alert("Please login");
+                    }
+                    
+                });
+            });
+    });
+
+    </script>
 {% endblock %}

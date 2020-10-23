@@ -25,10 +25,6 @@ class BagManager(models.Manager):
             data_result = data[1:-1]
 
             request.session["current_bag"] = data_result
-
-            # data = serializers.serialize("json", qs)
-            # request.session["current_bag"] = data
-
         else:
             bag_obj = Bag.objects.new(user=request.user)
             new_obj = True
@@ -45,7 +41,9 @@ class BagManager(models.Manager):
 
 
 class OrderLineItem(models.Model):
-    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, null=False, blank=False, on_delete=models.CASCADE
+    )
     product_size = models.CharField(max_length=2, null=True, blank=True) # XS, S, M, L, XL
     quantity = models.IntegerField(null=False, blank=False, default=0)
 
@@ -61,7 +59,9 @@ class Bag(models.Model):
     subtotal = models.DecimalField(
         default=0.00, max_digits=100, decimal_places=2
     )
-    total = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
+    total = models.DecimalField(
+        default=0.00, max_digits=100, decimal_places=2
+    )
     updated = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 

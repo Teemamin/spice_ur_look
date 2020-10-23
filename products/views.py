@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from .models import Product, Category, Review, Wishlist
 from django.db.models.functions import Lower
 from django.contrib import messages
@@ -18,6 +19,12 @@ def all_products(request):
     cat = None
     sort = None
     direction = None
+    current_user_prdct_id = []
+    whishlist_obj = Wishlist.objects.all()
+    if request.user.is_authenticated:
+        current_user_whishlist = whishlist_obj.filter(user=request.user)
+        for itm in current_user_whishlist:
+            current_user_prdct_id.append(itm.wished_product.id)
     if request.GET:
         if 'gender' in request.GET:
             gender = request.GET['gender']
@@ -60,6 +67,7 @@ def all_products(request):
         'categories': categories,
         'search_word': search_word,
         'sorting': sorting,
+        'current_user_prdct_id': current_user_prdct_id,
 
     }
     return render(request, 'products/products.html', context)
@@ -98,6 +106,7 @@ def single_product(request, product_id, *args, **kwargs):
     return render(request, 'products/single_product.html', context)
 
 
+@login_required
 def add_product(request):
     """ Add a product to the store """
     if not request.user.is_superuser:
@@ -123,6 +132,7 @@ def add_product(request):
     return render(request, 'products/add_product.html', context)
 
 
+@login_required
 def revise_product(request, product_id):
     """ Edits and updates a product in the site """
     if not request.user.is_superuser:
@@ -151,6 +161,7 @@ def revise_product(request, product_id):
     return render(request, 'products/revise_product.html', context)
 
 
+@login_required
 def delete_product(request, product_id):
     """ Deletes  product from the site """
     if not request.user.is_superuser:
@@ -163,9 +174,9 @@ def delete_product(request, product_id):
     return redirect(reverse('products'))
 
 
+@login_required
 def add_review(request, product_id):
     product_obj = Product.objects.get(pk=product_id)
-    redirect_url = request.POST.get('redirect_url')
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
         review_form_data = {
@@ -187,6 +198,7 @@ def add_review(request, product_id):
     return HttpResponseRedirect(url)
 
 
+@login_required
 def add_to_wishlist(request):
     url = request.META.get('HTTP_REFERER')
     if request.is_ajax() and request.POST and 'attr_id' in request.POST:
@@ -203,11 +215,12 @@ def add_to_wishlist(request):
                     wished_product_id=int(request.POST['attr_id'])
                 )
     else:
-        print("No Product is Found")
+        messages.error(request, 'error adding item to wishlist, please try again.')
 
     return HttpResponseRedirect(url)
 
 
+@login_required
 def wishlist_view(request):
     wishlist = {}
     if request.method == "GET":

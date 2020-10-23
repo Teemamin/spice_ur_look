@@ -52,10 +52,6 @@ class StripeWebhook_Handler:
         intent = event.data.object
         payment_id = intent.id
         bag = intent.metadata.bag
-        x = Order.objects.get(stripe_paymentid=intent.id)
-        print(x.email)
-        print(bag)
-
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount / 100, 2)

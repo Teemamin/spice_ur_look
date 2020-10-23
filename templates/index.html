@@ -57,9 +57,12 @@
                                     <a href="#"> <i class="fas fa-star"></i> </a>
                                 </div>
                                 <h5>${{product.price}}</h5>
-                                <div class="social_icon">
-                                    <a href="#"><i class="far fa-heart"></i></a>
-                                    <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                                <div class="social_icon {% if request.user.is_authenticated%} d-block {%else%} d-none{%endif%}">
+                                     {%if product.id in current_user_prdct_id%}
+                                        <span class="like like_us heart-prdct" id="id" attr_id="{{ product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fas fa-heart"></i></span>
+                                    {%else%}
+                                        <span class="like like_us" id="id" attr_id="{{product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fa fa-heart"></i></span>
+                                    {%endif%}
                                 </div>
                             </div>
                         </div>
@@ -69,4 +72,54 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+   {% include 'includes/update_product_qty.html' %}
+    <script>
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+
+        $(document).ready(function(){
+            $(".like").click(function(){
+                var attr_id = $(this).attr('attr_id')
+                var action_url = $(this).attr('action_url')
+                var that = $(this)
+
+                $.ajax({
+                    url: action_url,
+                    type: "POST",
+                    data: {'attr_id': attr_id },
+                    headers: { "X-CSRFToken": csrftoken },
+                    success: function (result) {
+                        console.log("Success")
+                        that.toggleClass("heart-prdct");
+                    },
+                    error: function () {
+                        alert("Please login");
+                    }
+                    
+                });
+            });
+    });
+
+    </script>
+   
 {% endblock %}

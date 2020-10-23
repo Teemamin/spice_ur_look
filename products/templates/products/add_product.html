@@ -2,8 +2,6 @@
 {% load static %}
 {% load bag_tools %}
 
-
-
 {% block content %}
     <div class="container">
         <section class="breadcrumb breadcrumb_bg">
@@ -20,25 +18,24 @@
             </div>
         </section>
     <section class="checkout_area section_padding">
-    <div class="container">
-     
-      <div class="billing_details">
-        <div class="row">
-          <div class="col-lg-8">
-            <h3>Admin | Product Management</h3>
-            <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{form | crispy}}
-                <div class="text-right">
-                        <a class="btn btn_3 rounded-0" href="{% url 'products' %}">Cancel</a>
-                        <button class="btn btn_3 rounded-0" type="submit">Add Product</button>
-                </div>
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Admin | Product Management</h3>
+                        <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form | crispy}}
+                            <div class="text-right">
+                                    <a class="btn btn_3 rounded-0" href="{% url 'products' %}">Cancel</a>
+                                    <button class="btn btn_3 rounded-0" type="submit">Add Product</button>
+                            </div>
 
-            </form>
-          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
   </section>
 </div>
  
