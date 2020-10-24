@@ -1,0 +1,29 @@
+[
+{
+    "model": "products.wishlist",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "wished_product": 7,
+        "added_date": "2020-10-21T13:13:20.244Z"
+    }
+},
+{
+    "model": "products.wishlist",
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "wished_product": 2,
+        "added_date": "2020-10-21T20:20:48.708Z"
+    }
+},
+{
+    "model": "products.wishlist",
+    "pk": 11,
+    "fields": {
+        "user": 1,
+        "wished_product": 1,
+        "added_date": "2020-10-22T11:19:18.352Z"
+    }
+}
+]
