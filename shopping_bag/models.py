@@ -72,15 +72,17 @@ class Bag(models.Model):
 
 
 def m2m_changed_bag_receiver(sender, instance, action, *args, **kwargs):
+    print("\nsomthing\n")
     if action == 'post_add' or action == 'post_remove'\
          or action == 'post_clear':
         order_line_items = instance.order_line_items.all()
         total = 0
         for x in order_line_items:
             total += x.product.price * x.quantity
-        if instance.subtotal != total:
-            instance.subtotal = total
-            instance.save()
+        # if instance.subtotal != total:
+        instance.subtotal = total
+        instance.total = total
+        instance.save()
 
 
 m2m_changed.connect(
@@ -88,16 +90,16 @@ m2m_changed.connect(
 )
 
 
-def pre_save_bag_receiver(sender, instance, *args, **kwargs):
-    if instance.subtotal > 0:
-        if instance.subtotal != instance.total:
-            instance.total = float(instance.subtotal) * \
-                float(settings.DELIVERY_PERCENT)
-    else:
-        instance.total = 0.00
+# def pre_save_bag_receiver(sender, instance, *args, **kwargs):
+#     if instance.subtotal > 0:
+#         if instance.subtotal != instance.total:
+#             instance.total = float(instance.subtotal) * \
+#                 float(settings.DELIVERY_PERCENT)
+#     else:
+#         instance.total = 0.00
 
 
-pre_save.connect(pre_save_bag_receiver, sender=Bag)
+# pre_save.connect(pre_save_bag_receiver, sender=Bag)
 
 
 
