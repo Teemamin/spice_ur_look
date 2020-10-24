@@ -121,21 +121,8 @@ ACCOUNT_USERNAME_MIN_LENGTH = 5
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': [
-#             'profile',
-#             'email',
-#         ],
-#         'AUTH_PARAMS': {
-#             'access_type': 'online',
-#         }
-#     }
-# }
 
 WSGI_APPLICATION = 'spice_ur_look.wsgi.application'
-
-
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
