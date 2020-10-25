@@ -4,6 +4,8 @@ from .models import Bag, OrderLineItem
 from django.contrib import messages
 
 # Create your views here.
+
+
 def calc_bag(bag_obj):
     order_line_items = bag_obj.order_line_items.all()
     total = 0
@@ -12,6 +14,7 @@ def calc_bag(bag_obj):
     bag_obj.subtotal = total
     bag_obj.total = total
     bag_obj.save()
+
 
 def shopping_bag(request):
     bag_obj, new_obj = Bag.objects.new_or_get(request)
@@ -55,16 +58,8 @@ def add_to_shopping_bag(request):
             bag_obj.order_line_items.create(
                 product=product_obj, product_size=size, quantity=quantity
             )
-        # order_line_items = bag_obj.order_line_items.all()
-        # total = 0
-        # for x in order_line_items:
-        #     total += x.product.price * x.quantity
-        # bag_obj.subtotal = total
-        # bag_obj.total = total
-        # bag_obj.save()
         calc_bag(bag_obj)
     return redirect('shopping_bag')
-
 
 
 def alter_shoping_bag(request, item_id):
@@ -78,20 +73,12 @@ def alter_shoping_bag(request, item_id):
         bag_prod_obj = bag_filtered[0]
         bag_prod_obj.quantity = quantity
         bag_prod_obj.save()
-        # order_line_items = bag_obj.order_line_items.all()
-        # total = 0
-        # for x in order_line_items:
-        #     total += x.product.price * x.quantity
-        # bag_obj.subtotal = total
-        # bag_obj.total = total
-        # bag_obj.save()
         calc_bag(bag_obj)
         messages.success(request, 'product updated successfully!')
         return redirect(reverse('shopping_bag'))
     except Exception as e:
         messages.error(request, f'Error updating product: {e}')
         return redirect(reverse('shopping_bag'))
-
 
 
 def remove_from_bag(request, product_id):
