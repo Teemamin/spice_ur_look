@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from .forms import AddProductForm, ReviewForm
-from django.shortcuts import reverse
+from .models import Product
+from django.shortcuts import reverse, get_object_or_404
 
 
 # Create your tests here.
@@ -47,9 +48,43 @@ class TestReviewForms(TestCase):
         self.assertFalse(form.is_valid())
 
 
-# class TestProductViews(TestCase):
-#     def test_all_product(self):
-#         client = Client()
-#         response = client.get('/products/add_product/')
-#         self.assertEqual(response.status_code, 200)
-#         self.assertTemplateUsed(response, 'products/add_product.html')
+class TestProductViews(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.products_url = reverse('products')
+
+    def test_all_product(self):
+        response = self.client.get(self.products_url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'products/products.html')
+
+    def test_single_product_path(self):
+        product = Product.objects.create(
+            name='testing edit',
+            gender='man',
+            description='test desc',
+            price=20.2,
+            quantity=1
+        )
+        response = self.client.get(f'/products/{product.id}/', follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'products/single_product.html')
+
+    def test_add_product(self):
+        form = AddProductForm({
+            'name': 'added',
+            'gender': 'man',
+            'description': 'test desc',
+            'price': 20.2,
+            'quantity': 1,
+            'rating': 3,
+        })
+        self.client.post('/add_product/')
+        self.assertTrue(form.is_valid())
+        self.assertTrue(form.save())
+        form.save()
+        new_product = get_object_or_404(Product, name='added')
+        self.assertTrue(new_product)
+
+
