@@ -1,5 +1,7 @@
-from django.test import TestCase
+from django.test import TestCase, Client
+from django.shortcuts import reverse
 from .forms import CheckoutOrderForm
+from django.contrib.auth.models import User
 
 
 # Create your tests here.
@@ -42,7 +44,7 @@ class TestCheckoutOrderForms(TestCase):
         self.assertEqual(
             form.errors['country'][0], 'This field is required.'
         )
- 
+
     def test_CheckoutOrderForm_valid(self):
         form_data = {
             'full_name': 'susu',
@@ -57,3 +59,22 @@ class TestCheckoutOrderForms(TestCase):
         }
         form = CheckoutOrderForm(data=form_data)
         self.assertTrue(form.is_valid())
+
+
+class TestCheckoutViews(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            'john', 'lennon@thebeatles.com', 'johnpassword'
+        )
+        self.checkout_url = reverse('checkout')
+
+    def test_checkout_view(self):
+        response = self.client.get(self.checkout_url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'shopping_bag/shopping_bag.html')
+
+    def test_checkout_success(self):
+        response = self.client.get('checkout/success/',  follow=True)
+        self.assertTemplateNotUsed(response, 'checkout/success.html')

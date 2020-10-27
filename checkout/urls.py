@@ -8,8 +8,10 @@ urlpatterns = [
         'success/<order_number>/',
         views.checkout_success, name='checkout_success'
         ),
-    path('order_data/', views.order_data,
-        name='cache_checkout_data'),
+    path(
+        'order_data/', views.order_data,
+        name='cache_checkout_data'
+    ),
     path('webhook/', webhook, name='webhook'),
 
 ]

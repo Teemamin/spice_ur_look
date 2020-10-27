@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                     <div class="image-container single-prdct-wrapper my-5">
-                        <div class="wishlist {% if request.user.is_authenticated%} d-block {%else%} d-none{%endif%}">
+                        <div class="wishlist mt-3 {% if request.user.is_authenticated%} d-block {%else%} d-none{%endif%}">
                             {%if product.id in current_user_prdct_id%}
                                 <span class="like like_us heart-prdct " id="id" attr_id="{{ product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fas fa-heart "></i></span>
                                 
@@ -44,8 +44,8 @@
                                 </a>
                             </p>
                         {% endif %}
-                        {% if product.rating %}
-                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                        {% if current_rating %}
+                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{current_rating}} / 5</small>
                         {% else %}
                             <small class="text-muted">No Rating</small>
                         {% endif %}

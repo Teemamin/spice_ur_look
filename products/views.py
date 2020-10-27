@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 from .models import Product, Category, Review, Wishlist
 from django.db.models.functions import Lower
 from django.contrib import messages
@@ -78,6 +79,8 @@ def single_product(request, product_id, *args, **kwargs):
     bag_obj, new_obj = Bag.objects.new_or_get(request)
     user_order_prdct_id = []
     current_user_prdct_id = []
+    current_rating_obj = []
+    current_rating = []
     whishlist_obj = Wishlist.objects.all()
     profile = None
     profile_orders = None
@@ -91,6 +94,10 @@ def single_product(request, product_id, *args, **kwargs):
         for itm in current_user_whishlist:
             current_user_prdct_id.append(itm.wished_product.id)
     review_obj = Review.objects.all().order_by('-time_added',)
+    current_rating_obj = Review.objects.filter(
+        product_id=product_id).aggregate(Avg('rate')
+    )
+    current_rating = current_rating_obj['rate__avg']
     review_count = review_obj.filter(product_id=product_id).count()
     review_form = ReviewForm()
     context = {
@@ -102,6 +109,7 @@ def single_product(request, product_id, *args, **kwargs):
         'profile_orders': profile_orders,
         'user_order_prdct_id': user_order_prdct_id,
         'current_user_prdct_id': current_user_prdct_id,
+        'current_rating': current_rating,
     }
     return render(request, 'products/single_product.html', context)
 
@@ -215,7 +223,9 @@ def add_to_wishlist(request):
                     wished_product_id=int(request.POST['attr_id'])
                 )
     else:
-        messages.error(request, 'error adding item to wishlist, please try again.')
+        messages.error(
+            request, 'error adding item to wishlist, please try again.'
+        )
 
     return HttpResponseRedirect(url)
 

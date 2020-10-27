@@ -44,7 +44,9 @@ class OrderLineItem(models.Model):
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE
     )
-    product_size = models.CharField(max_length=2, null=True, blank=True) # XS, S, M, L, XL
+    product_size = models.CharField(
+        max_length=2,  blank=True
+    )  # XS, S, M, L, XL
     quantity = models.IntegerField(null=False, blank=False, default=0)
 
     def __str__(self):
@@ -72,14 +74,12 @@ class Bag(models.Model):
 
 
 def m2m_changed_bag_receiver(sender, instance, action, *args, **kwargs):
-    print("\nsomthing\n")
     if action == 'post_add' or action == 'post_remove'\
          or action == 'post_clear':
         order_line_items = instance.order_line_items.all()
         total = 0
         for x in order_line_items:
             total += x.product.price * x.quantity
-        # if instance.subtotal != total:
         instance.subtotal = total
         instance.total = total
         instance.save()
@@ -88,18 +88,5 @@ def m2m_changed_bag_receiver(sender, instance, action, *args, **kwargs):
 m2m_changed.connect(
     m2m_changed_bag_receiver, sender=Bag.order_line_items.through
 )
-
-
-# def pre_save_bag_receiver(sender, instance, *args, **kwargs):
-#     if instance.subtotal > 0:
-#         if instance.subtotal != instance.total:
-#             instance.total = float(instance.subtotal) * \
-#                 float(settings.DELIVERY_PERCENT)
-#     else:
-#         instance.total = 0.00
-
-
-# pre_save.connect(pre_save_bag_receiver, sender=Bag)
-
 
 

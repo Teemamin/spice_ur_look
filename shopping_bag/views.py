@@ -7,6 +7,7 @@ from django.contrib import messages
 
 
 def calc_bag(bag_obj):
+    """custom method to calc shopping bag to total"""
     order_line_items = bag_obj.order_line_items.all()
     total = 0
     for x in order_line_items:
@@ -67,7 +68,6 @@ def alter_shoping_bag(request, item_id):
     quantity = int(request.POST.get('quantity'))
     bag_id = request.session.get("bag_id")
     bag_obj = Bag.objects.get(pk=bag_id)
-    print(bag_obj)
     try:
         bag_filtered = bag_obj.order_line_items.filter(product=product_obj)
         bag_prod_obj = bag_filtered[0]
