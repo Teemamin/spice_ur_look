@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, redirect,\
+     reverse, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from .models import Product, Category, Review, Wishlist
@@ -14,6 +15,10 @@ from .forms import AddProductForm, ReviewForm
 
 
 def all_products(request):
+    """
+    A view to display all products including
+    searching and sorting
+    """
     products = Product.objects.all()
     search_word = None
     categories = None
@@ -75,6 +80,11 @@ def all_products(request):
 
 
 def single_product(request, product_id, *args, **kwargs):
+    """
+    A view to show individual product details,
+    wishlists and review forms for users that
+    have bought the product
+    """
     product = get_object_or_404(Product, pk=product_id)
     bag_obj, new_obj = Bag.objects.new_or_get(request)
     user_order_prdct_id = []
@@ -116,7 +126,10 @@ def single_product(request, product_id, *args, **kwargs):
 
 @login_required
 def add_product(request):
-    """ Add a product to the store """
+    """ 
+    Add a product to the store 
+    for super users 
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Access denied!.')
         return redirect(reverse('home'))
@@ -184,6 +197,11 @@ def delete_product(request, product_id):
 
 @login_required
 def add_review(request, product_id):
+    """ 
+    A view for review posts: validates post
+    adds to reivew model and redirects to the 
+    product page
+    """
     product_obj = Product.objects.get(pk=product_id)
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
@@ -208,6 +226,12 @@ def add_review(request, product_id):
 
 @login_required
 def add_to_wishlist(request):
+    """
+    Handles wishlist post requests:
+    checks wishlist model : if the product is already in
+    the request.user's  wishlist if so :
+    it takes it out, else it adds the product
+    """
     url = request.META.get('HTTP_REFERER')
     if request.is_ajax() and request.POST and 'attr_id' in request.POST:
         if request.user.is_authenticated:
@@ -232,6 +256,10 @@ def add_to_wishlist(request):
 
 @login_required
 def wishlist_view(request):
+    """
+    A view to display all wishlist items
+    belonging to the user in session
+    """
     wishlist = {}
     if request.method == "GET":
         if request.user.is_authenticated:

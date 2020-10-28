@@ -1,9 +1,8 @@
 from django.test import TestCase, Client
 from .forms import AddProductForm, ReviewForm
-from .models import Product, Review, Wishlist
+from .models import Product, Review, Wishlist, Category
 from django.shortcuts import reverse, get_object_or_404
 from django.contrib.auth.models import User
-
 
 
 # Create your tests here.
@@ -171,3 +170,44 @@ class TestProductViews(TestCase):
         self.assertRedirects(
             response, '/accounts/login/?next=/products/wishlist_view/'
         )
+
+
+class TestProductModels(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            'john', 'lennon@thebeatles.com', 'johnpassword'
+        )
+        self.product = Product.objects.create(
+            name='testing model',
+            gender='man',
+            description='test desc',
+            price=20.2,
+            quantity=1
+        )
+
+    def test_product_model_return_name(self):
+        """Test that model returns name"""
+        self.assertEqual(self.product.name, 'testing model')
+
+    def test_category_model_return_name(self):
+        """Test that model returns name"""
+        cat = Category.objects.create(name="test cat")
+        self.assertEqual(cat.name, 'test cat')
+
+    def test_review_model(self):
+        review = Review.objects.create(
+                product=self.product,
+                user=self.user,
+                review='some reivew',
+                rate=3,
+        )
+        self.assertEqual(review.user.username, 'john')
+
+    def test_wishlist_model(self):
+        wishlist = Wishlist.objects.create(
+                wished_product=self.product,
+                user=self.user,
+        )
+        self.assertEqual(wishlist.wished_product.name, 'testing model')
+

@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404, reverse, HttpResponse
+from django.shortcuts import render,\
+     redirect, get_object_or_404, reverse
 from products.models import Product
 from .models import Bag, OrderLineItem
 from django.contrib import messages
@@ -18,6 +19,9 @@ def calc_bag(bag_obj):
 
 
 def shopping_bag(request):
+    """
+    A view to display shopping bag content
+    """
     bag_obj, new_obj = Bag.objects.new_or_get(request)
     context = {
         'bag': bag_obj
@@ -26,6 +30,10 @@ def shopping_bag(request):
 
 
 def add_to_shopping_bag(request):
+    """
+    A view that adds quantity of the specified product
+    to the shopping bag, updates size and cost acoordingly
+    """
     product_id = request.POST.get('product_id')
     redirect_url = request.POST.get('redirect_url')
     quantity = int(request.POST.get('quantity'))
@@ -64,6 +72,11 @@ def add_to_shopping_bag(request):
 
 
 def alter_shoping_bag(request, item_id):
+    """
+    Alters the quantity of the specified product
+    to the specified amount and ajusts the cost
+    accordingly
+    """
     product_obj = Product.objects.get(pk=item_id)
     quantity = int(request.POST.get('quantity'))
     bag_id = request.session.get("bag_id")
@@ -82,9 +95,10 @@ def alter_shoping_bag(request, item_id):
 
 
 def remove_from_bag(request, product_id):
+    """
+    Deletes the specified product from the shopping bag
+    """
     product_obj = get_object_or_404(OrderLineItem, pk=product_id)
-    redirect_url = request.POST.get('redirect_url')
     bag_obj, new_obj = Bag.objects.new_or_get(request)
     bag_obj.order_line_items.remove(product_obj)
-    print(redirect_url)
     return redirect('shopping_bag')

@@ -1,16 +1,14 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect,\
+     reverse, get_object_or_404, HttpResponse
 from .forms import CheckoutOrderForm
 from .models import Order
 from django.views.decorators.http import require_POST
 
-from django.core import serializers
-
 from django.conf import settings
 from django.contrib import messages
-from products.models import Product
 from decimal import Decimal
 
-import json
+
 from shopping_bag.models import Bag
 from profiles.models import UserProfile
 import stripe
@@ -20,6 +18,11 @@ import stripe
 
 @require_POST
 def order_data(request):
+    """
+    Gets post data from stripe js before payment confirmation,
+    allows us to attch the bag and user making the purchase to
+    stripe payment data
+    """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -35,6 +38,19 @@ def order_data(request):
 
 
 def checkout(request):
+    """
+    Gets stripe keys,checks if shopping bag in session is empty:
+    if so: it redirects shopping_bag page, else if not empty:
+    gets the existing shopping bag and calculates the total cost
+    of items and creates a stripe payment intent. if a user is
+    authenticated: it attempts to populate the checkout form
+    with the user profile details else it renders and empty
+    checkout form.
+    post requests: collects form data, if valid: attaches the
+    bag that created the order and stripe payment id to the order model
+    if user is authenticated: it adds the order to their profile aswell
+    finally it redirects to success page with order-number as argument
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     bag_obj, bag_created = Bag.objects.new_or_get(request)
@@ -111,6 +127,10 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
+    """
+    gets order object and render order details,
+    deletes bag in session
+    """
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \

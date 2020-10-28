@@ -4,6 +4,9 @@ from products.models import Wishlist
 
 
 def home(request):
+    """
+    Displays products under the new arrival category
+    """
     products = Product.objects.filter(category__name="new_arrivals")
     current_user_prdct_id = []
     whishlist_obj = Wishlist.objects.all()

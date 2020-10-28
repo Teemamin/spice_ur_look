@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
-
 from .models import UserProfile
 from .forms import UserProfileForm
 from checkout.models import Order
@@ -11,6 +10,9 @@ from checkout.models import Order
 
 
 def profile_view(request):
+    """
+    A view to display user profile
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -34,6 +36,9 @@ def profile_view(request):
 
 
 def order_history_view(request, order_number):
+    """
+    displays order assoicated with the user profile
+    """
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (
@@ -46,7 +51,5 @@ def order_history_view(request, order_number):
         'order': order,
         'from_profile': True,
     }
-
     return render(request, template, context)
-
 

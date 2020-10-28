@@ -89,4 +89,3 @@ m2m_changed.connect(
     m2m_changed_bag_receiver, sender=Bag.order_line_items.through
 )
 
-

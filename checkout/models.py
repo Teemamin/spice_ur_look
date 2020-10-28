@@ -96,7 +96,6 @@ class Order(models.Model):
     objects = OrderManager()
 
 
-
 def pre_save_create_order_id(sender, instance, *args, **kwargs):
     qs = Order.objects.filter(bag=instance.bag)
     if qs.exists():

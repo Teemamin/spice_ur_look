@@ -1,9 +1,12 @@
 from django.test import TestCase, Client
-from django.shortcuts import reverse
+from django.shortcuts import reverse, HttpRequest
 from products.models import Product
+from .models import Bag, OrderLineItem, BagManager
 
 from django.contrib.auth.models import User
-
+from django.test.client import RequestFactory
+from django.conf import settings
+from importlib import import_module
 # Create your tests here.
 
 
@@ -58,3 +61,47 @@ class TestBagViews(TestCase):
             '/shopping_bag/alter_shoping_bag/', {' product_id': product.id}
         )
 
+
+class TestShoppingBagModels(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(
+            'john', 'lennon@thebeatles.com', 'johnpassword'
+        )
+        self.product = Product.objects.create(
+            name='testing model',
+            gender='man',
+            description='test desc',
+            price=20.2,
+            quantity=1
+        )
+
+    def test_orderlineitem_model(self):
+        orderlinitem = OrderLineItem.objects.create(
+                product=self.product,
+                product_size='xx',
+                quantity=1,
+        )
+        self.assertEqual(orderlinitem.product, self.product)
+
+    def test_bag_model(self):
+        bag = Bag.objects.create(
+            user=self.user,
+            subtotal=2.44,
+            total=22.3
+        )
+        self.assertEqual(bag.id, bag.id)
+
+    # def test_bag_manager(self):
+    #     request = HttpRequest()
+    #     engine = import_module(settings.SESSION_ENGINE)
+    #     session_key = None
+    #     request.session = engine.SessionStore(session_key)
+    #     bag = Bag.objects.create(
+    #         user = self.user,
+    #         subtotal = 2.44,
+    #         total = 22.3
+    #     )
+    #     bag_func = Bag.objects.new_or_get(request)
+    #     self.assertTrue(bag_func)

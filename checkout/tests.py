@@ -2,6 +2,8 @@ from django.test import TestCase, Client
 from django.shortcuts import reverse
 from .forms import CheckoutOrderForm
 from django.contrib.auth.models import User
+from shopping_bag.models import Bag
+from.models import Order
 
 
 # Create your tests here.
@@ -78,3 +80,32 @@ class TestCheckoutViews(TestCase):
     def test_checkout_success(self):
         response = self.client.get('checkout/success/',  follow=True)
         self.assertTemplateNotUsed(response, 'checkout/success.html')
+
+class TestCheckoutOrderModels(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            'john', 'lennon@thebeatles.com', 'johnpassword'
+        )
+
+    def test_order_model(self):
+        bag = Bag.objects.create(
+            user=self.user,
+            subtotal=2.44,
+            total=22.3
+        )
+        order = Order.objects.create(
+            full_name='susu',
+            email="user@mp.com",
+            bag=bag,
+            phone_number='12345678',
+            address_1='test address',
+            address_2="fkgns",
+            city='LA',
+            state='Cal',
+            postcode='23453',
+            country='US',
+        )
+        order.save()
+        self.assertEqual(order.order_number, order.order_number)
