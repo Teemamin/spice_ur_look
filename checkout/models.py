@@ -104,6 +104,7 @@ def pre_save_create_order_id(sender, instance, *args, **kwargs):
 
 pre_save.connect(pre_save_create_order_id, sender=Order)
 
+
 def post_save_bag_total(sender, instance, created, *args, **kwargs):
     if not created:
         bag_obj = instance

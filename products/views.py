@@ -25,6 +25,7 @@ def all_products(request):
     cat = None
     sort = None
     direction = None
+    searchcount = None
     current_user_prdct_id = []
     whishlist_obj = Wishlist.objects.all()
     if request.user.is_authenticated:
@@ -51,6 +52,7 @@ def all_products(request):
                 Q(description__icontains=search_word)\
                 | Q(color__icontains=search_word)
             products = products.filter(search_words)
+            searchcount = products.count()
 
         if 'arrange' in request.GET:
             sort_word = request.GET['arrange']
@@ -74,6 +76,7 @@ def all_products(request):
         'search_word': search_word,
         'sorting': sorting,
         'current_user_prdct_id': current_user_prdct_id,
+        'searchcount': searchcount,
 
     }
     return render(request, 'products/products.html', context)
