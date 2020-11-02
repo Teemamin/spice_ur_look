@@ -11,7 +11,6 @@
         "has_sizes": true,
         "color": "Red",
         "price": "50.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -30,7 +29,6 @@
         "has_sizes": false,
         "color": "Black",
         "price": "100.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -49,7 +47,6 @@
         "has_sizes": true,
         "color": null,
         "price": "60.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -68,11 +65,10 @@
         "has_sizes": true,
         "color": "Blue",
         "price": "120.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
-        "image": "2474.jpg"
+        "image": "shoes-men.jpg"
     }
 },
 {
@@ -87,7 +83,6 @@
         "has_sizes": false,
         "color": null,
         "price": "40.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -106,7 +101,6 @@
         "has_sizes": true,
         "color": null,
         "price": "100.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -125,7 +119,6 @@
         "has_sizes": false,
         "color": null,
         "price": "20.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -144,7 +137,6 @@
         "has_sizes": false,
         "color": null,
         "price": "130.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -163,7 +155,6 @@
         "has_sizes": true,
         "color": null,
         "price": "111.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -182,7 +173,6 @@
         "has_sizes": true,
         "color": "Blue",
         "price": "50.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -201,7 +191,6 @@
         "has_sizes": true,
         "color": null,
         "price": "140.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -220,7 +209,6 @@
         "has_sizes": true,
         "color": "Pink",
         "price": "100.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -239,7 +227,6 @@
         "has_sizes": false,
         "color": null,
         "price": "32.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -258,7 +245,6 @@
         "has_sizes": true,
         "color": null,
         "price": "71.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -277,7 +263,6 @@
         "has_sizes": true,
         "color": "Green",
         "price": "200.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -296,7 +281,6 @@
         "has_sizes": true,
         "color": "White",
         "price": "40.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -315,7 +299,6 @@
         "has_sizes": true,
         "color": null,
         "price": "90.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -334,7 +317,6 @@
         "has_sizes": true,
         "color": null,
         "price": "200.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
@@ -353,11 +335,568 @@
         "has_sizes": false,
         "color": null,
         "price": "70.00",
-        "rating": 3,
         "size": "",
         "quantity": 1,
         "image_url": null,
         "image": "129720_0ca88117a9253ecdf2b284fee07027ef.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 20,
+    "fields": {
+        "category": 2,
+        "name": "Long Sleeve Stripe Shirt",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Long Sleeve Stripe Blouse",
+        "has_sizes": true,
+        "color": null,
+        "price": "90.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0885694266877_CRP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 21,
+    "fields": {
+        "category": 2,
+        "name": "Long Sleeve Stripe Blouse",
+        "gender": "woman",
+        "brand_name": "T&T",
+        "description": "Women's Long Sleeve Stripe Blouse, Blue/White",
+        "has_sizes": true,
+        "color": null,
+        "price": "100.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "05826513406031_CROP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 22,
+    "fields": {
+        "category": 2,
+        "name": "Long Sleeve Shirt Top",
+        "gender": "woman",
+        "brand_name": "SEVENTY FIVE",
+        "description": "Women's Long Sleeve Shirt Top, White",
+        "has_sizes": true,
+        "color": null,
+        "price": "110.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "5903210931766_CRP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 23,
+    "fields": {
+        "category": 8,
+        "name": "Celebrate Sandals",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Celebrate Sandals, Brown",
+        "has_sizes": true,
+        "color": null,
+        "price": "60.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "7909224474471_SIDE_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 24,
+    "fields": {
+        "category": 8,
+        "name": "Madden Boots",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Fayth  Boots",
+        "has_sizes": true,
+        "color": null,
+        "price": "100.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "MCARLEIGH-11.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 25,
+    "fields": {
+        "category": 8,
+        "name": "Winter Boots",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Witty Round Toe Cold Weather Boots, Dark Brown",
+        "has_sizes": true,
+        "color": null,
+        "price": "200.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "WITTYDKBRN-1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 26,
+    "fields": {
+        "category": 8,
+        "name": "Manifesto Sneaker",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Men's Gen-K Manifesto Sneaker, Black/White",
+        "has_sizes": true,
+        "color": null,
+        "price": "210.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "4060978512888_FRONT_TOP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 27,
+    "fields": {
+        "category": 8,
+        "name": "Brogue Formal Shoes",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Men's Brogue Formal Shoes, Burgundy",
+        "has_sizes": true,
+        "color": null,
+        "price": "150.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "8058279064843_SIDE_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 28,
+    "fields": {
+        "category": 8,
+        "name": "Bayle Suede Formal Shoes",
+        "gender": "man",
+        "brand_name": "T&T",
+        "description": "Men's U Bayle Suede Formal Shoes, Brown",
+        "has_sizes": true,
+        "color": null,
+        "price": "210.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "8058279797017_FRONT_TOP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 29,
+    "fields": {
+        "category": 8,
+        "name": "Chanmp Sneakers",
+        "gender": "man",
+        "brand_name": "GINGER",
+        "description": "Men's Zone Mid Shoes, White",
+        "has_sizes": false,
+        "color": null,
+        "price": "200.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "S20878-1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 30,
+    "fields": {
+        "category": 5,
+        "name": "Metallic Major Watch",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Metallic Major Watch, White/Silver",
+        "has_sizes": false,
+        "color": null,
+        "price": "170.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "2200183-01.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 31,
+    "fields": {
+        "category": 5,
+        "name": "Billie Watch",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Billie Watch, Silver",
+        "has_sizes": false,
+        "color": null,
+        "price": "200.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "2200214.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 32,
+    "fields": {
+        "category": 5,
+        "name": "Wallet",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Logo Embroidered Wallet, Pomegrante",
+        "has_sizes": false,
+        "color": null,
+        "price": "50.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "05347602.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 33,
+    "fields": {
+        "category": 5,
+        "name": "Floral Applique",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Free People Everything Rosy Floral Applique Rib Beanie, Grey",
+        "has_sizes": false,
+        "color": null,
+        "price": "20.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "ACCFP1026936.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 34,
+    "fields": {
+        "category": 4,
+        "name": "Slim Fit Hybrid Trousers",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Men's 511 Slim Fit Hybrid Trousers, Sunset Red",
+        "has_sizes": false,
+        "color": null,
+        "price": "40.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0191291794935_BTM_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 35,
+    "fields": {
+        "category": 4,
+        "name": "Liner & Faux",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Men's 3-In-1 Anorak With Removable Liner & Faux Fur Hood",
+        "has_sizes": false,
+        "color": null,
+        "price": "60.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0192166100950_CRP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 36,
+    "fields": {
+        "category": 4,
+        "name": "Casual Shirt",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Basic daily wear",
+        "has_sizes": false,
+        "color": null,
+        "price": "33.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0840006413141_CROP_TOP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 37,
+    "fields": {
+        "category": 7,
+        "name": "Sleeveless Dress",
+        "gender": "woman",
+        "brand_name": "T&T",
+        "description": "Women's Sleeveless Dress, Red",
+        "has_sizes": true,
+        "color": null,
+        "price": "120.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0090027593784_CROP_TOP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 38,
+    "fields": {
+        "category": 7,
+        "name": "Nafs",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Fit & Flare Dress, Black",
+        "has_sizes": true,
+        "color": null,
+        "price": "200.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0090027235479_CROP_TOP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 39,
+    "fields": {
+        "category": 7,
+        "name": "Short Sleeve Summer Dress",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Short Sleeve Summer Dress, Brown",
+        "has_sizes": false,
+        "color": null,
+        "price": "150.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "158245-BROWN-S_CROP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 40,
+    "fields": {
+        "category": 9,
+        "name": "Esteem",
+        "gender": "woman",
+        "brand_name": "T&T",
+        "description": "Women's Juniors' Plush Waffle Henley Top, Heather Grey",
+        "has_sizes": true,
+        "color": null,
+        "price": "200.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0637677586591_CROP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 41,
+    "fields": {
+        "category": 9,
+        "name": "Terry Top",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's 'Peekaboo' Cutout Terry Top, Heather Grey",
+        "has_sizes": true,
+        "color": null,
+        "price": "240.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0888374432104_CROP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 42,
+    "fields": {
+        "category": 9,
+        "name": "Stripe Roll-tab Seeve Top",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Stripe Roll-tab Seeve Top, Navy/White",
+        "has_sizes": true,
+        "color": null,
+        "price": "140.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "06596326800010_CROP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 43,
+    "fields": {
+        "category": 1,
+        "name": "Spotty",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Printed Jeans, Blue",
+        "has_sizes": true,
+        "color": null,
+        "price": "200.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0080145892418_BTM_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 44,
+    "fields": {
+        "category": 1,
+        "name": "Leopard Print Jeans",
+        "gender": "woman",
+        "brand_name": "S&G",
+        "description": "Women's Leopard Print Jeans, Brown Combo",
+        "has_sizes": true,
+        "color": null,
+        "price": "39.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0003064149_BTM_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 45,
+    "fields": {
+        "category": 1,
+        "name": "Lee's",
+        "gender": "woman",
+        "brand_name": "T&T",
+        "description": "Womens Ankle Tie Skinny Jeans, Blue",
+        "has_sizes": true,
+        "color": null,
+        "price": "40.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "5901419651959_BTM_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 46,
+    "fields": {
+        "category": 1,
+        "name": "Lee's",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Men's Graduate Tailored-Leg Straight Fit Jean, Brown",
+        "has_sizes": true,
+        "color": null,
+        "price": "79.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0190494407048_BTM_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 47,
+    "fields": {
+        "category": 1,
+        "name": "Lee's",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Basic Men Jeans",
+        "has_sizes": true,
+        "color": null,
+        "price": "55.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "150755_2b6e795b53364235a4be60da08dd1480_left_super_zoom.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 48,
+    "fields": {
+        "category": 1,
+        "name": "Relaxed Fit Jeans",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Men's Relaxed Fit Jeans, Washed Grey",
+        "has_sizes": true,
+        "color": null,
+        "price": "66.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0749862288460_BTM_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 49,
+    "fields": {
+        "category": 2,
+        "name": "Seersucker Shirt,",
+        "gender": "man",
+        "brand_name": "S&G",
+        "description": "Men's Seersucker Shirt, Admiral",
+        "has_sizes": true,
+        "color": null,
+        "price": "33.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0885607943628_CRP_RAW_1.jpg"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 50,
+    "fields": {
+        "category": 2,
+        "name": "Velasquez Washed Twill Shirt",
+        "gender": "man",
+        "brand_name": "SEVENTY FIVE",
+        "description": "Men's Velasquez Washed Twill Shirt, Grey Combo",
+        "has_sizes": true,
+        "color": null,
+        "price": "67.00",
+        "size": "",
+        "quantity": 1,
+        "image_url": null,
+        "image": "0732996993652_CRP_RAW_1.jpg"
     }
 }
 ]
