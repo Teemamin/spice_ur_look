@@ -14,8 +14,10 @@ SpiceUrLook project is a fictitious online store that provides a unique customer
  * Developing relevant target
 
  ### User Stories :
- The following User Stories helped me to create a design that would satisfy the needs of several different types of users:
  ----
+
+ The following User Stories helped me to create a design that would satisfy the needs of several different types of users:
+ 
  #### Project stakeholder / Product Owner:
  * As the major stakeholder / product owner my main aim is  to generate revenue – to be very efficient at selling
   through understanding complex consumer behaviour to maximise conversion rates
@@ -110,3 +112,69 @@ info else if the user is not authenticated the form will be empty
 * Stripe secure card validation: the card entered by the user will be validated in real time by stripe and if valid:
 the purchase will go through and the user will be automatically redirected to success page showing order confirmation details
 * Upon successful purchase: confirmation email is sent to the user, containing their order summary
+
+#### Features Left to Implement:
+
+* A future feature could be adding set of filters that will allow the site user to browse the site by things like:
+- size, color or brand
+* online customer service chat platform 
+* An overlay of a quick shopping
+* Additional payment methods like paypal or applepay
+
+### Technologies Used
+
+Languages, libraries, frameworks, editors and version control:
+
+* HTML5 was used to put the page structure in place [HTML5](https://validator.w3.org/).
+* CSS was used to style and allign images and other structures on the page [CSS](https://www.w3.org/Style/CSS/Overview.en.html).
+* Javascript was used for interactivity [JavaScript](https://www.ecma-international.org/).
+* Python3 was used for the application scripting [Python](https://www.python.org/).
+* Django framework was used to build the Project [Django](https://www.djangoproject.com/).
+* Heroku for hosting the application [Heroku](https://dashboard.heroku.com/apps).
+* Amazon web service was used to host static and media files [AWS](https://aws.amazon.com/).
+* Postgres database was used for the deployed app on heroku [Postgres](https://www.postgresql.org/).
+* Gunicorn server was used for the deployed app on heroku [Gunicorn](https://gunicorn.org/).
+* Stripe payment service was used for product payments [Stripe](https://stripe.com/).
+* Bootstrap was used for page layout [Bootstrap](https://getbootstrap.com/).
+* Google fonts was used for the site fonts [Google fonts](https://fonts.google.com/).
+* Fontawesome was used for its icons [Font awesome](https://fontawesome.com/).
+* I used gitpod's development environment to write the code for this project [Gitpod](https://www.gitpod.io/).
+* I used github for its repo and version control of the project [Github](https://github.com/).
+* I used google smtp email to send emails to users [google](https://support.google.com/mail/answer/7126229?hl=en).
+
+
+### Testing
+----
+* Click to view the test file [test file](https://support.google.com/mail/answer/7126229?hl=en).
+
+### Deployment
+* Click to view the project deployment process [deployment file](https://support.google.com/mail/answer/7126229?hl=en).
+
+#### Credits
+
+* Code Institute.
+
+#### Content
+
+* The content of this website is entirely fictional and written by myself.
+
+#### Media
+
+* Some of the photos used in this site were obtained from :
+1. [Unsplash](https://unsplash.com/).
+2. [Pixels](https://www.pexels.com/).
+3. [google](https://www.google.com/).
+
+#### Acknowledgements
+
+
+
+
+
+
+
+
+
+
+
+

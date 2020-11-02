@@ -24,7 +24,9 @@
                                 <h3>Browse Categories</h3>
                             </div>
                             <div class="widgets_inner">
-                                <h5 class="sec-hd sidebar_box_shadow">All Products /</h5>
+                                <h5 class="sec-hd sidebar_box_shadow">
+                                    <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?gender=woman"{%else%} href="{% url 'products' %}?gender=man"{%endif%}{%endfor%}>All Products /</a>
+                                </h5>
                                 <hr>
                                  
                                 <ul class="list list-unstyled cat-list">
@@ -72,10 +74,8 @@
                                             <option value="default" {% if sorting == 'None_None' %}selected{% endif %}>Suggested</option>
                                             <option value="price_asc" {% if sorting == 'price_asc' %}selected{% endif %}>Price(High)</option>
                                             <option value="price_desc" {% if sorting == 'price_desc' %}selected{% endif %}>Price(Low)</option>
-                                            <option value="rating_asc" {% if sorting == 'rating_asc' %}selected{% endif %}>Rating(High)</option>
-                                            <option value="rating_desc" {% if sorting == 'rating_desc' %}selected{% endif %}>Rating(Low)</option>
-                                            <option value="promtions_asc" {% if sorting == 'promtions_asc' %}selected{% endif %}>Sales(High)</option>
-                                            <option value="promotions_desc" {% if sorting == 'promotions_desc' %}selected{% endif %}>Sales(Low)</option>
+                                            <!-- <option value="promtions_asc" {% if sorting == 'promtions_asc' %}selected{% endif %}>Sales(High)</option>
+                                            <option value="promotions_desc" {% if sorting == 'promotions_desc' %}selected{% endif %}>Sales(Low)</option> -->
 
                                         </select>
                                     </div>

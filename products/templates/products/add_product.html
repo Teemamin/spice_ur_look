@@ -27,8 +27,8 @@
                             {% csrf_token %}
                             {{form | crispy}}
                             <div class="text-right">
-                                    <a class="btn btn_3 rounded-0" href="{% url 'products' %}">Cancel</a>
-                                    <button class="btn btn_3 rounded-0" type="submit">Add Product</button>
+                                    <a class="btn btn_3 rounded-0 mb-2" href="{% url 'products' %}">Cancel</a>
+                                    <button class="btn btn_3 rounded-0 mt-2" type="submit">Add Product</button>
                             </div>
 
                         </form>

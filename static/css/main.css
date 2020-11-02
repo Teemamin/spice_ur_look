@@ -890,12 +890,15 @@ body {
 
 
 .btn_3:hover {
-  color: #2f7dfc;
-  background-color: #fff;
+  color: #fff;
+  background-color: #2F7E84;
   box-shadow: -14.142px 14.142px 20px 0px rgba(0, 0, 0, 0.1);
  
 }
 
+.btn_white{
+    color: #fff !important;
+}
 /** shoping bag**/
 .cart_inner .table {
   margin-bottom: 30px;
