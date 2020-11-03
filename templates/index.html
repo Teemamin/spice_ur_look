@@ -10,9 +10,13 @@
                         <div class="single_banner_slider">
                             <div class="banner_text">
                                 <div class="banner_text_iner">
-                                    <h5>Summer Fasion</h5>
-                                    <h1>Save up to 70%</h1>
-                                    <a href="#" class="btn_1">shop now</a>
+                                    <h5 class="logo-size">Everyday Fasion</h5>
+                                    <h1 class="logo-size">Save up to 70%</h1>
+                                    <div class="my-5">
+                                        <h4>
+                                            <a href="{%url 'products'%}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,17 +55,17 @@
                             <div class="hover_text">
                                 <p>{{product.name}}</p>
                                 <a href="{% url 'single_product' product.id%}"><h3>{{product.description}}</h3></a>
-                                <div class="rate_icon">
+                                <!-- <div class="rate_icon">
                                     <a href="#"> <i class="fas fa-star"></i> </a>
                                     <a href="#"> <i class="fas fa-star"></i> </a>
                                     <a href="#"> <i class="fas fa-star"></i> </a>
-                                </div>
+                                </div> -->
                                 <h5>${{product.price}}</h5>
                                 <div class="social_icon {% if request.user.is_authenticated%} d-block {%else%} d-none{%endif%}">
                                      {%if product.id in current_user_prdct_id%}
-                                        <span class="like like_us heart-prdct" id="id" attr_id="{{ product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fas fa-heart"></i></span>
+                                        <span class="like heart-prdct home-heart-product" id="id" attr_id="{{ product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fas fa-heart"></i></span>
                                     {%else%}
-                                        <span class="like like_us" id="id" attr_id="{{product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fa fa-heart"></i></span>
+                                        <span class="like home-heart-product" id="id" attr_id="{{product.id}}" action_url="{% url 'add_to_wishlist' %}"><i class="fa fa-heart"></i></span>
                                     {%endif%}
                                 </div>
                             </div>

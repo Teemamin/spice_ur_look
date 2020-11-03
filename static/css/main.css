@@ -899,6 +899,23 @@ body {
 .btn_white{
     color: #fff !important;
 }
+
+.shop-now-button {
+    background: black;
+    color: white;
+    min-width: 260px;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus{
+    background: #222;
+    color: white;
+}
+
+.logo-size{
+    font-size: 2rem;
+}
 /** shoping bag**/
 .cart_inner .table {
   margin-bottom: 30px;
@@ -1431,4 +1448,140 @@ p {
 .prdct-link:hover {
     text-decoration: none;
     cursor: pointer;
+}
+
+.home-heart-product{
+    background: grey !important;
+    border-radius: 50%;
+    height: unset;
+    padding: 7px 7px 5px;
+    margin: 10px 10px 0 0;
+    font-size: 22px !important;
+}
+
+.home-heart-product:hover{
+  cursor: pointer;
+  color: #2f7dfc;
+} 
+
+.footer_part {
+  background-color: #000;
+  padding: 140px 0 25px;
+}
+
+@media (max-width: 991px) {
+  .footer_part {
+    padding: 70px 0 25px;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .footer_part .single_footer_part {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .footer_part .single_footer_part {
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .footer_part .single_footer_part {
+    margin-bottom: 20px;
+  }
+}
+
+
+.footer_part .single_footer_part .social-links a {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  background-color: #1a1a1a;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  margin-right: 10px;
+  padding-top: 16px;
+}
+
+.footer_part .single_footer_part .social-links a:hover {
+  background-color: #fff;
+  color: #1a1a1a;
+}
+
+
+.footer_part .single_footer_part .list-unstyled li a {
+  color: #fff;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.footer_part .single_footer_part .list-unstyled li a:hover {
+  color: #2f7dfc !important;
+}
+
+.footer_part .single_footer_part .mail_part {
+  position: relative;
+  display: flex;
+  margin-top: 20px;
+}
+
+.footer_part .single_footer_part .mail_part input {
+  padding: 14px 15px;
+  font-size: 13px;
+  border-radius: 0;
+  border: 1px solid #2f7dfc;
+  width: 80%;
+  background-color: transparent;
+  color: #fff;
+}
+
+.footer_part .single_footer_part .mail_part .email_icon {
+  background-color: #2f7dfc;
+  text-align: center;
+  color: #fff;
+  border-radius: 0;
+  line-height: 10px;
+  border: 2px solid #2f7dfc;
+  text-transform: capitalize;
+  padding: 14px 20px;
+  height: 50px;
+}
+
+.footer_part .info {
+  color: red !important;
+}
+
+.footer_part .single_footer_part h4 {
+  font-size: 20px;
+  margin-bottom: 40px;
+  font-weight: 500;
+  color: #fff;
+}
+
+@media (max-width: 576px) {
+  .footer_part .single_footer_part h4 {
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .footer_part .single_footer_part h4 {
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .footer_part .single_footer_part h4 {
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .footer_part .single_footer_part h4 {
+    font-size: 19px;
+  }
 }

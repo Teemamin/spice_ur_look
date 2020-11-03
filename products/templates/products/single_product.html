@@ -91,8 +91,12 @@
                                 <div class="col-6">
                                     <div class="box_total mt-5">
                                         <h5>Overall</h5>
-                                        <h4>5.0</h4>
-                                        <h6>({{review_count}} Review(s))</h6>
+                                        {% if current_rating %}
+                                           <h6><i class="fas fa-star mr-1"></i>{{current_rating}} / 5</h6>
+                                           <p>({{review_count}} Reviews)</p>
+                                        {% else %}
+                                            <small class="text-muted">This Product has no Rating</small>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -101,8 +105,8 @@
                         {% if review.product_id == product.id%}
                             <div class="single-review">
                                 <div class="review-heading">
-                                    <div><a href="#"><i class="fa fa-user-o"></i> {{review.user}}</a></div>
-                                    <div><a href="#"><i class="fa fa-clock-o"></i> {{review.time_added}}</a></div>
+                                    <div><h6><i class="fa fa-user-o"></i> {{review.user}}</h6></div>
+                                    <div><p><i class="fa fa-clock-o"></i> {{review.time_added}}</p></div>
                                     <div class="review-rating pull-right">
                                     {%if review.rate == 1%}
                                         <i class="fa fa-star"></i>

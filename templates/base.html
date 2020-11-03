@@ -51,7 +51,6 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="menu_icon"><i class="fas fa-bars"></i></span>
                         </button>
-                        <a href="{% provider_login_url 'google' %}">Google login</a>
 
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
@@ -124,6 +123,8 @@
                                     {% else %}
                                         <a href="{% url 'account_signup' %}" class="dropdown-item">Signup</a>
                                         <a href="{% url 'account_login' %}?next={{request.path}}" class="dropdown-item">Login</a>
+                                        <a class="dropdown-item" href="{% provider_login_url 'google' %}">Google login</a>
+
                                     {% endif %}
                                 </div>
                             </div>
@@ -132,7 +133,7 @@
                                     data-toggle="" aria-haspopup="" aria-expanded="">
                                     <i class="fas fa-shopping-bag"></i>
                                     
-                                        <p>{{cart.total}}</p>
+                                        <p>{{bag.total}}</p>
                                 </a>
                             </div>
                             <a id="search_1" href="javascript:void(0)"><i class="fas fa-search"></i></a>
@@ -181,4 +182,57 @@
         <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}
   </body>
+
+   <footer class="footer_part">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Deals</h4>
+                        <ul class="list-unstyled">
+                            <li><a  href="{% url 'products' %}?cat=promotions">Checkout products on sale</a></li>
+                            <li><a  href="{% url 'products' %}">All Products</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Get Social!</h4>
+                        <ul class="list-unstyled list-in-line social-links">
+                            <li class="list-inline-item"><a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook-square" aria-hidden="true"></i><span class="sr-only">facebook</span></a></li>
+                            <li class="list-inline-item"><a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">instagram</span></a></li>
+                            <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square" aria-hidden="true"></i><span class="sr-only">twitter</span></a></li>
+                            <li class="list-inline-item"><a href= "https://www.youtube.com/" target="_blank"><i class="fab fa-youtube" aria-hidden="true"></i><span class="sr-only">youtube</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="single_footer_part">
+                        <h4>Address</h4>
+                        <ul class="list-unstyled">
+                            <li><a class="contact-link" href="tel:800(800-40009)/">Call us:&nbsp;<span>800-spiceurlook (800-00000)&lrm;</span></a> </li>
+                            <li><a class="contact-link" href="mailto:teemamin@yahoo.com">Write to us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_footer_part">
+                        <h4>Newsletter</h4>
+                        <div id="mc_embed_signup">
+                            <form target="_blank"
+                                action=""
+                                method="get" class="relative mail_part">
+                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = ' Email Address '">
+                                <button type="submit" name="submit" id="newsletter-submit"
+                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                                <div class="mt-10 info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </html>

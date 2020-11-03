@@ -14,7 +14,10 @@
 {% endfor %}
 {% endif %}
 <li>
-  <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}" 
-     href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{provider.name}}</a>
+  <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}"
+    role="button" style="text-transform:none"
+     href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+     <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+     {{provider.name}} Login</a>
 </li>
 {% endfor %}
