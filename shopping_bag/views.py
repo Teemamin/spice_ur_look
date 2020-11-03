@@ -3,6 +3,7 @@ from django.shortcuts import render,\
 from products.models import Product
 from .models import Bag, OrderLineItem
 from django.contrib import messages
+from django.conf import settings
 
 # Create your views here.
 
@@ -14,7 +15,7 @@ def calc_bag(bag_obj):
     for x in order_line_items:
         total += x.product.price * x.quantity
     bag_obj.subtotal = total
-    bag_obj.total = total
+    bag_obj.total = float(total) + float(settings.FIXED_DELIVERY)
     bag_obj.save()
 
 

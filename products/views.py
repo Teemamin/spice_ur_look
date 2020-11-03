@@ -129,9 +129,8 @@ def single_product(request, product_id, *args, **kwargs):
 
 @login_required
 def add_product(request):
-    """ 
-    Add a product to the store 
-    for super users 
+    """
+    Add a product to the store for super users
     """
     if not request.user.is_superuser:
         messages.error(request, 'Access denied!.')
@@ -200,9 +199,9 @@ def delete_product(request, product_id):
 
 @login_required
 def add_review(request, product_id):
-    """ 
+    """
     A view for review posts: validates post
-    adds to reivew model and redirects to the 
+    adds to reivew model and redirects to the
     product page
     """
     product_obj = Product.objects.get(pk=product_id)
@@ -276,3 +275,12 @@ def wishlist_view(request):
 
     return render(request, 'products/wishlist.html', context)
 
+
+def newsletter(request):
+    """
+    A view to alert the reciept of newsletter email
+    """
+    if 'newsletter' in request.POST:
+        url = request.META.get('HTTP_REFERER')
+        messages.info(request, 'Thank you for signing up for our newsletter!')
+        return HttpResponseRedirect(url)

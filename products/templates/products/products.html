@@ -10,7 +10,7 @@
                         <p> {{searchcount}} Product(s) available for your search "{{search_word}}"</p>
                     {% endif %}
                 </div>
-                <div class="col">{% for category in categories %}
+                <div class="col d-none d-md-block">{% for category in categories %}
                     <a class="text-decoration-none" href="{% url 'products' %}?cat={{ category.name }}">
                         <span class="p-2 mt-2 badge  rounded-2 border border-light">{{ category.name }}</span>
                     </a>

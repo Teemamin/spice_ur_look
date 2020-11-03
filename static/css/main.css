@@ -825,10 +825,10 @@ body {
 
 .single_product .category_social_icon {
   position: absolute;
-  right: -30px;
+  /* right: -30px; */
   bottom: 100px;
-  visibility: hidden;
-  opacity: 0;
+  /* visibility: hidden; */
+  /* opacity: 0; */
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }

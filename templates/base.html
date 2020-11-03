@@ -119,6 +119,7 @@
                                             <a class="dropdown-item" href="{% url 'add_product' %}"> Admin | Add product</a>
                                         {% endif %}
                                         <a class="dropdown-item" href="{%url 'profile'%}">profile</a>
+                                        <a class="dropdown-item" href="{%url 'wishlist_view'%}">Whishlist</a>
                                         <a class="dropdown-item" href="{% url 'account_logout' %}">logout</a>
                                     {% else %}
                                         <a href="{% url 'account_signup' %}" class="dropdown-item">Signup</a>
@@ -190,7 +191,7 @@
                     <div class="single_footer_part">
                         <h4>Deals</h4>
                         <ul class="list-unstyled">
-                            <li><a  href="{% url 'products' %}?cat=promotions">Checkout products on sale</a></li>
+                            <li><a  href="{% url 'products' %}?cat=promotions">Promotions</a></li>
                             <li><a  href="{% url 'products' %}">All Products</a></li>
                         </ul>
                     </div>
@@ -219,15 +220,15 @@
                     <div class="single_footer_part">
                         <h4>Newsletter</h4>
                         <div id="mc_embed_signup">
-                            <form target="_blank"
-                                action=""
-                                method="get" class="relative mail_part">
+                            <form action="{% url 'newsletter'%}" method="POST" class="relative mail_part">
+                                {% csrf_token %}
                                 <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
                                     class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = ' Email Address '">
+                                    onblur="this.placeholder = ' Email Address '" required>
                                 <button type="submit" name="submit" id="newsletter-submit"
                                     class="email_icon newsletter-submit button-contactForm">subscribe</button>
                                 <div class="mt-10 info"></div>
+                               <input type="hidden" name="newsletter">
                             </form>
                         </div>
                     </div>

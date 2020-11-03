@@ -19,3 +19,4 @@ def home(request):
         'current_user_prdct_id': current_user_prdct_id,
     }
     return render(request, 'index.html', context)
+
