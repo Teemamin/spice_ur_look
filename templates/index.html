@@ -55,11 +55,6 @@
                             <div class="hover_text">
                                 <p>{{product.name}}</p>
                                 <a href="{% url 'single_product' product.id%}"><h3>{{product.description}}</h3></a>
-                                <!-- <div class="rate_icon">
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                    <a href="#"> <i class="fas fa-star"></i> </a>
-                                </div> -->
                                 <h5>${{product.price}}</h5>
                                 <div class="social_icon {% if request.user.is_authenticated%} d-block {%else%} d-none{%endif%}">
                                      {%if product.id in current_user_prdct_id%}

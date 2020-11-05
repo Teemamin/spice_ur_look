@@ -145,14 +145,16 @@ Languages, libraries, frameworks, editors and version control:
 
 ### Testing
 ----
-* Click to view the test file [test file](https://support.google.com/mail/answer/7126229?hl=en).
+* Click to view the test file [test file](https://github.com/Teemamin/spice_ur_look/blob/master/test.md).
 
 ### Deployment
-* Click to view the project deployment process [deployment file](https://support.google.com/mail/answer/7126229?hl=en).
+* Click to view the project deployment process [deployment file](https://github.com/Teemamin/spice_ur_look/blob/master/project_deployment.md).
 
 #### Credits
 
 * Code Institute.
+* Css Tricks
+
 
 #### Content
 

@@ -50,7 +50,7 @@ class Order(models.Model):
     email = models.EmailField(max_length=200, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     address_1 = models.CharField(max_length=90, null=False, blank=False)
-    address_2 = models.CharField(max_length=90, blank=True)
+    address_2 = models.CharField(max_length=90, blank=True, null=True,)
     date = models.DateTimeField(auto_now_add=True)
     city = models.CharField(max_length=120)
     state = models.CharField(max_length=120, blank=True)
@@ -73,6 +73,7 @@ class Order(models.Model):
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
+        """calculates bag total cost and updates order total """
         bag_total = self.bag.total
         self.delivery_total = settings.FIXED_DELIVERY
         delivery_total = self.delivery_total
@@ -106,6 +107,7 @@ pre_save.connect(pre_save_create_order_id, sender=Order)
 
 
 def post_save_bag_total(sender, instance, created, *args, **kwargs):
+    """updates total cost after saving """
     if not created:
         bag_obj = instance
         bag_total = bag_obj.total

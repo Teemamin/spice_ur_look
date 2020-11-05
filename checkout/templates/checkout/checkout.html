@@ -24,7 +24,7 @@
     <section class="checkout_area section_padding">
     <div class="container">
       <div class="returning_customer">
-        <div class="check_title">
+        <div class="check_title  {% if request.user.is_authenticated%} d-none {%else%} d-block {%endif%}">
           <h2>
             Have an account?
             <a href="{% url 'account_login' %}?next={{request.path}}">Click here to login</a>
@@ -34,7 +34,7 @@
       <div class="billing_details">
         <div class="row">
           <div class="col-lg-8">
-            <h3>Billing | Shipping Details</h3>
+            <h3 class="ml-2">Billing | Shipping Details</h3>
             <form method="POST" action="{% url 'checkout'%}" id="payment-form">
                 {% csrf_token %}
                 <fieldset class="rounded px-3 mb-5">
@@ -107,11 +107,6 @@
                   </a>
                 </li>
               </ul>
-              <a class="btn btn-chkout" href="#"><span> Proceed to Secure Checkout</span>
-                    <span class="icon">
-                        <i class="fas fa-lock"></i>
-                    </span>
-              </a>
             </div>
           </div>
         </div>

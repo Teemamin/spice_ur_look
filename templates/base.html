@@ -24,14 +24,11 @@
 
     {% block js %}
         <script src="https://kit.fontawesome.com/d73e27d0ed.js" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+        <script src="https://kit.fontawesome.com/d73e27d0ed.js" crossorigin="anonymous"></script>
         <script src="https://js.stripe.com/v3/"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
     {% endblock %}
 
     {% block additionaljs %}
@@ -40,200 +37,210 @@
     <title>Spice Ur Look </title>
   </head>
   <body>
-    <header class="main_menu home_menu">
-        <div class="container-fluid">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-lg-11">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="{% url 'home' %}"> <img src="{{ MEDIA_URL }}logo.png" alt="{{logo.name}}"></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                        </button>
+    <div class="flx-con">
+        <header class="main_menu home_menu">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-11">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand" href="{% url 'home' %}"> <img src="{{ MEDIA_URL }}logo.png" alt="{{logo.name}}"></a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                            </button>
 
-                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'home' %}">Home</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="{% url 'products' %}?gender=woman" id="navbarDropdown_1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        women
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="{% url 'products' %}?gender=woman"> 
-                                            women's section <i class="fas fa-arrow-circle-right"></i>
-                                            
+                            <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="{% url 'products' %}?gender=woman" id="navbarDropdown_1"
+                                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            women
                                         </a>
-                                        <a class="dropdown-item" href="{% url 'products' %}?cat=dresses&gender=woman">Dresses</a>
-                                        <a class="dropdown-item" href="{% url 'products' %}?cat=shirts&gender=woman">Shirts</a>
-                                        <a class="dropdown-item" href="{% url 'products' %}?cat=tops&gender=woman">Tops</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="{% url 'products' %}?gender=man" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Men
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="{% url 'products' %}?gender=man"> 
-                                            Men's section <i class="fas fa-arrow-circle-right"></i>
-                                            
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
+                                            <a class="dropdown-item" href="{% url 'products' %}?gender=woman"> 
+                                                women's section <i class="fas fa-arrow-circle-right"></i>
+                                                
+                                            </a>
+                                            <a class="dropdown-item" href="{% url 'products' %}?cat=dresses&gender=woman">Dresses</a>
+                                            <a class="dropdown-item" href="{% url 'products' %}?cat=shirts&gender=woman">Shirts</a>
+                                            <a class="dropdown-item" href="{% url 'products' %}?cat=tops&gender=woman">Tops</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="{% url 'products' %}?gender=man" id="navbarDropdown_2"
+                                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Men
                                         </a>
-                                        <a class="dropdown-item" href="{% url 'products' %}?cat=shirts&gender=man">Shirts</a>
-                                        <a class="dropdown-item" href="{% url 'products' %}?cat=jeans&gender=man">Jeans</a>
-                                        <a class="dropdown-item" href="{% url 'products' %}?cat=shoes&gender=man">shoes</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_4"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Shop By
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                            <a class="dropdown-item" href="{% url 'products' %}?gender=man"> 
+                                                Men's section <i class="fas fa-arrow-circle-right"></i>
+                                                
+                                            </a>
+                                            <a class="dropdown-item" href="{% url 'products' %}?cat=shirts&gender=man">Shirts</a>
+                                            <a class="dropdown-item" href="{% url 'products' %}?cat=jeans&gender=man">Jeans</a>
+                                            <a class="dropdown-item" href="{% url 'products' %}?cat=shoes&gender=man">shoes</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_4"
+                                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Shop By
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_4">
+                                            <a class="dropdown-item" href="{% url 'products' %}?arrange=price&direction=asc"> shop by Price</a>
+                                            <a class="dropdown-item" href="{% url 'products' %}?arrange=category&direction=asc">shop by Category </a>      
+                                        </div>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'products' %}?cat=accessories">Accessories</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'products' %}?cat=promotions">sales</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="hearer_icon d-flex">
+                                <div class="dropdown cart">
+                                    <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-user"></i>
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_4">
-                                        <a class="dropdown-item" href="{% url 'products' %}?arrange=price&direction=asc"> shop by Price</a>
-                                        <a class="dropdown-item" href="{% url 'products' %}?arrange=category&direction=asc">shop by Category </a>      
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                        {% if request.user.is_authenticated%}
+                                            {% if request.user.is_superuser %}
+                                                <a class="dropdown-item" href="{% url 'add_product' %}"> Admin | Add product</a>
+                                            {% endif %}
+                                            <a class="dropdown-item" href="{%url 'profile'%}">profile</a>
+                                            <a class="dropdown-item" href="{%url 'wishlist_view'%}">Whishlist</a>
+                                            <a class="dropdown-item" href="{% url 'account_logout' %}">logout</a>
+                                        {% else %}
+                                            <a href="{% url 'account_signup' %}" class="dropdown-item">Signup</a>
+                                            <a href="{% url 'account_login' %}?next={{request.path}}" class="dropdown-item">Login</a>
+                                            <a class="dropdown-item" href="{% provider_login_url 'google' %}">Google login</a>
+
+                                        {% endif %}
                                     </div>
-                                </li>
-                                
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'products' %}?cat=accessories">Accessories</a>
-                                </li>
-                                
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'products' %}?cat=promotions">sales</a>
-                                </li>
+                                </div>
+                                <div class="dropdown cart">
+                                    <a class="" href="{%url 'shopping_bag'%}" id="navbarDropdown4" role="button"
+                                        data-toggle="" aria-haspopup="" aria-expanded="">
+                                        <div class="text-center">
+                                            <div><i class="fas fa-shopping-bag"></i></div>
+                                                <p class="my-0">
+                                                    {% if bag_total %}
+                                                    ${{ bag_total|floatformat:2 }}
+                                                    {% else %}
+                                                        $0.00
+                                                    {% endif %}
+                                                </p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a id="search_1" href="javascript:void(0)"><i class="fas fa-search"></i></a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="search_input" id="search_input_box">
+                <div class="container ">
+                    <form method="GET" action="{% url 'products' %}" class="d-flex justify-content-between search-inner">
+                        <input type="text" class="form-control" id="search_input" name="search" placeholder="Search">
+                        <button type="submit" class="btn"></button>
+                        <span class="ti-close" id="close_search" title="Close Search"></span>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <main>
+            {% if messages %}
+                <div class="message-container">
+                    {% for message in messages %}
+                        {% with message.level as level %}
+                            {% if level == 40 %} <!--level 40 is error-->
+                                {% include 'includes/toasts/toast_error.html' %}
+                            {% elif level == 30 %} <!--level 30 is warning-->
+                                {% include 'includes/toasts/toast_warning.html' %}
+                            {% elif level == 25 %} <!--level 25 is success-->
+                                {% include 'includes/toasts/toast_success.html' %}
+                            {% else %}
+                                {% include 'includes/toasts/toast_info.html' %}
+                                <!--And will default to using the info toast for everything else.-->
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% block pageheader %}
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
+        </main>
+        <footer class="footer_part">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-sm-6 col-lg-2">
+                        <div class="single_footer_part">
+                            <h4>Deals</h4>
+                            <ul class="list-unstyled">
+                                <li><a  href="{% url 'products' %}?cat=promotions">Promotions</a></li>
+                                <li><a  href="{% url 'products' %}">All Products</a></li>
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex">
-                            <div class="dropdown cart">
-                                <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                                    {% if request.user.is_authenticated%}
-                                        {% if request.user.is_superuser %}
-                                            <a class="dropdown-item" href="{% url 'add_product' %}"> Admin | Add product</a>
-                                        {% endif %}
-                                        <a class="dropdown-item" href="{%url 'profile'%}">profile</a>
-                                        <a class="dropdown-item" href="{%url 'wishlist_view'%}">Whishlist</a>
-                                        <a class="dropdown-item" href="{% url 'account_logout' %}">logout</a>
-                                    {% else %}
-                                        <a href="{% url 'account_signup' %}" class="dropdown-item">Signup</a>
-                                        <a href="{% url 'account_login' %}?next={{request.path}}" class="dropdown-item">Login</a>
-                                        <a class="dropdown-item" href="{% provider_login_url 'google' %}">Google login</a>
-
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="dropdown cart">
-                                <a class="" href="{%url 'shopping_bag'%}" id="navbarDropdown4" role="button"
-                                    data-toggle="" aria-haspopup="" aria-expanded="">
-                                    <i class="fas fa-shopping-bag"></i>
-                                    
-                                        <p>{{bag.total}}</p>
-                                </a>
-                            </div>
-                            <a id="search_1" href="javascript:void(0)"><i class="fas fa-search"></i></a>
+                    </div>
+                    <div class="col-sm-6 col-lg-2">
+                        <div class="single_footer_part">
+                            <h4>Get Social!</h4>
+                            <ul class="list-unstyled list-in-line social-links">
+                                <li class="list-inline-item"><a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook-square" aria-hidden="true"></i><span class="sr-only">facebook</span></a></li>
+                                <li class="list-inline-item"><a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">instagram</span></a></li>
+                                <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square" aria-hidden="true"></i><span class="sr-only">twitter</span></a></li>
+                                <li class="list-inline-item"><a href= "https://www.youtube.com/" target="_blank"><i class="fab fa-youtube" aria-hidden="true"></i><span class="sr-only">youtube</span></a></li>
+                            </ul>
                         </div>
-                    </nav>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="single_footer_part">
+                            <h4>Address</h4>
+                            <ul class="list-unstyled">
+                                <li><a class="contact-link" href="tel:800(800-40009)/">Call us:&nbsp;<span>800-spiceurlook (800-00000)&lrm;</span></a> </li>
+                                <li><a class="contact-link" href="mailto:teemamin@yahoo.com">Write to us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="single_footer_part">
+                            <h4>Newsletter</h4>
+                            <div id="mc_embed_signup">
+                                <form action="{% url 'newsletter'%}" method="POST" class="relative mail_part">
+                                    {% csrf_token %}
+                                    <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                        class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = ' Email Address '" required>
+                                    <button type="submit" name="submit" id="newsletter-submit"
+                                        class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                                    <div class="mt-10 info"></div>
+                                <input type="hidden" name="newsletter">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form method="GET" action="{% url 'products' %}" class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" name="search" placeholder="Search">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div>
-    </header>
-    {% if messages %}
-         <div class="message-container">
-            {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %} <!--level 40 is error-->
-                        {% include 'includes/toasts/toast_error.html' %}
-                    {% elif level == 30 %} <!--level 30 is warning-->
-                        {% include 'includes/toasts/toast_warning.html' %}
-                    {% elif level == 25 %} <!--level 25 is success-->
-                        {% include 'includes/toasts/toast_success.html' %}
-                    {% else %}
-                        {% include 'includes/toasts/toast_info.html' %}
-                        <!--And will default to using the info toast for everything else.-->
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
-        </div>
-    {% endif %}
-
-    {% block pageheader %}
-    {% endblock %}
-    {% block content %}
-    {% endblock %}
-    {% block postloadjs %}
-        <script type="text/javascript">
-        $('.toast').toast('show');
-       </script>
-        <script src="{% static 'js/main.js' %}"></script>
-    {% endblock %}
+        </footer>
+        {% block postloadjs %}
+            <script type="text/javascript">
+            $('.toast').toast('show');
+        </script>
+            <script src="{% static 'js/main.js' %}"></script>
+        {% endblock %}
+    </div>
   </body>
-
-   <footer class="footer_part">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-sm-6 col-lg-2">
-                    <div class="single_footer_part">
-                        <h4>Deals</h4>
-                        <ul class="list-unstyled">
-                            <li><a  href="{% url 'products' %}?cat=promotions">Promotions</a></li>
-                            <li><a  href="{% url 'products' %}">All Products</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-2">
-                    <div class="single_footer_part">
-                        <h4>Get Social!</h4>
-                        <ul class="list-unstyled list-in-line social-links">
-                            <li class="list-inline-item"><a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook-square" aria-hidden="true"></i><span class="sr-only">facebook</span></a></li>
-                            <li class="list-inline-item"><a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">instagram</span></a></li>
-                            <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square" aria-hidden="true"></i><span class="sr-only">twitter</span></a></li>
-                            <li class="list-inline-item"><a href= "https://www.youtube.com/" target="_blank"><i class="fab fa-youtube" aria-hidden="true"></i><span class="sr-only">youtube</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="single_footer_part">
-                        <h4>Address</h4>
-                        <ul class="list-unstyled">
-                            <li><a class="contact-link" href="tel:800(800-40009)/">Call us:&nbsp;<span>800-spiceurlook (800-00000)&lrm;</span></a> </li>
-                            <li><a class="contact-link" href="mailto:teemamin@yahoo.com">Write to us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="single_footer_part">
-                        <h4>Newsletter</h4>
-                        <div id="mc_embed_signup">
-                            <form action="{% url 'newsletter'%}" method="POST" class="relative mail_part">
-                                {% csrf_token %}
-                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = ' Email Address '" required>
-                                <button type="submit" name="submit" id="newsletter-submit"
-                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
-                                <div class="mt-10 info"></div>
-                               <input type="hidden" name="newsletter">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 </html>

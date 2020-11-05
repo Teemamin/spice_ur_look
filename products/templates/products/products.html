@@ -25,7 +25,8 @@
                             </div>
                             <div class="widgets_inner">
                                 <h5 class="sec-hd sidebar_box_shadow">
-                                    <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?gender=woman"{%else%} href="{% url 'products' %}?gender=man"{%endif%}{%endfor%}>All Products /</a>
+                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?gender=man"{%endif%}{%endfor%}>Man</a> |
+                                        <a {%for product in products%}{%if product.gender == "man"%} href="{% url 'products' %}?gender=woman"{%endif%}{%endfor%}>Woman</a>
                                 </h5>
                                 <hr>
                                  
@@ -49,11 +50,23 @@
 
                                     </li>
                                     <li>
-
-                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=shoes&gender=woman"{%else%} href="{% url 'products' %}?cat=shoes&gender=man"{%endif%}{%endfor%}>Shoes</a>
-                                        
+                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=shoes&gender=woman"{%else%} href="{% url 'products' %}?cat=shoes&gender=man"{%endif%}{%endfor%}>Shoes</a>  
                                     </li>
+                                    <!-- <li>
+                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=dresses,tops,shoes,jeans,new_arrivals,accessories,promotions&gender=woman" {%else%} href="{% url 'products' %}?cat=shoes,jeans&gender=man"{%endif%}{%endfor%}>All Products Woman</a>               
+                                    </li>
+                                     <li>
+
+                                        <a href="{% url 'products' %}">All Products</a>
+                                                    
+                                    </li> -->
+                                 
                                 </ul>
+                                <h5 class="sec-hd sidebar_box_shadow">
+                                <hr>
+                                <a href="{% url 'products' %}">All Products</a>
+                                <hr>
+                                </h5>
                            
                             </div>
                         </aside>
@@ -68,15 +81,12 @@
                                     <h2></h2>
                                     {% endfor %}
                                 </div>
-                                <div class="product_top_bar_iner product_bar_item d-flex">
+                                <div class="product_top_bar_iner product_bar_item d-flex m-1">
                                     <div class="product_bar_single">
                                         <select class="wide" id="sort-box">
                                             <option value="default" {% if sorting == 'None_None' %}selected{% endif %}>Suggested</option>
                                             <option value="price_asc" {% if sorting == 'price_asc' %}selected{% endif %}>Price(Low)</option>
                                             <option value="price_desc" {% if sorting == 'price_desc' %}selected{% endif %}>Price(High)</option>
-                                            <!-- <option value="promtions_asc" {% if sorting == 'promtions_asc' %}selected{% endif %}>Sales(High)</option>
-                                            <option value="promotions_desc" {% if sorting == 'promotions_desc' %}selected{% endif %}>Sales(Low)</option> -->
-
                                         </select>
                                     </div>
                                 </div>

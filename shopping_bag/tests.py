@@ -1,12 +1,10 @@
 from django.test import TestCase, Client
-from django.shortcuts import reverse, HttpRequest
+from django.shortcuts import reverse
 from products.models import Product
-from .models import Bag, OrderLineItem, BagManager
+from .models import Bag, OrderLineItem
 
 from django.contrib.auth.models import User
 from django.test.client import RequestFactory
-from django.conf import settings
-from importlib import import_module
 # Create your tests here.
 
 
@@ -92,16 +90,3 @@ class TestShoppingBagModels(TestCase):
             total=22.3
         )
         self.assertEqual(bag.id, bag.id)
-
-    # def test_bag_manager(self):
-    #     request = HttpRequest()
-    #     engine = import_module(settings.SESSION_ENGINE)
-    #     session_key = None
-    #     request.session = engine.SessionStore(session_key)
-    #     bag = Bag.objects.create(
-    #         user = self.user,
-    #         subtotal = 2.44,
-    #         total = 22.3
-    #     )
-    #     bag_func = Bag.objects.new_or_get(request)
-    #     self.assertTrue(bag_func)

@@ -52,6 +52,12 @@ class StripeWebhook_Handler:
         intent = event.data.object
         payment_id = intent.id
         bag = intent.metadata.bag
+        x = Bag.objects.get(pk=bag)
+        print(x)
+        # print(bag.id)
+        print(type(x))
+        print(type(bag))
+        print(bag)
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount / 100, 2)
@@ -78,7 +84,7 @@ class StripeWebhook_Handler:
                     address_2__iexact=shipping_details.address.line2,
                     state__iexact=shipping_details.address.state,
                     total=grand_total,
-                    bag=bag,
+                    bag=x,
                     stripe_paymentid=payment_id,
                 )
                 order_exists = True
@@ -106,7 +112,7 @@ class StripeWebhook_Handler:
                     address_1=shipping_details.address.line1,
                     address_2=shipping_details.address.line2,
                     state=shipping_details.address.state,
-                    bag=bag,
+                    bag=x,
                     stripe_paymentid=payment_id,
                 )
 
@@ -130,8 +136,6 @@ class StripeWebhook_Handler:
             status=200)
 
 
-
-
 @require_POST
 @csrf_exempt
 def webhook(request):
@@ -145,10 +149,9 @@ def webhook(request):
 
     try:
         event = stripe.Webhook.construct_event(
-        payload, sig_header, wh_secret
+            payload, sig_header, wh_secret
         )
     except ValueError as e:
-
         return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError as e:
 
@@ -160,12 +163,11 @@ def webhook(request):
 
     event_map = {
         'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
-        'payment_intent.payment_failed': handler.handle_payment_intent_payment_failed,
+        'payment_intent.payment_failed':
+            handler.handle_payment_intent_payment_failed,
     }
 
     event_type = event['type']
-
-
     event_handler = event_map.get(event_type, handler.handle_event)
 
     response = event_handler(event)

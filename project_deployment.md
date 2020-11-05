@@ -40,18 +40,33 @@ static files.
 #### Creating and setting up AWS:
 
 1. logged into my aws console: 
-* Oppend s3 -> create a new bucket , gave the bucket a name,unchecked block all public access.
-And acknowledged that the bucket will be public  and clicked create bucket
-2. properties tab I turned on static website hosting and click save 
-3. permissions tab:
-* Added coors configuration:
-which is going to set up the required access between my Heroku app and this s3 bucket.
-* bucket policy tab select, policy generator :
--  policy type -> s3 bucket policy
-- principals -> *
--  action -> get object
-- ARN 
-- lastly click add statement and generate policy
-- copy the policy into the bucket policy editor.
+* Oppend s3 -> created a new bucket and added the appropriate user's groups and security policies for it.
+which will host my static and media files after deployment to heroku
+
+2. To connect django with the aws bucket:
+* pip3 install boto3
+* pip3 install django-storages
+* pip3 freeze >requirements.txt
+* settings.py : added django-storages to installed apps
+* settings.py: added an if statment to check if on heroku, it should use the aws bucket in which i provided the bucket settings details
+* disabled collect static: since now i have the aws bucket policy setup: django will collectstatic files automatically and upload them to s3.
+* Created a custom storage classs using s3boto3 storage class from django storages : to tell django that in production
+ use s3 to store  static files whenever someone runs collectstatic or uploads any image. and the location it should save both the static and media files
+
+#### Project Cloning :
+* Click to view the project env samples [.env.sample](https://github.com/Teemamin/spice_ur_look/blob/master/.env).
+Should anyone be intrested in making future enhancements / work further on this project, you can clone as follows:
+* At the top of my repo : click on the "code" button, which will present you with the following options :
+1. Clone with HTTPS or an SSH key: [Generating a new key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+* SSH key: click use SSH key : don't have any public SSH keys in your GitHub account, You can add a new public key,by clicking on the github provided link or try cloning this repository via HTTPS
+* HTTPS : click on the copy icon on the right, which will copy the link on your clipbord
+2. Open your Terminal : ensure that your current working directory is the location you want the clone directory to be in
+3. git clone : paste in the HTTPS url you copied
+4. ensure to check the requirements.txt for all the necessary dependencies you will need to install for the project
+5. for further info on github cloning : [Github](https://docs.github.com/en/enterprise/2.13/user/articles/cloning-a-repository).
+
+
+
+
 
 
