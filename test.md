@@ -53,7 +53,7 @@ added,subtracted or removed  from the shopping bag and the cost recalculates acc
 ### HTML
 * Validated my HTML5 file with  [W3C validator](https://validator.w3.org) : validator produced django template syntax as errors
 ### Python:
-* Validated my python file with inbuilt code institute gitpod python lint : there are still some lint line error coming from the model character fields
+* Validated my python file with inbuilt code institute gitpod python lint : there are still some lint line errors coming from the model character fields
 upon the use of both null and blank as True.
 
 ### CSS :
@@ -71,10 +71,12 @@ upon the use of both null and blank as True.
 
 ##### Design Responsiveness:
 * I tested the site on google dev tool
+* Tested the site on a samsung s10 mobile phone
+* Tested the site on iphone X
 
 #### functionality Tests:
 * manually tested all the site links to ensure it is all working
-* Automated test was carried out: test files can be found in tests.py of each application
+* Automated test was carried out: test files can be found in tests.py of each application or the links provided above
 * to run all automated tests: pthon3 manage.py test
 * [return to previous doc](https://github.com/Teemamin/spice_ur_look/blob/master/README.md)
 
