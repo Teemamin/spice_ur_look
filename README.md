@@ -63,6 +63,7 @@ user's provided email address
 * Google social login: a user has the option to login to our site with their google account 
 * Login / logout: a user can easily login with their registered details
 * Password reset: a user can easily recover their password incase they forget it.
+* Note: if running this project on gitpod: for social login to work: run python3 manage.py runserver 0.0.0.0:8000
 
 2. Site Navigation: is consistent accross the site it allows the user to do the following:
 
