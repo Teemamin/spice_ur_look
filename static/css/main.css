@@ -255,9 +255,9 @@ body {
     color: #000;
   }
  
-  .main_menu a i {
+  /* .main_menu a i {
     margin-left: 13px;
-  }
+  } */
 }
 
 @media (max-width: 576px) {
@@ -1343,7 +1343,7 @@ a {
     margin: 0 auto;
     position: absolute;
     left: 0;
-    right: 0;
+    right: 88px;
     display: inline-block;
     top: -33px;
 }

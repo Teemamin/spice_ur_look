@@ -147,7 +147,6 @@
                             </div>
                         {%else%}
                     {% if forloop.last %}
-                        <p>Rate this product!</p>
                         {%endif%}
                         {%endif%}
                         {% endfor %}
@@ -162,7 +161,7 @@
                                     <form class="review-form" method="POST" action="{% url 'add_review' product.id %}">
                                         {% csrf_token %}
                                         {{review_form | crispy}}
-                                        <button class="primary-btn">Submit</button>
+                                        <button class="primary-btn mb-3">Submit</button>
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
 
                                     </form>

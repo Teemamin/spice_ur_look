@@ -49,6 +49,8 @@ SpiceUrLook project is a fictitious online store that provides a unique customer
 | site-owner | delete product                                                                         | to easily remove product from the site.                                                                                                               |
 
 #### Wireframes: 
+* Click to view [wireframes](https://github.com/Teemamin/spice_ur_look/blob/master/wireframes/spiceurlook_wireframes.pdf).
+
 
 ### Features
 ----

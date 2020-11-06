@@ -53,11 +53,6 @@ class StripeWebhook_Handler:
         payment_id = intent.id
         bag = intent.metadata.bag
         x = Bag.objects.get(pk=bag)
-        print(x)
-        # print(bag.id)
-        print(type(x))
-        print(type(bag))
-        print(bag)
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount / 100, 2)
@@ -82,7 +77,7 @@ class StripeWebhook_Handler:
                     city__iexact=shipping_details.address.city,
                     address_1__iexact=shipping_details.address.line1,
                     address_2__iexact=shipping_details.address.line2,
-                    state__iexact=shipping_details.address.state,
+                    state__iexact=shipping_details.address.city,
                     total=grand_total,
                     bag=x,
                     stripe_paymentid=payment_id,
@@ -111,7 +106,7 @@ class StripeWebhook_Handler:
                     city=shipping_details.address.city,
                     address_1=shipping_details.address.line1,
                     address_2=shipping_details.address.line2,
-                    state=shipping_details.address.state,
+                    state=shipping_details.address.city,
                     bag=x,
                     stripe_paymentid=payment_id,
                 )

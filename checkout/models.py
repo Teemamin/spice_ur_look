@@ -53,8 +53,8 @@ class Order(models.Model):
     address_2 = models.CharField(max_length=90, blank=True, null=True,)
     date = models.DateTimeField(auto_now_add=True)
     city = models.CharField(max_length=120)
-    state = models.CharField(max_length=120, blank=True)
-    postcode = models.CharField(max_length=20, blank=True)
+    state = models.CharField(max_length=120)
+    postcode = models.CharField(max_length=20)
     country = CountryField(null=False, blank=False)
     stripe_paymentid = models.CharField(
         max_length=270, null=False, blank=False, default=''
