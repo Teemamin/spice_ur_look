@@ -19,8 +19,10 @@ The testing process is outlined below. It includes:
 5. [Home:](https://github.com/Teemamin/spice_ur_look/blob/master/spice_ur_look/tests.py)
 
 * Lighthouse in Chrome Devtools  to check performance:
-* [lighthouse_performance report:](https://github.com/Teemamin/spice_ur_look/blob/master/lighthouse_performance_report/8000-f808bb4f-43e9-426e-a800-c34f6a732fcb.ws-eu01.gitpod.io-2020)
+* [lighthouse_performance report on gitpod:](https://github.com/Teemamin/spice_ur_look/blob/master/lighthouse_performance_report/8000-f808bb4f-43e9-426e-a800-c34f6a732fcb.ws-eu01.gitpod.io-2020)
 * ![lighthouse screen shot](lighthouse_performance_report/lighhouse-img.png)
+* [lighthouse_performance report on heroku:](https://github.com/Teemamin/spice_ur_look/blob/master/lighthouse_performance_report/spice-ur-look.herokuapp.com-20201107T160000.json)
+* ![lighthouse screen shot](lighthouse_performance_report/on-heroku.png)
 
 #### User stories tests:
 Testing user experience:
