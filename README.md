@@ -169,9 +169,11 @@ Languages, libraries, frameworks, editors and version control:
 #### Media
 
 * Some of the photos used in this site were obtained from :
-1. [Unsplash](https://unsplash.com/).
+1. [Unsplash freestocks](https://unsplash.com/).
 2. [Pixels](https://www.pexels.com/).
 3. [google](https://www.google.com/).
+4. [kaggle paramaggarwal](https://www.kaggle.com/paramaggarwal/fashion-product-images-dataset).
+
 
 #### Acknowledgements
 

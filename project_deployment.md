@@ -54,7 +54,7 @@ which will host my static and media files after deployment to heroku
  use s3 to store  static files whenever someone runs collectstatic or uploads any image. and the location it should save both the static and media files
 
 #### Project Cloning :
-* Click to view the project env samples [.env.sample](https://github.com/Teemamin/spice_ur_look/blob/master/.env).
+* Click to view the project environment variable samples [.env.sample](https://github.com/Teemamin/spice_ur_look/blob/master/.env).
 Should anyone be intrested in making future enhancements / work further on this project, you can clone as follows:
 * At the top of my repo : click on the "code" button, which will present you with the following options :
 1. Clone with HTTPS or an SSH key: [Generating a new key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).

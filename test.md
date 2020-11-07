@@ -53,6 +53,25 @@ added,subtracted or removed  from the shopping bag and the cost recalculates acc
 * Easy and secure stripe checkout process with no hassle.
 * user: upon successful checkout: user gets redirected to success page with order details and a confirmation email is also sent to the user with their order details.
 
+#### Bug discovered during teting:
+* Products app -> products.html -> aside: left alligned browse category was showing up on mobile break point:
+- solution: used bootstrap class to hide the section on mobile devices.
+* Stripe payment intent.succeeded was returning internal server error: i realized the error was coming from the shopping
+bag id returned by stripe intent which was a string type instead of a bag instance, in other for the payment intent to succeed:
+i used the string id returned by stripe intent and searched  the Bag model to return the intance matching the id and
+used the instance returned to finalize the payment.
+- solution: webhooks.py: 
+  def handle_payment_intent_succeeded(self, event):
+        """
+        Handles  payment_intent.succeeded webhook sent Stripe
+        """
+
+        intent = event.data.object
+        payment_id = intent.id
+        bag = intent.metadata.bag
+        x = Bag.objects.get(pk=bag)
+
+
 
 #### Validating  HTML, CSS and JavaScript and Python/django:
 ### HTML
