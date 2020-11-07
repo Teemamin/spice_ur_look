@@ -50,6 +50,8 @@ SpiceUrLook project is a fictitious online store that provides a unique customer
 
 #### Wireframes: 
 * Click to view [wireframes](https://github.com/Teemamin/spice_ur_look/blob/master/wireframes/spiceurlook_wireframes.pdf).
+#### Databse Design: 
+* Click to view [database diagram](https://github.com/Teemamin/spice_ur_look/blob/master/databse_design/SpiceurlookModels.pdf).
 
 
 ### Features
