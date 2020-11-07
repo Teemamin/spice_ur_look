@@ -52,15 +52,6 @@
                                     <li>
                                         <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=shoes&gender=woman"{%else%} href="{% url 'products' %}?cat=shoes&gender=man"{%endif%}{%endfor%}>Shoes</a>  
                                     </li>
-                                    <!-- <li>
-                                        <a {%for product in products%}{%if product.gender == "woman"%} href="{% url 'products' %}?cat=dresses,tops,shoes,jeans,new_arrivals,accessories,promotions&gender=woman" {%else%} href="{% url 'products' %}?cat=shoes,jeans&gender=man"{%endif%}{%endfor%}>All Products Woman</a>               
-                                    </li>
-                                     <li>
-
-                                        <a href="{% url 'products' %}">All Products</a>
-                                                    
-                                    </li> -->
-                                 
                                 </ul>
                                 <h5 class="sec-hd sidebar_box_shadow">
                                 <hr>

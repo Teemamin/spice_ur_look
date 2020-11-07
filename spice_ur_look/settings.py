@@ -27,7 +27,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['spice-ur-look.herokuapp.com', 'localhost', '8000-f808bb4f-43e9-426e-a800-c34f6a732fcb.ws-eu01.gitpod.io']
+ALLOWED_HOSTS = [
+    'spice-ur-look.herokuapp.com',
+    'localhost', '8000-f808bb4f-43e9-426e-a800-c34f6a732fcb.ws-eu01.gitpod.io'
+    ]
 
 
 # Application definition

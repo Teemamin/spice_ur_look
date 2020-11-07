@@ -2,7 +2,7 @@
 ----
 SpiceUrLook project is a fictitious online store that provides a unique customer experience: This includes giving a
  personalized experience to each customer or visitor of the website, options of responsive view point from devices of 
- varying sccreen size and easy login via google social login.
+ varying screen size and easy login via google social login.
 
  ## UX 
  ----
