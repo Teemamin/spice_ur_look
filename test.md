@@ -18,6 +18,9 @@ The testing process is outlined below. It includes:
 4. [Shopping_bag app:](https://github.com/Teemamin/spice_ur_look/blob/master/shopping_bag/tests.py)
 5. [Home:](https://github.com/Teemamin/spice_ur_look/blob/master/spice_ur_look/tests.py)
 
+* Lighthouse in Chrome Devtools  to check performance:
+* [lighthouse_performance report:](https://github.com/Teemamin/spice_ur_look/blob/master/lighthouse_performance_report/8000-f808bb4f-43e9-426e-a800-c34f6a732fcb.ws-eu01.gitpod.io-2020)
+* ![lighthouse screen shot](lighthouse_performance_report/lighhouse-img.png)
 
 #### User stories tests:
 Testing user experience:
