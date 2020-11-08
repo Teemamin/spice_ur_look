@@ -164,7 +164,7 @@ Languages, libraries, frameworks, editors and version control:
 
 #### Content
 
-* The content of this website is entirely fictional and written by myself.
+* The content of this website is mostly fictitious and written by myself.
 
 #### Media
 
