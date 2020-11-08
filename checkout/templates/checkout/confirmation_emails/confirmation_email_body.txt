@@ -5,8 +5,8 @@ update you on the status.
 
 Your Order {{ order.order_number }} Placed on {{ order.date }}
 
-Order Total: ${{ order.total }}
 Delivery: ${{ order.delivery_total }}
+Order Total: ${{ order.total }}
 
 Your order will be shipped to {{ order.address_1 }} in {{ order.city }}, {{ order.country }}.
 

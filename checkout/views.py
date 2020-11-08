@@ -58,8 +58,7 @@ def checkout(request):
     if bag_created or bag_obj.order_line_items.count() == 0:
         return redirect('shopping_bag')
     current_bag = bag_obj
-    delivery = Decimal(settings.FIXED_DELIVERY)
-    total = current_bag.total + delivery
+    total = current_bag.total
     stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key
     # creates payment intent

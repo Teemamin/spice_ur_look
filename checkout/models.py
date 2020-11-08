@@ -76,8 +76,7 @@ class Order(models.Model):
         """calculates bag total cost and updates order total """
         bag_total = self.bag.total
         self.delivery_total = settings.FIXED_DELIVERY
-        delivery_total = self.delivery_total
-        grand_total = math.fsum([bag_total, delivery_total])
+        grand_total = bag_total
         total_formated = format(grand_total, '.2f')
         self.total = total_formated
         self.save()
