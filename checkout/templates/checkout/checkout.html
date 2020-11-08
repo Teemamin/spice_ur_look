@@ -61,7 +61,7 @@
                 <div id="card-errors" role="alert"></div>
                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 <div class="col-md-12 form-group">
-                    <div class="creat_account">
+                    <div class="creat_account {% if request.user.is_authenticated%} d-none {%else%} d-block {%endif%}">
                         <p>
                             Create an account?
                             <a href="{% url 'account_signup' %}?next={{request.path}}">Click here to Sign-up</a>

@@ -71,6 +71,16 @@ used the instance returned to finalize the payment.
         bag = intent.metadata.bag
         x = Bag.objects.get(pk=bag)
 
+* Bug: during testing i realized that i forgot to restrict access to profiles for unauthenticated users, bug fixed by adding @login_required
+"TypeError at /profiles/
+'AnonymousUser' object is not iterable"
+
+#### Bug left unfixed:
+* "Avoid using null=True on string based fields" 
+- the above mentioned python lint error is left unfixed in models.py of all the apps where null is = True, because the following error:
+"Webhook received: payment_intent.succeeded | ERROR: NOT NULL constraint failed: checkout_order.state"
+"Webhook received: payment_intent.succeeded | ERROR: NOT NULL constraint failed: checkout_order.postcode"
+
 
 
 #### Validating  HTML, CSS and JavaScript and Python/django:
