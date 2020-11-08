@@ -53,13 +53,13 @@
                 </a>
                 <a href="{%url 'remove_from_bag' product.id%}" class=" text-danger"><small>remove?</small></a>
             {% else %}
-                <a href="{% url 'products' %}" class="btn btn-chkout mr-1">
+                <a href="{% url 'products' %}" class="btn btn-chkout mr-1 md-btn-width">
                 <span class="icon">
                     <i class="fas fa-chevron-left"></i>
                 </span>
                 <span class="">Continue Shopping</span>
                 </a>
-                <input type="submit" class="btn btn-chkout  " value="Add To Bag">
+                <input type="submit" class="btn btn-chkout m-1 md-btn-width " value="Add To Bag">
                
             {% endif %}
         </div>
