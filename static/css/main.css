@@ -1604,5 +1604,5 @@ header, main, footer {
 }
 
 .md-btn-width{
-    width: 190px;
+    width: 190px !important;
 }
